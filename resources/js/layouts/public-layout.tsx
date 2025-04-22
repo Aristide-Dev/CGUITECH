@@ -1,7 +1,6 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { 
@@ -136,14 +135,14 @@ export default function PublicLayout({
 
       <div className="flex min-h-screen flex-col bg-white">
         {/* Barre de contact */}
-        <div className="bg-gray-100 py-2 px-4 text-sm text-gray-700">
+        <div className="bg-primary-900 text-white py-2 px-4 text-sm">
           <div className="container mx-auto flex flex-wrap justify-between">
             <div className="flex flex-wrap items-center gap-4">
-              <a href="tel:+224627969855" className="flex items-center space-x-1 hover:text-primary transition-colors">
+              <a href="tel:+224627969855" className="flex items-center space-x-1 hover:text-yellow-400 transition-colors">
                 <PhoneCall className="h-4 w-4" />
                 <span>+224 627 96 98 55</span>
               </a>
-              <a href="mailto:infos@cguitech.com" className="flex items-center space-x-1 hover:text-primary transition-colors">
+              <a href="mailto:infos@cguitech.com" className="flex items-center space-x-1 hover:text-yellow-400 transition-colors">
                 <Mail className="h-4 w-4" />
                 <span>infos@cguitech.com</span>
               </a>
@@ -156,7 +155,7 @@ export default function PublicLayout({
               {auth.user ? (
                 <Link
                   href={route('dashboard')}
-                  className="hover:text-primary"
+                  className="hover:text-yellow-400"
                 >
                   Tableau de bord
                 </Link>
@@ -164,13 +163,13 @@ export default function PublicLayout({
                 <>
                   <Link
                     href={route('login')}
-                    className="hover:text-primary"
+                    className="hover:text-yellow-400"
                   >
                     Connexion
                   </Link>
                   <Link
                     href={route('register')}
-                    className="hover:text-primary"
+                    className="hover:text-yellow-400"
                   >
                     Inscription
                   </Link>
@@ -181,7 +180,7 @@ export default function PublicLayout({
         </div>
 
         {/* En-tête avec navigation */}
-        <header className="sticky top-0 z-50 bg-white border-b border-gray-200 py-4 shadow-sm">
+        <header className="sticky top-0 z-50 bg-white border-b border-primary-100 py-4 shadow-sm">
           <div className="container mx-auto flex items-center justify-between px-4">
             <div className="flex items-center">
               <Link href="/">
@@ -197,7 +196,7 @@ export default function PublicLayout({
                 {menuItems.map((item) => (
                   <li key={item.label} className="relative group">
                     <div 
-                      className="flex items-center gap-1 cursor-pointer font-medium hover:text-primary py-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+                      className="flex items-center gap-1 cursor-pointer font-medium text-gray-700 hover:text-primary py-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
                       onMouseEnter={() => setOpenSubmenu(item.label)}
                       onMouseLeave={() => setOpenSubmenu(null)}
                     >
@@ -210,7 +209,7 @@ export default function PublicLayout({
                     {/* Sous-menu desktop niveau 1 */}
                     {item.children && openSubmenu === item.label && (
                       <div 
-                        className="absolute top-full left-0 mt-1 bg-white shadow-lg rounded-md min-w-[220px] py-2 z-50"
+                        className="absolute top-full left-0 mt-1 bg-white shadow-lg rounded-md min-w-[220px] py-2 z-50 border border-primary-100"
                         onMouseEnter={() => setOpenSubmenu(item.label)}
                         onMouseLeave={() => setOpenSubmenu(null)}
                       >
@@ -218,7 +217,7 @@ export default function PublicLayout({
                           <div key={subItem.label} className="relative group/submenu">
                             <Link 
                               href={subItem.href}
-                              className="block px-4 py-2 hover:bg-gray-50 hover:text-primary text-gray-700 flex items-center justify-between"
+                              className="block px-4 py-2 hover:bg-primary-50 hover:text-primary text-gray-700 flex items-center justify-between"
                             >
                               {subItem.label}
                               {subItem.children && (
@@ -228,12 +227,12 @@ export default function PublicLayout({
                             
                             {/* Sous-menu desktop niveau 2 */}
                             {subItem.children && (
-                              <div className="absolute left-full top-0 mt-0 ml-0 bg-white shadow-lg rounded-md min-w-[180px] py-2 hidden group-hover/submenu:block">
+                              <div className="absolute left-full top-0 mt-0 ml-0 bg-white shadow-lg rounded-md min-w-[180px] py-2 hidden group-hover/submenu:block border border-primary-100">
                                 {subItem.children.map((nestedSubItem) => (
                                   <Link 
                                     key={nestedSubItem.label} 
                                     href={nestedSubItem.href}
-                                    className="block px-4 py-2 hover:bg-gray-50 hover:text-primary text-gray-700"
+                                    className="block px-4 py-2 hover:bg-primary-50 hover:text-primary text-gray-700"
                                   >
                                     {nestedSubItem.label}
                                   </Link>
@@ -250,7 +249,7 @@ export default function PublicLayout({
             </nav>
             
             <div className="flex items-center space-x-4">
-              <Button variant="default" className="bg-primary hover:bg-primary/90 hidden md:flex items-center gap-2">
+              <Button variant="default" className="bg-primary hover:bg-primary-600 text-white hidden md:flex items-center gap-2">
                 Obtenir un Devis
               </Button>
               
@@ -347,7 +346,7 @@ export default function PublicLayout({
                     </div>
                     
                     <div className="border-t p-4">
-                      <Button variant="default" className="w-full bg-primary hover:bg-primary/90">
+                      <Button variant="default" className="w-full bg-primary hover:bg-primary-600 text-white">
                         Obtenir un Devis
                       </Button>
                       <div className="flex justify-between mt-4">
@@ -374,27 +373,27 @@ export default function PublicLayout({
         </main>
 
         {/* Footer */}
-        <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
+        <footer className="bg-gradient-to-br from-blue-900 via-blue-500 to-indigo-900  text-white pt-16 pb-8">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
               <div>
                 <div className="flex items-center mb-6">
-                  <img src="https://cguitech.com/wp-content/uploads/2023/05/logo-cguitech-wb.svg" alt="CGUITECH Logo" className="h-10 w-auto mr-2 filter brightness-0 invert" />
+                  <img src="https://cguitech.com/wp-content/uploads/2023/05/logo-cguitech-wb.svg" alt="CGUITECH Logo" className="h-10 w-auto mr-2" />
                 </div>
-                <p className="mb-6 text-sm">
+                <p className="mb-6 text-sm text-gray-300">
                   CGUITECH ("Compagnie Guinéenne de Technologies et d'Innovations") est un fournisseur dynamique et progressiste de technologie d'entreprise visant à fournir à nos clients des solutions d'affaires innovantes et rentables.
                 </p>
                 <div className="flex space-x-4">
-                  <a href="https://facebook.com/cguitech" className="bg-gray-800 hover:bg-blue-600 transition-colors p-2 rounded-full">
+                  <a href="https://facebook.com/cguitech" className="bg-primary-800 hover:bg-primary-700 transition-colors p-2 rounded-full">
                     <Facebook className="h-5 w-5" />
                   </a>
-                  <a href="https://twitter.com/cguitech" className="bg-gray-800 hover:bg-blue-400 transition-colors p-2 rounded-full">
+                  <a href="https://twitter.com/cguitech" className="bg-primary-800 hover:bg-primary-700 transition-colors p-2 rounded-full">
                     <Twitter className="h-5 w-5" />
                   </a>
-                  <a href="https://linkedin.com/company/cguitech" className="bg-gray-800 hover:bg-blue-700 transition-colors p-2 rounded-full">
+                  <a href="https://linkedin.com/company/cguitech" className="bg-primary-800 hover:bg-primary-700 transition-colors p-2 rounded-full">
                     <Linkedin className="h-5 w-5" />
                   </a>
-                  <a href="https://instagram.com/cguitech" className="bg-gray-800 hover:bg-pink-600 transition-colors p-2 rounded-full">
+                  <a href="https://instagram.com/cguitech" className="bg-primary-800 hover:bg-primary-700 transition-colors p-2 rounded-full">
                     <Instagram className="h-5 w-5" />
                   </a>
                 </div>
@@ -403,24 +402,24 @@ export default function PublicLayout({
               <div>
                 <h3 className="text-lg font-semibold text-white mb-6">Nos Services</h3>
                 <ul className="space-y-3">
-                  <li><Link href="/services/it-management" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> IT Management</Link></li>
-                  <li><Link href="/services/cloud" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Cloud Service</Link></li>
-                  <li><Link href="/services/infrastructure" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Data Center</Link></li>
-                  <li><Link href="/services/software" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Software Development</Link></li>
-                  <li><Link href="/services/ai" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Machine Learning</Link></li>
-                  <li><Link href="/services/security" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Cybersécurité</Link></li>
+                  <li><Link href="/services/it-management" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> IT Management</Link></li>
+                  <li><Link href="/services/cloud" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Cloud Service</Link></li>
+                  <li><Link href="/services/infrastructure" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Data Center</Link></li>
+                  <li><Link href="/services/software" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Software Development</Link></li>
+                  <li><Link href="/services/ai" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Machine Learning</Link></li>
+                  <li><Link href="/services/security" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Cybersécurité</Link></li>
                 </ul>
               </div>
               
               <div>
                 <h3 className="text-lg font-semibold text-white mb-6">Produits</h3>
                 <ul className="space-y-3">
-                  <li><Link href="/products/computers" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Computers</Link></li>
-                  <li><Link href="/products/networking" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Networking</Link></li>
-                  <li><Link href="/products/servers" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Servers</Link></li>
-                  <li><Link href="/products/printers" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Printers & Copiers</Link></li>
-                  <li><Link href="/products/security" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Security</Link></li>
-                  <li><Link href="/products/software" className="hover:text-white transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Software</Link></li>
+                  <li><Link href="/products/computers" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Computers</Link></li>
+                  <li><Link href="/products/networking" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Networking</Link></li>
+                  <li><Link href="/products/servers" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Servers</Link></li>
+                  <li><Link href="/products/printers" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Printers & Copiers</Link></li>
+                  <li><Link href="/products/security" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Security</Link></li>
+                  <li><Link href="/products/software" className="hover:text-yellow-400 transition-colors flex items-center"><ArrowRight className="h-3 w-3 mr-2" /> Software</Link></li>
                 </ul>
               </div>
               
@@ -428,32 +427,32 @@ export default function PublicLayout({
                 <h3 className="text-lg font-semibold text-white mb-6">Contact Info</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start">
-                    <MapPin className="h-5 w-5 mr-3 mt-1 text-primary-400" />
-                    <span>T2 Kipé Centre Emetteur, Ratoma<br/>Conakry, Guinée</span>
+                    <MapPin className="h-5 w-5 mr-3 mt-1 text-yellow-400" />
+                    <span className="text-gray-300">T2 Kipé Centre Emetteur, Ratoma<br/>Conakry, Guinée</span>
                   </li>
                   <li className="flex items-center">
-                    <Clock className="h-5 w-5 mr-3 text-primary-400" />
-                    <span><strong>Opening Hours:</strong> 8:00 – 17:00</span>
+                    <Clock className="h-5 w-5 mr-3 text-yellow-400" />
+                    <span className="text-gray-300"><strong>Opening Hours:</strong> 8:00 – 17:00</span>
                   </li>
                   <li className="flex items-center">
-                    <PhoneCall className="h-5 w-5 mr-3 text-primary-400" />
-                    <span><strong>Phone:</strong> <a href="tel:+224627969855" className="hover:text-white">+224 627 96 98 55</a></span>
+                    <PhoneCall className="h-5 w-5 mr-3 text-yellow-400" />
+                    <span className="text-gray-300"><strong>Phone:</strong> <a href="tel:+224627969855" className="hover:text-yellow-400">+224 627 96 98 55</a></span>
                   </li>
                   <li className="flex items-center">
-                    <Mail className="h-5 w-5 mr-3 text-primary-400" />
-                    <span><a href="mailto:infos@cguitech.com" className="hover:text-white">infos@cguitech.com</a></span>
+                    <Mail className="h-5 w-5 mr-3 text-yellow-400" />
+                    <span className="text-gray-300"><a href="mailto:infos@cguitech.com" className="hover:text-yellow-400">infos@cguitech.com</a></span>
                   </li>
                 </ul>
               </div>
             </div>
             
-            <Separator className="my-8 bg-gray-700" />
+            <Separator className="my-8 bg-primary-700" />
             
             <div className="flex flex-col md:flex-row justify-between items-center">
-              <p>&copy; Copyright {currentYear}. Tous droits réservés par CGUITech</p>
+              <p className="text-gray-300">&copy; Copyright {currentYear}. Tous droits réservés par CGUITECH</p>
               <div className="flex flex-wrap gap-4 mt-4 md:mt-0 justify-center">
-                <Link href="/privacy-policy" className="hover:text-white transition-colors">Politique de confidentialité</Link>
-                <Link href="/terms" className="hover:text-white transition-colors">Conditions d'utilisation</Link>
+                <Link href="/privacy-policy" className="hover:text-yellow-400 transition-colors text-gray-300">Politique de confidentialité</Link>
+                <Link href="/terms" className="hover:text-yellow-400 transition-colors text-gray-300">Conditions d'utilisation</Link>
               </div>
             </div>
           </div>
