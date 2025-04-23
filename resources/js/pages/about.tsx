@@ -110,23 +110,23 @@ export default function About() {
                         </div>
                         <div className="grid grid-cols-2 gap-6">
                             <div className="aspect-square rounded-2xl overflow-hidden">
-                                <img src="/api/placeholder/400/400" 
-                                    alt="Bureaux CGUITech" 
+                                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" 
+                                    alt="Bureaux modernes CGUITech" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                             <div className="aspect-square rounded-2xl overflow-hidden mt-12">
-                                <img src="/api/placeholder/400/400" 
-                                    alt="Équipe CGUITech" 
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80" 
+                                    alt="Équipe CGUITech en réunion" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                             <div className="aspect-square rounded-2xl overflow-hidden">
-                                <img src="/api/placeholder/400/400" 
-                                    alt="Installations CGUITech" 
+                                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80" 
+                                    alt="Centre de données CGUITech" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                             <div className="aspect-square rounded-2xl overflow-hidden mt-12">
-                                <img src="/api/placeholder/400/400" 
-                                    alt="Centre de données CGUITech" 
+                                <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80" 
+                                    alt="Support technique CGUITech" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                         </div>
@@ -205,7 +205,11 @@ export default function About() {
                             <div key={index} className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center">
                                 <div className="w-40 h-40 rounded-full overflow-hidden mb-8 border-4 border-primary-100 p-1">
                                     <img 
-                                        src={leader.image} 
+                                        src={[
+                                            "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80",
+                                            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
+                                            "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80"
+                                        ][index]} 
                                         alt={leader.name} 
                                         className="w-full h-full object-cover rounded-full" 
                                     />
