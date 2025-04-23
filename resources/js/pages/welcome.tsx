@@ -164,7 +164,7 @@ export default function Welcome() {
     return (
         <PublicLayout>
             {/* Bannière principale avec slider */}
-            <section className="bg-gradient-to-br from-gray-900 via-primary/80 to-primary/70 py-20 md:py-28 text-white relative overflow-hidden">
+            <section className="bg-gradient-to-b from-gray-900 via-primary/80 to-indigo-900 py-20 md:py-28 text-white relative overflow-hidden">
                 {/* Formes décoratives */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
                     <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary-600 opacity-20 blur-3xl"></div>
@@ -190,7 +190,7 @@ export default function Welcome() {
                                                 <Button className="bg-yellow-500 hover:bg-yellow-600 text-primary-900 text-lg px-8 py-6 font-medium rounded-full">
                                                     {slide.buttonText}
                                 </Button>
-                                                <Button variant="outline" className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 rounded-full">
+                                                <Button className="border-white text-white hover:bg-white/10 text-lg px-8 py-6 rounded-full">
                                                     Nos services
                                 </Button>
                             </div>
@@ -294,10 +294,10 @@ export default function Welcome() {
                                                 </p>
                                             </div>
                                             
-                                            <Link 
+                                <Link
                                                 href={service.link} 
                                                 className="inline-flex items-center text-white bg-primary/80 backdrop-blur-sm hover:bg-primary px-5 py-3 rounded-full font-medium text-sm group-hover:shadow-lg transition-all duration-300 w-fit"
-                                            >
+                                >
                                                 En savoir plus <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                                         </div>
@@ -519,7 +519,7 @@ export default function Welcome() {
                                         +224 627 96 98 55
                                     </a>
                                 </div>
-                            </div>
+                        </div>
                             <div className="hidden md:block relative h-full">
                                 <div className="absolute inset-0 bg-gradient-to-l from-transparent to-primary-900/50 z-10"></div>
                                 <img 
