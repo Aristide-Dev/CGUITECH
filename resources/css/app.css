@@ -342,3 +342,19 @@
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 }
+
+
+.nav-link-active {
+  color: #0066cc; /* Utilisez votre couleur primary */
+  font-weight: 500;
+  position: relative;
+}
+
+.active-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #0066cc; /* Utilisez votre couleur primary */
+}

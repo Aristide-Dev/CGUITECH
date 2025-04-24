@@ -2,7 +2,7 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
 import { 
   PhoneCall, 
   Mail, 
@@ -15,7 +15,8 @@ import {
   Linkedin, 
   Instagram,
   Menu as MenuIcon,
-  X
+  X,
+  ArrowUp
 } from 'lucide-react';
 import { type SharedData } from '@/types';
 
@@ -35,12 +36,14 @@ interface SubMenuProps {
   item: MenuItem;
   depth?: number;
   onItemClick: () => void;
+  isActive?: boolean;
 }
 
 interface MobileMenuProps {
   menuItems: MenuItem[];
   isOpen: boolean;
   onClose: () => void;
+  currentPath: string;
 }
 
 interface LogoProps {
@@ -65,6 +68,7 @@ interface FooterLinksProps {
     href: string;
   }>;
 }
+
 
 // Extraction des composants pour une meilleure organisation
 const TopContactBar = () => (
@@ -142,7 +146,7 @@ const Logo = ({ className = "h-16", onClick }: LogoProps) => (
 );
 
 // Composant pour le sous-menu
-const SubMenu = ({ item, depth = 0, onItemClick }: SubMenuProps) => {
+const SubMenu = ({ item, depth = 0, onItemClick, isActive }: SubMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const toggleSubmenu = (e: React.MouseEvent) => {
@@ -155,7 +159,13 @@ const SubMenu = ({ item, depth = 0, onItemClick }: SubMenuProps) => {
       <div className="flex items-center justify-between p-4">
         <Link 
           href={item.href} 
-          className={`${depth === 0 ? 'text-lg font-medium' : 'text-base'}`}
+          className={`${
+            depth === 0 ? 'text-lg font-medium' : 'text-base'
+          } ${
+            isActive 
+              ? 'text-primary font-semibold' 
+              : 'text-gray-700 hover:text-primary'
+          } transition-colors duration-200`}
           onClick={() => !item.children && onItemClick()}
         >
           {item.label}
@@ -163,12 +173,12 @@ const SubMenu = ({ item, depth = 0, onItemClick }: SubMenuProps) => {
         {item.children && (
           <button
             onClick={toggleSubmenu}
-            className="p-2"
+            className="p-2 text-gray-500 hover:text-primary transition-colors"
             aria-expanded={isOpen}
             aria-label={`Expand ${item.label} submenu`}
           >
             <ChevronDown 
-              className={`h-5 w-5 transition-transform ${isOpen ? 'transform rotate-180' : ''}`}
+              className={`h-5 w-5 transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`}
               aria-hidden="true"
             />
           </button>
@@ -176,13 +186,14 @@ const SubMenu = ({ item, depth = 0, onItemClick }: SubMenuProps) => {
       </div>
       
       {item.children && isOpen && (
-        <div className={`bg-gray-${depth === 0 ? '50' : '100'}`}>
+        <div className={`bg-gray-${depth === 0 ? '50' : '100'} pl-4`}>
           {item.children.map((subItem) => (
             <SubMenu 
               key={subItem.label} 
               item={subItem} 
               depth={depth + 1}
               onItemClick={onItemClick}
+              isActive={isActive}
             />
           ))}
         </div>
@@ -191,68 +202,99 @@ const SubMenu = ({ item, depth = 0, onItemClick }: SubMenuProps) => {
   );
 };
 
+// Fonction utilitaire pour vérifier si un élément du menu est actif
+const isMenuItemActive = (href: string, currentPath: string): boolean => {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(href);
+};
+
 // Composant pour le menu mobile
-const MobileMenu = ({ menuItems, isOpen, onClose }: MobileMenuProps) => {
+const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps) => {
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetTrigger asChild>
-        <button 
-          className="lg:hidden focus:outline-none p-2"
-          onClick={() => onClose()}
-          aria-label="Ouvrir le menu"
-        >
-          <MenuIcon className="h-6 w-6" aria-hidden="true" />
-        </button>
-      </SheetTrigger>
-      <SheetContent side="right" className="w-full sm:w-[400px] p-0 overflow-hidden">
-        <div className="flex flex-col h-full">
-          <div className="flex justify-between items-center border-b p-4">
-            <Logo className="h-10" onClick={onClose} />
-            <button 
-              onClick={onClose}
-              aria-label="Fermer le menu"
-            >
-              <X className="h-6 w-6" aria-hidden="true" />
-            </button>
-          </div>
-          
-          <div className="flex-grow overflow-y-auto py-2">
-            <div className="space-y-1">
-              {menuItems.map((item) => (
-                <SubMenu 
-                  key={item.label} 
-                  item={item} 
-                  onItemClick={onClose}
-                />
-              ))}
+    <>
+      <button 
+        className="lg:hidden focus:outline-none p-2 text-gray-700 hover:text-primary transition-colors"
+        onClick={() => onClose()}
+        aria-label="Toggle menu"
+      >
+        <MenuIcon className="h-6 w-6" aria-hidden="true" />
+      </button>
+      
+      <Sheet open={isOpen} onOpenChange={onClose}>
+        <SheetContent side="right" className="w-full sm:w-[400px] p-0 overflow-hidden bg-white">
+          <div className="flex flex-col h-full">
+            <div className="flex justify-between items-center border-b p-4 bg-primary-50">
+              <Logo className="h-10" onClick={onClose} />
+              <button 
+                onClick={onClose}
+                aria-label="Fermer le menu"
+                className="text-gray-500 hover:text-primary transition-colors"
+              >
+                <X className="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+            
+            <div className="flex-grow overflow-y-auto py-2">
+              <div className="space-y-1">
+                {menuItems.map((item) => {
+                  const isActive = isMenuItemActive(item.href, currentPath);
+                  
+                  return (
+                    <div key={item.label} className="relative">
+                      {item.children ? (
+                        <SubMenu 
+                          key={item.label} 
+                          item={item} 
+                          onItemClick={onClose}
+                          isActive={isActive}
+                        />
+                      ) : (
+                        <Link 
+                          href={item.href}
+                          className={`block px-4 py-3 ${
+                            isActive 
+                              ? 'text-primary font-semibold bg-primary-50' 
+                              : 'text-gray-700 hover:text-primary hover:bg-gray-50'
+                          } transition-colors duration-200`}
+                          onClick={onClose}
+                        >
+                          {item.label}
+                        </Link>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            
+            <div className="border-t p-4 bg-gray-50">
+              <Button 
+                variant="default" 
+                className="w-full bg-primary hover:bg-primary-600 text-white transition-colors"
+                onClick={() => {
+                  window.location.href = '/contact';
+                  onClose();
+                }}
+              >
+                Obtenir un Devis
+              </Button>
+              <div className="flex justify-between mt-4">
+                <a href="tel:+224627969855" className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
+                  <PhoneCall className="h-4 w-4 mr-1" aria-hidden="true" />
+                  +224 627 96 98 55
+                </a>
+                <a href="mailto:infos@cguitech.com" className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
+                  <Mail className="h-4 w-4 mr-1" aria-hidden="true" />
+                  infos@cguitech.com
+                </a>
+              </div>
             </div>
           </div>
-          
-          <div className="border-t p-4">
-            <Button 
-              variant="default" 
-              className="w-full bg-primary hover:bg-primary-600 text-white"
-              onClick={() => {
-                window.location.href = '/contact';
-                onClose();
-              }}
-            >
-              Obtenir un Devis
-            </Button>
-            <div className="flex justify-between mt-4">
-              <a href="tel:+224627969855" className="flex items-center text-sm text-gray-600">
-                <PhoneCall className="h-4 w-4 mr-1" aria-hidden="true" />
-                +224 627 96 98 55
-              </a>
-              <a href="mailto:infos@cguitech.com" className="flex items-center text-sm text-gray-600">
-                <Mail className="h-4 w-4 mr-1" aria-hidden="true" />
-                infos@cguitech.com
-              </a>
-            </div>
-          </div>
-        </div>
-      </SheetContent>
-    </Sheet>
+        </SheetContent>
+      </Sheet>
+    </>
   );
 };
 
@@ -260,6 +302,7 @@ const MobileMenu = ({ menuItems, isOpen, onClose }: MobileMenuProps) => {
 const DesktopNavigation = ({ menuItems }: DesktopNavigationProps) => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const menuRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
+  const { url } = usePage();
   
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -285,14 +328,18 @@ const DesktopNavigation = ({ menuItems }: DesktopNavigationProps) => {
             }}
           >
             <div 
-              className="flex items-center gap-1 cursor-pointer font-medium text-gray-700 hover:text-primary py-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              className={`flex items-center gap-1 cursor-pointer font-medium ${
+                isMenuItemActive(item.href, url) 
+                  ? 'text-primary after:w-full' 
+                  : 'text-gray-700 hover:text-primary after:w-0 hover:after:w-full'
+              } py-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-primary after:transition-all duration-200`}
               onMouseEnter={() => setOpenSubmenu(item.label)}
               aria-expanded={openSubmenu === item.label}
               role={item.children ? "button" : undefined}
             >
               <Link href={item.href}>{item.label}</Link>
               {item.children && (
-                <ChevronDown className="h-4 w-4" aria-hidden="true" />
+                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true" />
               )}
             </div>
             
@@ -307,12 +354,16 @@ const DesktopNavigation = ({ menuItems }: DesktopNavigationProps) => {
                   <div key={subItem.label} className="relative group/submenu">
                     <Link 
                       href={subItem.href}
-                      className="block px-4 py-2 hover:bg-primary-50 hover:text-primary text-gray-700 flex items-center justify-between"
+                      className={`block px-4 py-2 ${
+                        isMenuItemActive(subItem.href, url)
+                          ? 'text-primary bg-primary-50 font-semibold'
+                          : 'text-gray-700 hover:text-primary hover:bg-primary-50'
+                      } transition-colors duration-200 flex items-center justify-between`}
                       role="menuitem"
                     >
                       {subItem.label}
                       {subItem.children && (
-                        <ChevronDown className="h-4 w-4 -rotate-90" aria-hidden="true" />
+                        <ChevronDown className="h-4 w-4 -rotate-90 transition-transform duration-200 group-hover/submenu:rotate-0" aria-hidden="true" />
                       )}
                     </Link>
                     
@@ -326,7 +377,11 @@ const DesktopNavigation = ({ menuItems }: DesktopNavigationProps) => {
                           <Link 
                             key={nestedSubItem.label} 
                             href={nestedSubItem.href}
-                            className="block px-4 py-2 hover:bg-primary-50 hover:text-primary text-gray-700"
+                            className={`block px-4 py-2 ${
+                              isMenuItemActive(nestedSubItem.href, url)
+                                ? 'text-primary bg-primary-50 font-semibold'
+                                : 'text-gray-700 hover:text-primary hover:bg-primary-50'
+                            } transition-colors duration-200`}
                             role="menuitem"
                           >
                             {nestedSubItem.label}
@@ -483,7 +538,7 @@ const getMenuItems = (): MenuItem[] => [
     href: "/services",
     children: [
       { label: "Services IT gérés tout-en-un", href: "/services/it-management" },
-      { label: "Services de support IT", href: "/services/support" },
+      { label: "Services de support IT", href: "/services/it-support" },
       { label: "Solutions cloud", href: "/services/cloud" },
       { label: "Conception Web et Hébergement", href: "/services/web-design" },
       { label: "Infrastructure", href: "/services/infrastructure" },
@@ -544,6 +599,42 @@ const getMenuItems = (): MenuItem[] => [
   }
 ];
 
+const BackToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', toggleVisibility);
+    return () => window.removeEventListener('scroll', toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  return (
+    <button
+      onClick={scrollToTop}
+      className={`fixed bottom-8 right-8 p-3 rounded-full bg-primary text-white shadow-lg transition-all duration-300 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-400 z-50 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12 pointer-events-none'
+      }`}
+      aria-label="Retour en haut"
+    >
+      <ArrowUp className="h-6 w-6" />
+    </button>
+  );
+};
+
 // Composant principal du layout
 export default function PublicLayout({ 
   children, 
@@ -552,6 +643,7 @@ export default function PublicLayout({
 }: PublicLayoutProps) {
   const menuItems = getMenuItems();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { url } = usePage();
   
   // Empêche le scroll quand le menu mobile est ouvert
   useEffect(() => {
@@ -604,7 +696,8 @@ export default function PublicLayout({
               <MobileMenu 
                 menuItems={menuItems} 
                 isOpen={mobileMenuOpen} 
-                onClose={() => setMobileMenuOpen(false)} 
+                onClose={() => setMobileMenuOpen(!mobileMenuOpen)} 
+                currentPath={url}
               />
             </div>
           </div>
@@ -617,6 +710,7 @@ export default function PublicLayout({
 
         {/* Footer */}
         <Footer />
+        <BackToTop />
       </div>
     </>
   );
