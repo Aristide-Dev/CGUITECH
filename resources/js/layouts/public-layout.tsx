@@ -53,6 +53,7 @@ interface LogoProps {
 
 interface DesktopNavigationProps {
   menuItems: MenuItem[];
+  currentPath: string;
 }
 
 interface SocialLinkProps {
@@ -299,10 +300,9 @@ const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps
 };
 
 // Composant pour le menu de navigation desktop
-const DesktopNavigation = ({ menuItems }: DesktopNavigationProps) => {
+const DesktopNavigation = ({ menuItems, currentPath }: DesktopNavigationProps) => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const menuRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
-  const { url } = usePage();
   
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -329,7 +329,7 @@ const DesktopNavigation = ({ menuItems }: DesktopNavigationProps) => {
           >
             <div 
               className={`flex items-center gap-1 cursor-pointer font-medium ${
-                isMenuItemActive(item.href, url) 
+                isMenuItemActive(item.href, currentPath) 
                   ? 'text-primary after:w-full' 
                   : 'text-gray-700 hover:text-primary after:w-0 hover:after:w-full'
               } py-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-primary after:transition-all duration-200`}
@@ -355,7 +355,7 @@ const DesktopNavigation = ({ menuItems }: DesktopNavigationProps) => {
                     <Link 
                       href={subItem.href}
                       className={`block px-4 py-2 ${
-                        isMenuItemActive(subItem.href, url)
+                        isMenuItemActive(subItem.href, currentPath)
                           ? 'text-primary bg-primary-50 font-semibold'
                           : 'text-gray-700 hover:text-primary hover:bg-primary-50'
                       } transition-colors duration-200 flex items-center justify-between`}
@@ -378,7 +378,7 @@ const DesktopNavigation = ({ menuItems }: DesktopNavigationProps) => {
                             key={nestedSubItem.label} 
                             href={nestedSubItem.href}
                             className={`block px-4 py-2 ${
-                              isMenuItemActive(nestedSubItem.href, url)
+                              isMenuItemActive(nestedSubItem.href, currentPath)
                                 ? 'text-primary bg-primary-50 font-semibold'
                                 : 'text-gray-700 hover:text-primary hover:bg-primary-50'
                             } transition-colors duration-200`}
@@ -681,7 +681,10 @@ export default function PublicLayout({
             </div>
             
             {/* Navigation desktop */}
-            <DesktopNavigation menuItems={menuItems} />
+            <DesktopNavigation 
+              menuItems={menuItems} 
+              currentPath={url}
+            />
             
             <div className="flex items-center space-x-4">
               <Button 

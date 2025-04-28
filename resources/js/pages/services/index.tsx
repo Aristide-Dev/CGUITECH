@@ -12,6 +12,7 @@ import {
   Code, 
   Phone, 
   CheckCircle, 
+  ChevronRight,
   Users, 
   Clock, 
   TrendingUp 
@@ -113,6 +114,93 @@ export default function ServicesIndex() {
       title="Services IT Professionnels | CGUITech"
       description="Découvrez notre gamme complète de services IT pour les entreprises en Guinée. Support informatique, cloud, infrastructure, sécurité et développement logiciel sur mesure."
     >
+      
+            {/* Hero Section améliorée */}
+            <div className="w-full bg-primary relative">
+                <div className="w-full min-h-[150vh] overflow-visible relative">
+                    <div className="h-screen sticky top-0">
+                        <img 
+                            src="https://www.freepik.com/premium-photo/black-man-as-network-engineer_28945127.htm#fromView=search&page=1&position=19&uuid=96f8c966-bd15-4e49-ad71-c8e02046f197&query=informatiqe"
+                            alt="Services CGUITECH"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-transparent">
+                        </div>
+                    </div>
+
+                    <div className="absolute inset-0 flex flex-col">
+                        <div className="h-[50vh]"></div>
+                        <div className="flex justify-center items-start mx-auto px-4 md:px-8 w-full">
+                            <div className="max-w-7xl w-full space-y-6 bg-black/40 p-8 md:p-12 rounded-3xl border border-white/10 shadow-2xl">
+                                <div className="space-y-3 text-center">
+                                    <span className="text-white/70 font-semibold text-lg md:text-xl uppercase tracking-wider">Solutions Technologiques Complètes</span>
+                                    <h1 className="text-5xl md:text-7xl font-bold leading-tight text-white">
+                                        Services & Solutions
+                                    </h1>
+                                    <div className="flex flex-wrap gap-2 items-center justify-center">
+                                        <div className="bg-white/20 py-1 px-3 rounded-full inline-flex">
+                                            <span className="text-white font-semibold">IT Management</span>
+                                        </div>
+                                        <div className="bg-white/20 py-1 px-3 rounded-full inline-flex">
+                                            <span className="text-white font-semibold">Cloud Solutions</span>
+                                        </div>
+                                        <div className="bg-white/20 py-1 px-3 rounded-full inline-flex">
+                                            <span className="text-white font-semibold">Web Design</span>
+                                        </div>
+                                        <div className="bg-yellow-500/20 py-1 px-3 rounded-full inline-flex">
+                                            <span className="text-yellow-300 font-semibold">
+                                                Support 24/7
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <p className="text-xl md:text-2xl text-yellow-400 font-semibold tracking-wide">
+                                        <span className="text-red-500">Innovation</span> • Expertise • <span className="text-primary">Solutions</span>
+                                    </p>
+                                </div>
+                                
+                                <div className="grid md:grid-cols-2 gap-8 text-white/90 mt-8">
+                                    <div className="space-y-3 border-l-4 border-yellow-400 pl-6">
+                                        <h2 className="text-2xl md:text-3xl font-bold text-white">Expertise Multidisciplinaire</h2>
+                                        <p className="text-lg md:text-xl leading-relaxed">
+                                            De l'infrastructure IT à la conception web, en passant par les solutions cloud 
+                                            et le développement logiciel, nous offrons une gamme complète de services 
+                                            technologiques adaptés à vos besoins.
+                                        </p>
+                                    </div>
+
+                                    <div className="space-y-3 border-l-4 border-yellow-400 pl-6">
+                                        <h2 className="text-2xl md:text-3xl font-bold text-white">Solutions Sur Mesure</h2>
+                                        <p className="text-lg md:text-xl leading-relaxed">
+                                            Notre approche personnalisée vous garantit des solutions adaptées à votre 
+                                            secteur d'activité et à vos objectifs spécifiques, avec un support continu 
+                                            pour votre croissance.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row gap-4 pt-8 justify-center">
+                                    <Link
+                                        href="/contact"
+                                        className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 text-lg transform hover:-translate-y-1"
+                                    >
+                                        Demander un devis
+                                        <ChevronRight className="ml-2 h-5 w-5" />
+                                    </Link>
+                                    <Link
+                                        href="#services-overview"
+                                        className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition-all duration-300 text-lg border border-white/20 transform hover:-translate-y-1"
+                                    >
+                                        Découvrir nos services
+                                        <ChevronRight className="ml-2 h-5 w-5" />
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
       {/* Hero Section with Animation */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 opacity-90"></div>

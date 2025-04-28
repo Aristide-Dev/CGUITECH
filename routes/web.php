@@ -11,6 +11,10 @@ Route::get('/about', function () {
     return Inertia::render('about');
 })->name('about');
 
+Route::get('/contact', function () {
+    return Inertia::render('contact');
+})->name('contact.index');
+
 // Routes pour les services
 Route::prefix('services')->name('services.')->group(function () {
     // Page d'index des services
