@@ -32,19 +32,20 @@ export default function Welcome() {
         {
             title: "Optimiser vos systèmes",
             subtitle: "Pour une meilleure performance digitale",
-            image: "https://cguitech.com/wp-content/uploads/2023/05/imgHome.jpg",
+            image: "images/welcome/slides/imgHome.jpg",
             buttonText: "Rencontrez-nous"
         },
         {
             title: "Logiciels & Conception",
             subtitle: "Transformez vos processus techniques",
-            image: "https://img.freepik.com/free-photo/standard-quality-control-concept-m_23-2150041864.jpg?t=st=1745490258~exp=1745493858~hmac=b28a816fdbcf60ca8b8b888871e289394dd678f1aa31a043579a394c04b64e18&w=1380",
+            image: "/images/welcome/slides/ai-assistant-hover-3.mp4",
+            type: 'video', 
             buttonText: "Rencontrez-nous"
         },
         {
             title: "Entreprise Certifiée",
             subtitle: "Des prestations adaptées à votre mode de fonctionnement",
-            image: "https://img.freepik.com/free-photo/smiling-businessman-with-cv_23-2147626473.jpg?t=st=1745490382~exp=1745493982~hmac=f0739eeebdbcfbe4c52789937f4182ba357d4e5880260565f48a9dddd3f0e73b&w=1380",
+            image: "images/welcome/slides/smiling-businessman-with-cv.jpg",
             buttonText: "En savoir plus"
         }
     ];
@@ -207,20 +208,34 @@ export default function Welcome() {
                                                 <div className="absolute inset-0 bg-gradient-to-tr from-primary-600 to-blue-400 rounded-3xl opacity-20 blur transform rotate-6 scale-105 group-hover:scale-110 transition-all duration-700"></div>
                                                 
                                                 {/* Cadre décoratif */}
-                                                <div className="absolute inset-2 border-2 border-white/20 rounded-2xl rotate-3 opacity-80"></div>
+                                                <div className="absolute inset-0 border-5 border-white/20 rounded-2xl rotate-8 opacity-80"></div>
                                                 
                                                 {/* Image principale avec effet de flottement */}
                                                 <div className="overflow-hidden rounded-3xl border-4 border-white/10 shadow-2xl relative">
-                                                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 z-10"></div>
-                                                    <img 
-                                                        src={slide.image} 
-                                                        alt={slide.title} 
+                                                    {/* <div className="absolute mt-5 inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 z-10"></div> */}
+                                                    {slide.type === 'video' ? (
+                                                    <video 
+                                                        autoPlay={true} 
+                                                        loop={true}
                                                         className="relative z-0 w-full object-cover h-96 transform transition-transform duration-5000 hover:scale-110" 
-                                                    />
+                                                    >
+                                                        
+                                                        <source src={slide.image} type="video/mp4"/> 
+
+                                                    </video>
+
+                                                    ):(
+                                                        <img 
+                                                            src={slide.image} 
+                                                            alt={slide.title} 
+                                                            className="relative z-0 w-full object-cover h-96 transform transition-transform duration-5000 hover:scale-110" 
+                                                        />
+
+                                                    )}
                                                 </div>
                                                 
                                                 {/* Badge flottant */}
-                                                <div className="absolute -bottom-6 -right-6 bg-yellow-500 text-primary-900 p-4 rounded-full shadow-lg z-20 hidden md:block transition-all duration-300 hover:scale-110">
+                                                <div className="absolute -bottom-6 -right-6 bg-white text-primary-900 p-4 rounded-full shadow-lg z-20 hidden md:block transition-all duration-300 hover:scale-110">
                                                     <Award className="h-8 w-8" />
                                                 </div>
                                                 

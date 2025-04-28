@@ -1,7 +1,7 @@
 import PublicLayout from '@/layouts/public-layout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Users, Award, Target, PieChart, ArrowRight, Star, Shield, Lightbulb } from 'lucide-react';
+import { Users, Target, PieChart, ArrowRight, Star, Shield, Lightbulb } from 'lucide-react';
 
 export default function About() {
     // Données pour l'équipe de direction
