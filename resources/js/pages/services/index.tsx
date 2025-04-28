@@ -120,7 +120,7 @@ export default function ServicesIndex() {
                 <div className="w-full min-h-[150vh] overflow-visible relative">
                     <div className="h-screen sticky top-0">
                         <img 
-                            src="https://www.freepik.com/premium-photo/black-man-as-network-engineer_28945127.htm#fromView=search&page=1&position=19&uuid=96f8c966-bd15-4e49-ad71-c8e02046f197&query=informatiqe"
+                            src="https://img.freepik.com/premium-photo/black-man-as-network-engineer_236854-41050.jpg?w=1380"
                             alt="Services CGUITECH"
                             className="w-full h-full object-cover"
                         />
@@ -205,7 +205,7 @@ export default function ServicesIndex() {
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700 opacity-90"></div>
         <div className="absolute inset-0 bg-[url('/images/pattern-grid.svg')] opacity-20"></div>
-        <div className="container relative mx-auto px-4 text-white">
+        {/* <div className="container relative mx-auto px-4 text-white">
           <div className="max-w-4xl mx-auto text-center">
             <Badge className="mb-6 bg-white/20 text-white px-4 py-1 text-sm">SOLUTIONS TECHNOLOGIQUES POUR L'AFRIQUE</Badge>
             <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in-up">
@@ -234,7 +234,7 @@ export default function ServicesIndex() {
               </Button>
             </div>
           </div>
-        </div>
+        </div> */}
         
         {/* Animated shapes */}
         <div className="absolute -bottom-6 left-0 right-0 h-24">
@@ -253,7 +253,7 @@ export default function ServicesIndex() {
               <p className="text-gray-600">Clients satisfaits</p>
             </div>
             <div className="p-6">
-              <p className="text-4xl font-bold text-primary-700 mb-2">15+</p>
+              <p className="text-4xl font-bold text-primary-700 mb-2">28+</p>
               <p className="text-gray-600">Années d'expertise</p>
             </div>
             <div className="p-6">

@@ -107,7 +107,7 @@
     /* Couleurs principales CGUITech */
     --primary: #0046B5;
     --primary-foreground: #FFFFFF;
-    --secondary: #EAB308;
+    --secondary: #6beafb;
     --secondary-foreground: #000000;
     
     /* Variantes de couleur primaire (bleu) */
@@ -125,16 +125,16 @@
     
     /* Variantes de couleur secondaire (jaune) */
     --secondary-50: #FFF9E5;
-    --secondary-100: #FFF2CC;
-    --secondary-200: #FFE799;
-    --secondary-300: #FFD966;
-    --secondary-400: #FFC933;
-    --secondary-500: #EAB308;
-    --secondary-600: #CC9C00;
-    --secondary-700: #A67F00;
-    --secondary-800: #7F6200;
-    --secondary-900: #594500;
-    --secondary-950: #332800;
+    --secondary-100: #ccfcff;
+    --secondary-200: #99fcff;
+    --secondary-300: #66fffc;
+    --secondary-400: #33e0ff;
+    --secondary-500: #08eaea;
+    --secondary-600: #00becc;
+    --secondary-700: #00a3a6;
+    --secondary-800: #00797f;
+    --secondary-900: #005959;
+    --secondary-950: #002b33;
     
     /* Autres couleurs adaptées */
     --background: #FFFFFF;
