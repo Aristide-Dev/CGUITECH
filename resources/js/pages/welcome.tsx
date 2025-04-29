@@ -23,6 +23,8 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 
+import { cguitech } from '@/utils/index';
+
 export default function Welcome() {
     // const { auth } = usePage<SharedData>().props;
     const currentYear = new Date().getFullYear();
@@ -47,59 +49,6 @@ export default function Welcome() {
             subtitle: "Des prestations adaptées à votre mode de fonctionnement",
             image: "images/welcome/slides/smiling-businessman-with-cv.jpg",
             buttonText: "En savoir plus"
-        }
-    ];
-
-    // Données pour les services avec images libres
-    const services = [
-        {
-            icon: <Code className="h-8 w-8" />,
-            title: "Développement Logiciel",
-            description: "Applications sur mesure pour répondre exactement à vos besoins métier spécifiques.",
-            link: "/services/software",
-            image: "/images/welcome/services/two-african-american-young-people-man-woman-software-engineers-conding-desk-with-computer-office-talking-poiting.jpg"
-        },
-        {
-            icon: <Shield className="h-8 w-8" />,
-            title: "Cybersécurité",
-            description: "Protection avancée contre les menaces numériques pour sécuriser vos données critiques.",
-            link: "/services/security",
-            image: "/images/welcome/services/photo-1550751827-4bd374c3f58b.jpeg"
-        },
-        {
-            icon: <Cloud className="h-8 w-8" />,
-            title: "Solutions Cloud",
-            description: "Infrastructure cloud évolutive pour plus de flexibilité et d'efficacité opérationnelle.",
-            link: "/services/cloud",
-            image: "/images/welcome/services/man-holding-cloud-computing-diagram-data-storage-network-connection-business.jpg"
-        },
-        {
-            icon: <Server className="h-8 w-8" />,
-            title: "Gestion IT",
-            description: "Services IT complets pour que vous puissiez vous concentrer sur votre cœur de métier.",
-            link: "/services/it-management",
-            image: "/images/welcome/services/standard-quality-control-concept-m.jpg"
-        },
-        {
-            icon: <PhoneCall className="h-8 w-8" />,
-            title: "Téléphonie IP",
-            description: "Solutions de téléphonie IP modernes pour une communication unifiée et efficace.",
-            link: "/services/ip-telephony",
-            image: "/images/welcome/services/close-up-person-working-call-center.jpg"
-        },
-        {
-            icon: <Server className="h-8 w-8" />,
-            title: "Infrastructure",
-            description: "Solutions d'infrastructure robustes et évolutives pour supporter votre croissance.",
-            link: "/services/infrastructure",
-            image: "/images/welcome/services/side-view-woman-working-with-wires.jpg"
-        },
-        {
-            icon: <Code className="h-8 w-8" />,
-            title: "Conception Web",
-            // description: "Sites web et applications web modernes, responsives et optimisées pour le SEO.",
-            link: "/services/web-design",
-            image: "/images/welcome/services/Conception-Web.jpg"
         }
     ];
 
@@ -131,17 +80,6 @@ export default function Welcome() {
         "Commerce & Distribution",
         "Télécommunications",
         "Secteur Public"
-    ];
-
-    // Données pour la section partenaires
-    const partners = [
-        { name: "Advancenet", logo: "/images/welcome/partners/logo-advancenet.jpeg" },
-        { name: "Exadata", logo: "/images/welcome/partners/logo-exadata.png" },
-        { name: "Huahuan", logo: "/images/welcome/partners/logo-huahuan.png" },
-        { name: "Oracle", logo: "/images/welcome/partners/logo-oracle.png" },
-        { name: "Ricoh", logo: "/images/welcome/partners/logo-ricoh.png" },
-        { name: "Serbadinamik", logo: "/images/welcome/partners/logo-serbadinamik.png" },
-        { name: "Serverware", logo: "/images/welcome/partners/logo-serverware.png" },
     ];
 
     // Témoignages clients avec images libres
@@ -195,10 +133,10 @@ export default function Welcome() {
                                             <div className="flex flex-col sm:flex-row gap-4">
                                                 <Link href={ route('contact.index') } className="bg-white hover:bg-gray-300 text-primary hover:text-blue-500 text-lg px-8 py-6 font-medium rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
                                                     {slide.buttonText}
-                                                </Link>
+                            </Link>
                                                 <Link href={ route('services.index') } className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-full transition-all duration-300">
                                                     Nos services
-                                                </Link>
+                                </Link>
                                             </div>
                                         </div>
                                         <div className="flex justify-center">
@@ -323,7 +261,7 @@ export default function Welcome() {
                         className="w-full"
                     >
                         <CarouselContent className="-ml-6">
-                            {services.map((service, index) => (
+                            {cguitech.services.map((service, index) => (
                                 <CarouselItem key={index} className="pl-6 md:basis-1/2 lg:basis-1/3">
                                     <Card className="h-full border-0 hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden group relative">
                                         {/* Image de fond avec effet de zoom au survol */}
@@ -543,7 +481,7 @@ export default function Welcome() {
                     </div>
 
                     <div className="flex flex-wrap justify-center items-center gap-16">
-                        {partners.map((partner, index) => (
+                        {cguitech.partners.map((partner, index) => (
                             <div key={index} className="p-6 grayscale hover:grayscale-0 transition-all duration-300 hover:transform hover:scale-110">
                                 <img src={partner.logo} alt={partner.name} className="h-16 w-auto" />
                             </div>
