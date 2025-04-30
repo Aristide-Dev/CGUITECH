@@ -31,63 +31,6 @@ import { cguitech } from '@/utils/index';
 
 
 export default function ServicesIndex() {
-  const services = [
-    {
-      title: "Services IT gérés tout-en-un",
-      description: "Une solution complète pour la gestion de votre infrastructure informatique avec surveillance proactive, maintenance préventive et support technique illimité.",
-      slug: "it-management",
-      icon: <Server className="h-8 w-8" />,
-      color: "bg-blue-500",
-      features: ["Surveillance 24/7", "Maintenance préventive", "Support illimité"]
-    },
-    {
-      title: "Support informatique",
-      description: "Un support technique réactif et professionnel disponible en français et en anglais, avec des délais d'intervention garantis pour tous vos besoins quotidiens.",
-      slug: "it-support",
-      icon: <Headphones className="h-8 w-8" />,
-      color: "bg-indigo-500",
-      features: ["Support multilingue", "Intervention rapide", "Résolution efficace"]
-    },
-    {
-      title: "Solutions cloud",
-      description: "Migrez vos services et applications vers le cloud pour plus de flexibilité, d'évolutivité et de résilience. Optimisez vos coûts d'infrastructure avec nos solutions sur mesure.",
-      slug: "cloud",
-      icon: <Cloud className="h-8 w-8" />,
-      color: "bg-cyan-500",
-      features: ["Migration sécurisée", "Sauvegarde automatisée", "Scalabilité illimitée"]
-    },
-    {
-      title: "Infrastructure IT",
-      description: "Conception, mise en place et maintenance d'infrastructures informatiques performantes, sécurisées et adaptées aux enjeux des entreprises guinéennes.",
-      slug: "infrastructure",
-      icon: <Server className="h-8 w-8" />,
-      color: "bg-blue-600",
-      features: ["Réseau haute performance", "Virtualisation", "Solutions hybrides"]
-    },
-    {
-      title: "Téléphonie IP",
-      description: "Solutions de communication unifiées et de téléphonie sur IP pour optimiser vos échanges professionnels, réduire vos coûts et améliorer la collaboration.",
-      slug: "ip-telephony",
-      icon: <Phone className="h-8 w-8" />,
-      color: "bg-violet-500",
-      features: ["Appels illimités", "Vidéoconférence HD", "Messagerie unifiée"]
-    },
-    {
-      title: "Conception Web et Hébergement",
-      description: "Création de sites web professionnels, responsives et optimisés pour le référencement. Solutions d'hébergement haute disponibilité adaptées au marché africain.",
-      slug: "web-design",
-      icon: <Globe className="h-8 w-8" />,
-      color: "bg-blue-400",
-    },
-    {
-      title: "Développement logiciel",
-      description: "Développement d'applications sur mesure pour répondre aux besoins spécifiques de votre entreprise. Solutions mobiles, web et de bureau pour digitaliser vos opérations.",
-      slug: "software",
-      icon: <Code className="h-8 w-8" />,
-      color: "bg-indigo-600",
-      features: ["Applications personnalisées", "Interfaces intuitives", "Maintenance continue"]
-    },
-  ];
 
   const industries = [
     { name: "Santé", icon: "🏥" },
@@ -213,8 +156,9 @@ export default function ServicesIndex() {
             {cguitech.services.map((service, index) => (
               <div 
                 key={index} 
-                className="group bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+                className="relative group bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
               >
+                <div className={`absolute h-full w-full bg-[url("${service.image}")] bg-cover bg-no-repeat opacity-50`}></div>
                 <div className="p-6">
                   <div className={`${service.color} w-12 h-12 rounded-lg text-white flex items-center justify-center mb-5`}>
                     {service.icon}
@@ -238,7 +182,7 @@ export default function ServicesIndex() {
                   </ul>
                   
                   <Link 
-                    href={service.link}
+                    href={service.link || '#'}
                     className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group-hover:underline"
                   >
                     En savoir plus 
@@ -310,7 +254,7 @@ export default function ServicesIndex() {
               
               <div className="relative z-10 bg-white rounded-xl overflow-hidden shadow-xl">
                 <img 
-                  src="/api/placeholder/600/400" 
+                  src="/images/services/people-working-marketing-agency.jpg" 
                   alt="Expertise IT"
                   className="w-full h-auto"
                 />
