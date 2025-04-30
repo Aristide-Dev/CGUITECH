@@ -82,28 +82,6 @@ export default function Welcome() {
         "Secteur Public"
     ];
 
-    // Témoignages clients avec images libres
-    const testimonials = [
-        {
-            name: "Sophie Laurent",
-            position: "Directrice IT, Finance Corp",
-            text: "CGUITECH a complètement transformé notre infrastructure IT. Leur expertise et leur approche sur mesure ont rendu notre système plus efficace et sécurisé.",
-            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-        },
-        {
-            name: "Marc Dubois",
-            position: "CEO, MediTech",
-            text: "L'équipe de CGUITECH comprend parfaitement les enjeux spécifiques du secteur de la santé. Leur solution a amélioré considérablement notre gestion des données patients.",
-            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-        },
-        {
-            name: "Julie Moreau",
-            position: "COO, EduSoft",
-            text: "Travailler avec CGUITECH a été une excellente décision. Leur support continu et leur réactivité font toute la différence dans notre collaboration.",
-            avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-        }
-    ];
-
     return (
         <PublicLayout>
             {/* Bannière principale avec slider */}
@@ -384,7 +362,7 @@ export default function Welcome() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {testimonials.map((testimonial, index) => (
+                        {cguitech.testimonials.map((testimonial, index) => (
                             <Card key={index} className="p-8 border-none shadow-xl rounded-2xl bg-white hover:transform hover:-translate-y-2 transition-all duration-300">
                                 <div className="mb-6 text-yellow-500">
                                     {[...Array(5)].map((_, i) => (

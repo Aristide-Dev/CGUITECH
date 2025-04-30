@@ -41,21 +41,6 @@ export default function ServicesIndex() {
     { name: "Transport", icon: "🚚" }
   ];
 
-  const testimonials = [
-    {
-      quote: "CGUITech a complètement transformé notre infrastructure informatique, ce qui nous a permis d'améliorer considérablement notre productivité.",
-      author: "Jean Camara",
-      position: "Directeur des Opérations, MinesTech Guinée",
-      avatar: "/api/placeholder/100/100"
-    },
-    {
-      quote: "Le support technique est incroyablement réactif. Nos problèmes sont généralement résolus en moins d'une heure.",
-      author: "Marie Condé",
-      position: "Responsable IT, Banque de Développement",
-      avatar: "/api/placeholder/100/100"
-    }
-  ];
-
   return (
     <PublicLayout
       title="Services IT Professionnels | CGUITech"
@@ -315,7 +300,7 @@ export default function ServicesIndex() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
+            {cguitech.testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
                 className="bg-slate-50 p-8 rounded-xl shadow-sm"
@@ -324,17 +309,17 @@ export default function ServicesIndex() {
                   <div className="bg-slate-200 w-12 h-12 rounded-full overflow-hidden">
                     <img 
                       src={testimonial.avatar}
-                      alt={testimonial.author}
+                      alt={testimonial.name}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="ml-4">
-                    <h4 className="font-bold text-slate-900">{testimonial.author}</h4>
+                    <h4 className="font-bold text-slate-900">{testimonial.name}</h4>
                     <p className="text-slate-500 text-sm">{testimonial.position}</p>
                   </div>
                 </div>
                 
-                <p className="text-slate-700 italic">"{testimonial.quote}"</p>
+                <p className="text-slate-700 italic">"{testimonial.text}"</p>
               </div>
             ))}
           </div>
