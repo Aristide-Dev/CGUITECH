@@ -54,7 +54,7 @@ export default function CloudService() {
 
   return (
     <PublicLayout
-      title="Solutions Cloud | CGUITech"
+      title="Solutions Cloud | CGUITECH"
       description="Découvrez nos solutions cloud sécurisées et évolutives adaptées aux besoins de votre entreprise pour stocker, gérer et traiter vos données."
     >
       {/* Hero Section */}
@@ -82,7 +82,7 @@ export default function CloudService() {
               <Badge className="bg-primary-100 text-primary mb-6">APERÇU</Badge>
               <h2 className="text-3xl font-bold mb-6">Transformez votre entreprise avec le cloud</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Chez CGUITech, nous proposons des solutions cloud complètes qui permettent aux entreprises de toutes tailles de bénéficier de la flexibilité, de l'évolutivité et de la sécurité qu'offre le cloud computing.
+                Chez CGUITECH, nous proposons des solutions cloud complètes qui permettent aux entreprises de toutes tailles de bénéficier de la flexibilité, de l'évolutivité et de la sécurité qu'offre le cloud computing.
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Que vous souhaitiez migrer entièrement vers le cloud, adopter une approche hybride ou simplement utiliser certains services cloud spécifiques, notre équipe d'experts vous accompagne tout au long du processus pour assurer une transition en douceur et optimiser vos investissements technologiques.

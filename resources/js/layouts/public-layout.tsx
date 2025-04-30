@@ -85,12 +85,12 @@ const TopContactBar = () => (
           <span>+224 627 96 98 55</span>
         </a>
         <a 
-          href="mailto:infos@cguitech.com" 
+          href="mailto:infos@CGUITECH.com" 
           className="flex items-center space-x-1 hover:text-yellow-400 transition-colors"
           aria-label="Email"
         >
           <Mail className="h-4 w-4" aria-hidden="true" />
-          <span>infos@cguitech.com</span>
+          <span>infos@CGUITECH.com</span>
         </a>
         <div className="flex items-center space-x-1">
           <Clock className="h-4 w-4" aria-hidden="true" />
@@ -137,7 +137,7 @@ const AuthLinks = () => {
 const Logo = ({ className = "h-16", onClick }: LogoProps) => (
   <Link href="/" onClick={onClick}>
     <img 
-      src="/images/logo-cguitech-wb.svg" 
+      src="/images/logo-CGUITECH-wb.svg" 
       alt="CGUITECH Logo" 
       className={`${className} w-auto`} 
       width="160"
@@ -286,9 +286,9 @@ const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps
                   <PhoneCall className="h-4 w-4 mr-1" aria-hidden="true" />
                   +224 627 96 98 55
                 </a>
-                <a href="mailto:infos@cguitech.com" className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
+                <a href="mailto:infos@CGUITECH.com" className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
                   <Mail className="h-4 w-4 mr-1" aria-hidden="true" />
-                  infos@cguitech.com
+                  infos@CGUITECH.com
                 </a>
               </div>
             </div>
@@ -416,10 +416,10 @@ const Footer = () => {
               CGUITECH ("Compagnie Guinéenne de Technologies et d'Innovations") est un fournisseur dynamique et progressiste de technologie d'entreprise visant à fournir à nos clients des solutions d'affaires innovantes et rentables.
             </p>
             <div className="flex space-x-4">
-              <SocialLink href="https://facebook.com/cguitech" icon={<Facebook className="h-5 w-5" />} label="Facebook" />
-              <SocialLink href="https://twitter.com/cguitech" icon={<Twitter className="h-5 w-5" />} label="Twitter" />
-              <SocialLink href="https://linkedin.com/company/cguitech" icon={<Linkedin className="h-5 w-5" />} label="LinkedIn" />
-              <SocialLink href="https://instagram.com/cguitech" icon={<Instagram className="h-5 w-5" />} label="Instagram" />
+              <SocialLink href="https://facebook.com/CGUITECH" icon={<Facebook className="h-5 w-5" />} label="Facebook" />
+              <SocialLink href="https://twitter.com/CGUITECH" icon={<Twitter className="h-5 w-5" />} label="Twitter" />
+              <SocialLink href="https://linkedin.com/company/CGUITECH" icon={<Linkedin className="h-5 w-5" />} label="LinkedIn" />
+              <SocialLink href="https://instagram.com/CGUITECH" icon={<Instagram className="h-5 w-5" />} label="Instagram" />
             </div>
           </div>
           
@@ -464,7 +464,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300"><a href="mailto:infos@cguitech.com" className="hover:text-yellow-400 transition-colors">infos@cguitech.com</a></span>
+                <span className="text-gray-300"><a href="mailto:infos@CGUITECH.com" className="hover:text-yellow-400 transition-colors">infos@CGUITECH.com</a></span>
               </li>
             </ul>
           </div>

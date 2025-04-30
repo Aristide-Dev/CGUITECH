@@ -36,8 +36,8 @@ export default function About() {
 
     return (
         <PublicLayout 
-            title="À propos de CGUITech | Notre Histoire et Notre Mission" 
-            description="Découvrez l'histoire de CGUITech, notre équipe de direction et notre mission de fournir des solutions technologiques de pointe en Guinée."
+            title="À propos de CGUITECH | Notre Histoire et Notre Mission" 
+            description="Découvrez l'histoire de CGUITECH, notre équipe de direction et notre mission de fournir des solutions technologiques de pointe en Guinée."
         >
             {/* En-tête de page amélioré avec overlay et animation */}
             <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
@@ -62,7 +62,7 @@ export default function About() {
                         <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm">À PROPOS DE NOUS</Badge>
                         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">La référence technologique en Guinée</h1>
                         <p className="text-xl opacity-90 mb-8 leading-relaxed">
-                            Créée en 1995, CGUITech s'est imposée comme le leader incontesté des solutions technologiques en Guinée et en Afrique de l'Ouest.
+                            Créée en 1995, CGUITECH s'est imposée comme le leader incontesté des solutions technologiques en Guinée et en Afrique de l'Ouest.
                         </p>
                         <Button className="bg-white text-primary-800 hover:bg-white/90 font-medium text-base px-6 py-5 flex items-center">
                             Découvrir nos services
@@ -95,7 +95,7 @@ export default function About() {
                             <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">28 années d'innovation et d'excellence technologique</h2>
                             <p className="text-gray-700 mb-6 leading-relaxed">
                                 Fondée avec la vision claire de devenir un acteur majeur des technologies de l'information en Afrique, 
-                                CGUITech a débuté comme une petite entreprise fournissant des services informatiques de base à Conakry.
+                                CGUITECH a débuté comme une petite entreprise fournissant des services informatiques de base à Conakry.
                             </p>
                             <p className="text-gray-700 mb-6 leading-relaxed">
                                 Au fil des années, nous avons connu une croissance constante, élargissant notre gamme de services 
@@ -111,22 +111,22 @@ export default function About() {
                         <div className="grid grid-cols-2 gap-6">
                             <div className="aspect-square rounded-2xl overflow-hidden">
                                 <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" 
-                                    alt="Bureaux modernes CGUITech" 
+                                    alt="Bureaux modernes CGUITECH" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                             <div className="aspect-square rounded-2xl overflow-hidden mt-12">
                                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80" 
-                                    alt="Équipe CGUITech en réunion" 
+                                    alt="Équipe CGUITECH en réunion" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                             <div className="aspect-square rounded-2xl overflow-hidden">
                                 <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80" 
-                                    alt="Centre de données CGUITech" 
+                                    alt="Centre de données CGUITECH" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                             <div className="aspect-square rounded-2xl overflow-hidden mt-12">
                                 <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80" 
-                                    alt="Support technique CGUITech" 
+                                    alt="Support technique CGUITECH" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                         </div>

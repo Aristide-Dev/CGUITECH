@@ -1,15 +1,27 @@
 import PublicLayout from '@/layouts/public-layout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle2, Globe, Code, PenTool, Search, Rocket, Smartphone, ServerIcon } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { 
+  CheckCircle2, 
+  Globe, 
+  Code, 
+  PenTool, 
+  Search, 
+  Rocket, 
+  Smartphone, 
+  Server as ServerIcon,
+  ChevronRight,
+  Zap,
+  Shield
+} from 'lucide-react';
 
 export default function WebDesignService() {
   // Données pour les types de sites web
   const webSiteTypes = [
     {
       title: "Site vitrine",
-      description: "Présentez votre entreprise et vos services avec un site moderne et professionnel.",
+      description: "Présentez votre entreprise avec un design immersif et captivant.",
       icon: <Globe className="h-8 w-8 text-primary" />,
       features: [
         "Design personnalisé et responsive",
@@ -20,7 +32,7 @@ export default function WebDesignService() {
     },
     {
       title: "Site e-commerce",
-      description: "Vendez vos produits en ligne avec une boutique complète et sécurisée.",
+      description: "Vendez en ligne avec une boutique complète et sécurisée.",
       icon: <Rocket className="h-8 w-8 text-primary" />,
       features: [
         "Catalogue de produits complet",
@@ -31,7 +43,7 @@ export default function WebDesignService() {
     },
     {
       title: "Applications web",
-      description: "Solutions web sur mesure pour répondre aux besoins spécifiques de votre entreprise.",
+      description: "Solutions sur mesure pour les besoins spécifiques de votre entreprise.",
       icon: <Code className="h-8 w-8 text-primary" />,
       features: [
         "Développement sur mesure",
@@ -42,7 +54,7 @@ export default function WebDesignService() {
     },
     {
       title: "Sites mobiles",
-      description: "Expérience optimisée pour les utilisateurs mobiles avec un design responsive.",
+      description: "Expérience optimisée pour les utilisateurs mobiles.",
       icon: <Smartphone className="h-8 w-8 text-primary" />,
       features: [
         "Compatibilité multi-appareils",
@@ -57,7 +69,7 @@ export default function WebDesignService() {
   const hostingServices = [
     {
       title: "Hébergement web",
-      description: "Solutions d'hébergement fiables et performantes pour votre site web ou application.",
+      description: "Solutions d'hébergement performantes pour votre site web ou application.",
       icon: <ServerIcon className="h-8 w-8 text-primary" />,
       features: [
         "Disponibilité 99,9% garantie",
@@ -68,7 +80,7 @@ export default function WebDesignService() {
     },
     {
       title: "Noms de domaine",
-      description: "Enregistrement et gestion de noms de domaine pour établir votre présence en ligne.",
+      description: "Enregistrement et gestion de noms de domaine pour votre présence en ligne.",
       icon: <Globe className="h-8 w-8 text-primary" />,
       features: [
         "Large choix d'extensions (.com, .gn, .org, etc.)",
@@ -79,262 +91,285 @@ export default function WebDesignService() {
     }
   ];
 
+  // Données pour le processus
+  const processSteps = [
+    {
+      number: "01",
+      title: "Consultation et planification",
+      description: "Nous analysons vos objectifs commerciaux, votre public cible et vos besoins spécifiques pour élaborer une stratégie web efficace.",
+    },
+    {
+      number: "02",
+      title: "Conception et maquettage",
+      description: "Création de maquettes visuelles illustrant la structure, la mise en page et l'esthétique de votre futur site.",
+    },
+    {
+      number: "03",
+      title: "Développement et intégration",
+      description: "Transformation des maquettes en site web fonctionnel avec intégration des fonctionnalités et des contenus.",
+    },
+    {
+      number: "04",
+      title: "Tests et optimisation",
+      description: "Tests rigoureux de compatibilité, performance et sécurité, avec optimisation SEO avant le lancement.",
+    },
+    {
+      number: "05",
+      title: "Lancement et suivi",
+      description: "Mise en ligne du site et suivi pour garantir son bon fonctionnement avec services de maintenance et d'assistance.",
+    }
+  ];
+
   return (
     <PublicLayout
-      title="Conception Web et Hébergement | CGUITech"
+      title="Conception Web et Hébergement | CGUITECH"
       description="Créez votre présence en ligne avec nos services de conception web professionnelle et solutions d'hébergement fiables. Sites vitrines, e-commerce et applications sur mesure."
     >
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="container mx-auto px-4 relative">
+      {/* Hero Section - Style plus moderne avec design asymétrique */}
+      <section className="relative bg-gradient-to-br from-blue-500 via-indigo-400 to-violet-400 py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-pattern opacity-10"></div>
+        {/* Formes géométriques flottantes */}
+        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-white/20 blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-20 w-80 h-80 rounded-full bg-blue-300/20 blur-3xl animate-pulse animation-delay-2000"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm">CONCEPTION WEB</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Conception web professionnelle et hébergement</h1>
-            <p className="text-xl opacity-90 mb-8 leading-relaxed">
-              Établissez votre présence en ligne avec un site web attrayant et fonctionnel, conçu pour refléter l'identité de votre entreprise et attirer de nouveaux clients.
+            <Badge className="bg-white/30 hover:bg-white/40 text-white mb-6 py-2 px-4 text-sm uppercase tracking-wide backdrop-blur-sm">Conception Web</Badge>
+            <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-tight text-white">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-violet-100">
+                Conception web intelligente. Impact numérique réel.
+              </span>
+            </h1>
+            <p className="text-xl text-white mb-10 leading-relaxed max-w-2xl">
+              Établissez votre présence en ligne avec un site web qui convertit les visiteurs en clients grâce à un design captivant et une expérience utilisateur exceptionnelle.
             </p>
-            <Button className="bg-white text-primary-600 hover:bg-white/90">
-              Demander un devis gratuit
-            </Button>
+            <div className="flex flex-wrap gap-4">
+              <Button className="bg-white hover:bg-white/90 text-blue-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                Demander un devis gratuit
+              </Button>
+              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
+                Découvrir nos projets
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Introduction */}
-      <section className="py-16 bg-white">
+      {/* Introduction - Design avec overlay et effet de perspective */}
+      <section className="py-24 bg-gradient-to-b from-white to-blue-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <Badge className="bg-primary-100 text-primary mb-6">NOTRE EXPERTISE</Badge>
-              <h2 className="text-3xl font-bold mb-6">Créez une expérience web qui vous démarque</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                À l'ère du numérique, un site web professionnel est essentiel pour établir la crédibilité et la visibilité de votre entreprise. Chez CGUITech, nous concevons des sites web qui non seulement sont visuellement attrayants, mais aussi fonctionnels et optimisés pour les moteurs de recherche.
+              <Badge className="bg-blue-100 text-blue-600 mb-6 uppercase tracking-wide font-medium">Notre expertise</Badge>
+              <h2 className="text-4xl font-bold mb-8 leading-tight">Créez une expérience web qui vous <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">démarque</span></h2>
+              <p className="text-blue-900 mb-8 leading-relaxed text-lg">
+                À l'ère du numérique, un site web professionnel est essentiel pour établir la crédibilité et la visibilité de votre entreprise. Chez CGUITECH, nous concevons des sites web qui non seulement sont visuellement attrayants, mais aussi fonctionnels et optimisés pour les moteurs de recherche.
               </p>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-blue-800 mb-10 leading-relaxed text-lg">
                 Notre équipe de concepteurs et développeurs web expérimentés travaille en étroite collaboration avec vous pour comprendre vos objectifs commerciaux et créer une solution web sur mesure qui répond parfaitement à vos besoins et aux attentes de vos clients.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">Design moderne et attrayant</span>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-50">
+                  <Zap className="h-8 w-8 text-blue-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-blue-900">Design moderne</h3>
+                    <p className="text-blue-700 mt-1">Interfaces élégantes et intuitives</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">Optimisation pour le mobile</span>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-50">
+                  <Smartphone className="h-8 w-8 text-blue-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-blue-900">100% responsive</h3>
+                    <p className="text-blue-700 mt-1">Parfait sur tous les appareils</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">Optimisation SEO</span>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-50">
+                  <Search className="h-8 w-8 text-blue-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-blue-900">SEO intégré</h3>
+                    <p className="text-blue-700 mt-1">Visible dans les recherches</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">Temps de chargement rapide</span>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-50">
+                  <Shield className="h-8 w-8 text-blue-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-blue-900">Sécurité avancée</h3>
+                    <p className="text-blue-700 mt-1">Protection des données</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-xl">
-              <img
-                src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&q=80"
-                alt="Conception web professionnelle"
-                className="w-full h-full object-cover"
-              />
+            <div className="relative">
+              <div className="absolute -inset-4 bg-blue-600/10 rounded-3xl transform -rotate-2"></div>
+              <div className="absolute -inset-4 bg-violet-600/10 rounded-3xl transform rotate-2"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-all duration-500">
+                <img
+                  src="https://img.freepik.com/premium-photo/young-woman-using-phone-while-sitting-table_1048944-3844506.jpg?w=1380"
+                  alt="Conception web professionnelle"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Web Design Services */}
-      <section className="py-16 bg-gray-50">
+      {/* Web Design Services - Cards avec effet de survol */}
+      <section className="py-24 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge className="bg-primary-100 text-primary mb-4">NOS SERVICES</Badge>
-            <h2 className="text-3xl font-bold mb-6">Solutions web adaptées à vos besoins</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="bg-blue-100 text-blue-600 mb-4 uppercase tracking-wide font-medium">Nos services</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">Solutions web adaptées à vos besoins</h2>
+            <p className="text-blue-700 max-w-3xl mx-auto text-lg">
               Que vous ayez besoin d'un site vitrine, d'une boutique en ligne ou d'une application web sur mesure, nous avons la solution qu'il vous faut.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {webSiteTypes.map((type, index) => (
-              <Card key={index} className="border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="flex flex-row items-start space-x-4 pb-2">
-                  <div className="bg-primary-50 p-3 rounded-md">
+              <div key={index} className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-blue-100">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-violet-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="p-8 relative z-10">
+                  <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl inline-flex mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     {type.icon}
                   </div>
-                  <div>
-                    <CardTitle className="text-xl font-bold">{type.title}</CardTitle>
-                    <p className="text-gray-600 mt-1">{type.description}</p>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 mt-4">
+                  <h3 className="text-2xl font-bold mb-3 text-blue-900 group-hover:text-blue-600 transition-colors">{type.title}</h3>
+                  <p className="text-blue-700 mb-6">{type.description}</p>
+                  <ul className="space-y-3">
                     {type.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
+                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                        <span className="text-blue-800">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                  <div className="mt-8 pt-6 border-t border-blue-100">
+                    <Button variant="ghost" className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 font-medium p-0 group flex items-center">
+                      En savoir plus 
+                      <ChevronRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Notre processus */}
-      <section className="py-16 bg-white">
+      {/* Notre processus - Timeline moderne */}
+      <section className="py-24 bg-gradient-to-br from-blue-50 via-white to-violet-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="bg-primary-100 text-primary mb-4">NOTRE PROCESSUS</Badge>
-            <h2 className="text-3xl font-bold mb-6">Comment nous créons votre site web</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+            <Badge className="bg-blue-100 text-blue-600 mb-4 uppercase tracking-wide font-medium">Notre processus</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">Comment nous créons votre site web</h2>
+            <p className="text-blue-700 max-w-3xl mx-auto text-lg">
               Notre approche structurée garantit que votre projet web soit livré à temps, dans le respect du budget et selon vos attentes.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Ligne verticale connectant les étapes */}
-              <div className="absolute left-[39px] top-0 bottom-0 w-1 bg-primary-100 z-0"></div>
-              
-              <div className="space-y-12 relative z-10">
-                <div className="flex gap-8">
-                  <div className="h-20 w-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold shrink-0">1</div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3">Consultation et planification</h3>
-                    <p className="text-gray-600 mb-4">
-                      Nous commençons par comprendre vos objectifs commerciaux, votre public cible et vos besoins spécifiques. Cette phase inclut l'analyse de votre marché et de vos concurrents pour élaborer une stratégie web efficace.
-                    </p>
+          <div className="max-w-5xl mx-auto">
+            <div className="space-y-8">
+              {processSteps.map((step, index) => (
+                <div key={index} className="flex flex-col md:flex-row gap-6 items-start">
+                  <div className="md:w-1/4 flex-shrink-0">
+                    <div className="bg-white shadow-lg rounded-2xl p-6 transform hover:-translate-y-1 transition-all hover:shadow-xl border border-blue-100">
+                      <span className="text-4xl font-black bg-gradient-to-br from-blue-600 to-violet-600 text-transparent bg-clip-text">
+                        {step.number}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="md:w-3/4 bg-white shadow-lg rounded-2xl p-8 transform hover:-translate-y-1 transition-all hover:shadow-xl border border-blue-100">
+                    <h3 className="text-2xl font-bold mb-4 text-blue-900">{step.title}</h3>
+                    <p className="text-blue-700">{step.description}</p>
                   </div>
                 </div>
-
-                <div className="flex gap-8">
-                  <div className="h-20 w-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold shrink-0">2</div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3">Conception et maquettage</h3>
-                    <p className="text-gray-600 mb-4">
-                      Notre équipe de designers crée des maquettes visuelles de votre site, illustrant la structure, la mise en page et l'esthétique. Vous avez la possibilité de réviser et d'approuver ces maquettes avant le développement.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-8">
-                  <div className="h-20 w-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold shrink-0">3</div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3">Développement et intégration</h3>
-                    <p className="text-gray-600 mb-4">
-                      Nos développeurs transforment les maquettes approuvées en un site web fonctionnel, en utilisant les technologies les plus adaptées à vos besoins. Cette phase inclut l'intégration de fonctionnalités et de contenus.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-8">
-                  <div className="h-20 w-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold shrink-0">4</div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3">Tests et optimisation</h3>
-                    <p className="text-gray-600 mb-4">
-                      Avant le lancement, nous testons rigoureusement votre site pour assurer sa compatibilité avec différents navigateurs et appareils, sa performance et sa sécurité. Nous optimisons également le site pour les moteurs de recherche.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex gap-8">
-                  <div className="h-20 w-20 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold shrink-0">5</div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-3">Lancement et suivi</h3>
-                    <p className="text-gray-600 mb-4">
-                      Une fois votre approbation obtenue, nous lançons votre site et assurons un suivi pour garantir son bon fonctionnement. Nous proposons également des services de maintenance et d'assistance pour garder votre site à jour.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Hosting Services */}
-      <section className="py-16 bg-gray-50">
+      {/* Hosting Services - Cards flottantes */}
+      <section className="py-24 bg-gradient-to-b from-violet-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge className="bg-primary-100 text-primary mb-4">HÉBERGEMENT</Badge>
-            <h2 className="text-3xl font-bold mb-6">Solutions d'hébergement fiables</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="bg-blue-100 text-blue-600 mb-4 uppercase tracking-wide font-medium">Hébergement</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">Solutions d'hébergement fiables</h2>
+            <p className="text-blue-700 max-w-3xl mx-auto text-lg">
               Un site web performant nécessite un hébergement de qualité. Nous proposons des solutions d'hébergement fiables et sécurisées pour garantir la disponibilité et la rapidité de votre site.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             {hostingServices.map((service, index) => (
-              <Card key={index} className="border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="flex flex-row items-start space-x-4 pb-2">
-                  <div className="bg-primary-50 p-3 rounded-md">
+              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-blue-100 relative overflow-hidden hover:-translate-y-1">
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-blue-500 to-violet-500"></div>
+                <div className="flex items-start gap-6 mb-6">
+                  <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl">
                     {service.icon}
                   </div>
                   <div>
-                    <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
-                    <p className="text-gray-600 mt-1">{service.description}</p>
+                    <h3 className="text-2xl font-bold mb-2 text-blue-900">{service.title}</h3>
+                    <p className="text-blue-700">{service.description}</p>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 mt-4">
+                </div>
+                <div className="pl-20">
+                  <ul className="space-y-3 mt-4">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
+                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
+                        <span className="text-blue-800">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SEO Section */}
-      <section className="py-16 bg-white">
+      {/* SEO Section - Design asymétrique */}
+      <section className="py-24 bg-gradient-to-b from-white to-blue-50">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="rounded-xl overflow-hidden shadow-xl">
-              <img
-                src="https://images.unsplash.com/photo-1562577309-2592ab84b1bc?auto=format&fit=crop&q=80"
-                alt="Optimisation pour les moteurs de recherche"
-                className="w-full h-full object-cover"
-              />
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
+            <div className="lg:col-span-2 relative">
+              <div className="absolute -inset-4 bg-blue-600/10 rounded-3xl transform rotate-3"></div>
+              <div className="absolute -inset-4 bg-violet-600/10 rounded-3xl transform -rotate-2"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="https://img.freepik.com/free-psd/girl-character-with-browser-tab_23-2149838746.jpg?t=st=1746031056~exp=1746034656~hmac=8c7a4d4c10e2ffeb1a00f5ca75290d7d2477a007b2ae58ee6f6000de4ec62809&w=826"
+                  alt="Optimisation pour les moteurs de recherche"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
-            <div>
-              <Badge className="bg-primary-100 text-primary mb-6">RÉFÉRENCEMENT</Badge>
-              <h2 className="text-3xl font-bold mb-6">Optimisation pour les moteurs de recherche</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+            
+            <div className="lg:col-span-3">
+              <Badge className="bg-blue-100 text-blue-600 mb-6 uppercase tracking-wide font-medium">Référencement</Badge>
+              <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">Optimisation pour les moteurs de recherche</h2>
+              <p className="text-blue-800 mb-8 leading-relaxed text-lg">
                 Avoir un beau site web ne suffit pas - il doit aussi être trouvé par vos clients potentiels. Nous intégrons des stratégies d'optimisation pour les moteurs de recherche (SEO) dès la conception de votre site pour améliorer sa visibilité en ligne.
               </p>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-blue-700 mb-10 leading-relaxed text-lg">
                 Notre approche SEO comprend l'optimisation technique, la recherche de mots-clés, la création de contenu de qualité et l'amélioration de l'expérience utilisateur - tous des facteurs essentiels pour un bon classement dans les résultats de recherche.
               </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Search className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-gray-900">Recherche de mots-clés</h3>
-                    <p className="text-gray-600">Identification des termes de recherche pertinents pour votre entreprise et votre public cible.</p>
-                  </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-100">
+                  <Search className="h-10 w-10 text-blue-600 mb-4" />
+                  <h3 className="font-bold text-xl mb-3 text-blue-900">Recherche de mots-clés</h3>
+                  <p className="text-blue-700">Identification des termes de recherche pertinents pour votre entreprise.</p>
                 </div>
-                <div className="flex items-start gap-3">
-                  <PenTool className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-gray-900">Contenu optimisé</h3>
-                    <p className="text-gray-600">Création de contenus de qualité qui répondent aux requêtes des utilisateurs et aux exigences des moteurs de recherche.</p>
-                  </div>
+                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-100">
+                  <PenTool className="h-10 w-10 text-blue-600 mb-4" />
+                  <h3 className="font-bold text-xl mb-3 text-blue-900">Contenu optimisé</h3>
+                  <p className="text-blue-700">Création de contenus de qualité qui répondent aux requêtes des utilisateurs.</p>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Code className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-gray-900">Optimisation technique</h3>
-                    <p className="text-gray-600">Structure du site, balisage, vitesse de chargement et autres facteurs techniques qui influencent le référencement.</p>
-                  </div>
+                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-100">
+                  <Code className="h-10 w-10 text-blue-600 mb-4" />
+                  <h3 className="font-bold text-xl mb-3 text-blue-900">Optimisation technique</h3>
+                  <p className="text-blue-700">Structure du site, balisage, vitesse et facteurs techniques.</p>
                 </div>
               </div>
             </div>
@@ -342,18 +377,49 @@ export default function WebDesignService() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Prêt à créer votre présence en ligne ?</h2>
-          <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Contactez-nous dès aujourd'hui pour discuter de votre projet web et découvrir comment nous pouvons vous aider à établir une présence en ligne efficace.
-          </p>
-          <Button className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg">
-            Demander un devis gratuit
-          </Button>
+      {/* CTA Section - Design moderne avec gradient */}
+      <section className="py-20 bg-gradient-to-br from-blue-500 via-indigo-400 to-violet-400 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center relative">
+            <div className="absolute inset-0 -mt-10 -ml-10 w-40 h-40 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 -mb-10 -mr-10 w-60 h-60 bg-violet-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+            
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                Prêt à créer votre présence en ligne ?
+              </h2>
+              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                Contactez-nous dès aujourd'hui pour discuter de votre projet web et découvrir comment nous pouvons vous aider à établir une présence en ligne efficace.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button className="bg-white hover:bg-white/90 text-blue-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                  Demander un devis gratuit
+                </Button>
+                <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
+                  Nous contacter
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
+
+      {/* Ajout de style global pour les animations */}
+      <style>{`
+        @keyframes pulse {
+          0% { opacity: 0.4; }
+          50% { opacity: 0.6; }
+          100% { opacity: 0.4; }
+        }
+
+        .animate-pulse {
+          animation: pulse 3s ease-in-out infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </PublicLayout>
   );
-} 
+}

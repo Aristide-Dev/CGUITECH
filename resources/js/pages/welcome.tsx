@@ -12,7 +12,12 @@ import {
     Award,
     CheckCircle2,
     ArrowRight,
-    MapPin
+    MapPin,
+    Banknote,
+    Stethoscope,
+    GraduationCap,
+    ShoppingCart,
+    Building2
 } from 'lucide-react';
 import PublicLayout from '@/layouts/public-layout';
 import {
@@ -23,7 +28,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import { cguitech } from '@/utils/index';
+import { CGUITECH } from '@/utils/index';
 
 export default function Welcome() {
     // const { auth } = usePage<SharedData>().props;
@@ -72,14 +77,44 @@ export default function Welcome() {
         }
     ];
 
-    // Industries servies
+    // Industries servies avec plus de détails
     const industries = [
-        "Finance & Assurance",
-        "Santé",
-        "Éducation",
-        "Commerce & Distribution",
-        "Télécommunications",
-        "Secteur Public"
+        {
+            name: "Finance & Assurance",
+            icon: <Banknote className="h-8 w-8" />,
+            description: "Solutions sécurisées pour la gestion financière et la protection des données sensibles",
+            color: "bg-emerald-500/10 text-emerald-500"
+        },
+        {
+            name: "Santé",
+            icon: <Stethoscope className="h-8 w-8" />,
+            description: "Systèmes spécialisés pour la gestion des données médicales et la conformité",
+            color: "bg-blue-500/10 text-blue-500"
+        },
+        {
+            name: "Éducation",
+            icon: <GraduationCap className="h-8 w-8" />,
+            description: "Plateformes d'apprentissage et outils de gestion académique",
+            color: "bg-purple-500/10 text-purple-500"
+        },
+        {
+            name: "Commerce & Distribution",
+            icon: <ShoppingCart className="h-8 w-8" />,
+            description: "Solutions e-commerce et gestion de la chaîne d'approvisionnement",
+            color: "bg-orange-500/10 text-orange-500"
+        },
+        {
+            name: "Télécommunications",
+            icon: <PhoneCall className="h-8 w-8" />,
+            description: "Infrastructures réseau et solutions de communication unifiée",
+            color: "bg-cyan-500/10 text-cyan-500"
+        },
+        {
+            name: "Secteur Public",
+            icon: <Building2 className="h-8 w-8" />,
+            description: "Services numériques pour l'administration et les services publics",
+            color: "bg-indigo-500/10 text-indigo-500"
+        }
     ];
 
     return (
@@ -239,7 +274,7 @@ export default function Welcome() {
                         className="w-full"
                     >
                         <CarouselContent className="-ml-6">
-                            {cguitech.services.map((service, index) => (
+                            {CGUITECH.services.map((service, index) => (
                                 <CarouselItem key={index} className="pl-6 md:basis-1/2 lg:basis-1/3">
                                     <Card className="h-full border-0 hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden group relative">
                                         {/* Image de fond avec effet de zoom au survol */}
@@ -362,7 +397,7 @@ export default function Welcome() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {cguitech.testimonials.map((testimonial, index) => (
+                        {CGUITECH.testimonials.map((testimonial, index) => (
                             <Card key={index} className="p-8 border-none shadow-xl rounded-2xl bg-white hover:transform hover:-translate-y-2 transition-all duration-300">
                                 <div className="mb-6 text-yellow-500">
                                     {[...Array(5)].map((_, i) => (
@@ -387,66 +422,70 @@ export default function Welcome() {
                 </div>
             </section>
 
-            {/* Section Industries avec design amélioré */}
-            <section className="py-24 bg-gradient-to-br from-blue-900 via-blue-500 to-indigo-900 text-white relative overflow-hidden">
-                {/* Éléments décoratifs en arrière-plan */}
+            {/* Section Industries */}
+            <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
+                {/* Éléments décoratifs */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                    <div className="absolute top-20 right-20 w-80 h-80 rounded-full bg-primary-500/20 blur-3xl"></div>
-                    <div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-yellow-500/10 blur-3xl"></div>
-                    <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl"></div>
+                    <div className="absolute top-20 right-20 w-80 h-80 rounded-full bg-blue-600/20 blur-3xl"></div>
+                    <div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-indigo-600/20 blur-3xl"></div>
+                    <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-purple-600/20 blur-3xl"></div>
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">
-                    <div className="text-center mb-20">
-                        <Badge className="bg-white/10 backdrop-blur-sm text-white mb-6 px-5 py-2 rounded-full text-sm font-medium uppercase tracking-wider">Industries</Badge>
-                        <h2 className="text-5xl font-bold mb-8 bg-gradient-to-r from-white to-primary-100 bg-clip-text text-white">Nous servons divers secteurs d'activité</h2>
-                        <p className="max-w-2xl mx-auto text-primary-50/90 text-lg leading-relaxed">
-                            Nos solutions sont adaptées aux besoins spécifiques de chaque secteur, avec une expertise approfondie des enjeux propres à votre industrie.
+                    <div className="text-center mb-16">
+                        <Badge className="bg-white/10 backdrop-blur-sm text-white mb-4 px-4 py-1 rounded-full">SECTEURS D'ACTIVITÉ</Badge>
+                        <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                            Solutions adaptées à votre secteur
+                        </h2>
+                        <p className="max-w-2xl mx-auto text-slate-300 text-lg">
+                            Notre expertise couvre les besoins spécifiques de chaque industrie, avec des solutions sur mesure pour votre secteur d'activité.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-                        {industries.map((industry, index) => (
-                            <div
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {CGUITECH.industries.map((industry, index) => (
+                            <div 
                                 key={index}
-                                className="group relative bg-gradient-to-br from-primary-700/80 to-primary-900/80 backdrop-blur-sm p-8 rounded-2xl text-center flex flex-col items-center hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 cursor-pointer border border-primary-600/30 hover:border-primary-400/50 overflow-hidden"
+                                className="group relative bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 hover:bg-slate-800/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
                             >
-                                {/* Effet de brillance au survol */}
-                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                                    <div className="absolute -inset-x-full -inset-y-full w-[300%] h-[300%] top-0 left-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+                                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                
+                                <div className="relative z-10">
+                                    <div className={`${industry.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                        {industry.icon}
+                                    </div>
+                                    
+                                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
+                                        {industry.name}
+                                    </h3>
+                                    
+                                    <p className="text-slate-400 mb-6">
+                                        {industry.description}
+                                    </p>
+                                    
+                                    <Link 
+                                        href={industry.link}
+                                        className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium group-hover:underline"
+                                    >
+                                        En savoir plus
+                                        <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
                                 </div>
-
-                                <div className="p-4 bg-gradient-to-br from-primary-400/50 to-primary-600/50 backdrop-blur-md rounded-full mb-6 group-hover:scale-110 transition-transform duration-500 shadow-xl shadow-primary-900/30 border border-primary-500/30">
-                                    <MapPin className="h-8 w-8 text-yellow-300 group-hover:text-yellow-200" />
-                                </div>
-
-                                <p className="font-semibold text-lg text-white group-hover:text-primary-100 transition-colors duration-300">{industry}</p>
-
-                                {/* Indicateur discret */}
-                                <div className="absolute bottom-3 w-10 h-1 bg-primary-400/50 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                             </div>
                         ))}
                     </div>
 
-                    {/* Bouton CTA ajouté */}
-                    <div className="text-center mt-16">
-                        <Button className="bg-white text-primary hover:bg-primary-100 text-lg px-10 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-medium group">
-                            Explorer nos solutions par secteur
-                            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                        </Button>
+                    {/* CTA Section */}
+                    <div className="mt-16 text-center">
+                        <Link 
+                            href={route('contact.index')}
+                            className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all duration-300 shadow-lg shadow-blue-600/30"
+                        >
+                            Discutons de votre projet
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                        </Link>
                     </div>
                 </div>
-
-                {/* Ajout pour les animations */}
-                <style>{`
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        .animate-shimmer {
-            animation: shimmer 3s infinite;
-        }
-    `}</style>
             </section>
 
             {/* Section Partenaires */}
@@ -459,7 +498,7 @@ export default function Welcome() {
                     </div>
 
                     <div className="flex flex-wrap justify-center items-center gap-16">
-                        {cguitech.partners.map((partner, index) => (
+                        {CGUITECH.partners.map((partner, index) => (
                             <div key={index} className="p-6 grayscale hover:grayscale-0 transition-all duration-300 hover:transform hover:scale-110">
                                 <img src={partner.logo} alt={partner.name} className="h-16 w-auto" />
                             </div>

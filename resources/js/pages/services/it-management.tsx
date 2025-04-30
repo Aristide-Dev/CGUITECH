@@ -19,7 +19,7 @@ export default function ITManagementService() {
 
   return (
     <PublicLayout
-      title="Services IT Gérés Tout-en-Un | CGUITech"
+      title="Services IT Gérés Tout-en-Un | CGUITECH"
       description="Nos services IT gérés tout-en-un offrent une solution complète pour la supervision, la maintenance et le support de votre infrastructure informatique."
     >
       {/* Hero Section */}
@@ -52,7 +52,7 @@ export default function ITManagementService() {
               <Badge className="bg-primary-100 text-primary mb-6">APERÇU</Badge>
               <h2 className="text-3xl font-bold mb-6">Libérez le potentiel de votre entreprise avec nos services IT gérés</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Chez CGUITech, nous proposons une gamme complète de services informatiques gérés conçus pour optimiser vos opérations, renforcer votre sécurité et réduire vos coûts informatiques. Notre approche proactive vous permet d'anticiper les problèmes avant qu'ils n'affectent votre activité.
+                Chez CGUITECH, nous proposons une gamme complète de services informatiques gérés conçus pour optimiser vos opérations, renforcer votre sécurité et réduire vos coûts informatiques. Notre approche proactive vous permet d'anticiper les problèmes avant qu'ils n'affectent votre activité.
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Nos techniciens qualifiés surveillent en permanence vos systèmes, appliquent les mises à jour nécessaires, assurent la sécurité de vos données et fournissent une assistance rapide en cas de besoin. Vous bénéficiez ainsi d'une tranquillité d'esprit totale concernant votre infrastructure IT.

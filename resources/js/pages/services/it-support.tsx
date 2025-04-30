@@ -79,7 +79,7 @@ export default function ITSupportService() {
 
   return (
     <PublicLayout
-      title="Support Informatique | CGUITech"
+      title="Support Informatique | CGUITECH"
       description="Services de support informatique professionnels pour garantir le bon fonctionnement de vos systèmes IT. Support à distance, sur site et helpdesk complets."
     >
       {/* Hero Section */}
@@ -107,7 +107,7 @@ export default function ITSupportService() {
               <Badge className="bg-primary-100 text-primary mb-6">NOTRE APPROCHE</Badge>
               <h2 className="text-3xl font-bold mb-6">Un support réactif à vos problèmes informatiques</h2>
               <p className="text-gray-600 mb-6 leading-relaxed">
-                Les problèmes informatiques peuvent sérieusement impacter votre productivité et votre activité. Chez CGUITech, nous comprenons l'importance d'un support informatique réactif et efficace pour minimiser les temps d'arrêt et assurer la continuité de vos opérations.
+                Les problèmes informatiques peuvent sérieusement impacter votre productivité et votre activité. Chez CGUITECH, nous comprenons l'importance d'un support informatique réactif et efficace pour minimiser les temps d'arrêt et assurer la continuité de vos opérations.
               </p>
               <p className="text-gray-600 mb-8 leading-relaxed">
                 Notre équipe de techniciens certifiés est disponible pour vous fournir une assistance de qualité, que ce soit à distance ou sur site, avec des solutions adaptées à vos besoins spécifiques et à votre budget.

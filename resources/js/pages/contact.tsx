@@ -32,7 +32,7 @@ export default function contact() {
         {
             title: "Optimiser vos systèmes",
             subtitle: "Pour une meilleure performance digitale",
-            image: "https://cguitech.com/wp-content/uploads/2023/05/imgHome.jpg",
+            image: "https://CGUITECH.com/wp-content/uploads/2023/05/imgHome.jpg",
             buttonText: "Rencontrez-nous"
         },
         {

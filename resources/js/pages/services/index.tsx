@@ -4,46 +4,24 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { 
   ArrowRight, 
-  Server, 
-  Cloud, 
   Shield, 
-  Headphones, 
-  Globe, 
-  Code, 
   Phone, 
   CheckCircle, 
   ChevronRight,
   Users, 
   Clock, 
   TrendingUp,
-  X
 } from 'lucide-react';
 import { Link } from '@inertiajs/react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
-import { cguitech } from '@/utils/index';
+import { CGUITECH } from '@/utils/index';
 
 
 export default function ServicesIndex() {
 
-  const industries = [
-    { name: "Santé", icon: "🏥" },
-    { name: "Finance", icon: "💰" },
-    { name: "Éducation", icon: "🎓" },
-    { name: "Commerce", icon: "🛒" },
-    { name: "Mines", icon: "⛏️" },
-    { name: "Transport", icon: "🚚" }
-  ];
-
   return (
     <PublicLayout
-      title="Services IT Professionnels | CGUITech"
+      title="Services IT Professionnels | CGUITECH"
       description="Découvrez notre gamme complète de services IT pour les entreprises en Guinée. Support informatique, cloud, infrastructure, sécurité et développement logiciel sur mesure."
     >
       {/* Hero Section */}
@@ -112,7 +90,7 @@ export default function ServicesIndex() {
           </div>
           
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-            {cguitech.partners.map((partner, i) => (
+            {CGUITECH.partners.map((partner, i) => (
               <img key={i} src={partner.logo} className="h-12 w-32 bg-slate-200/20 rounded-md"></img>
             ))}
           </div>
@@ -137,19 +115,40 @@ export default function ServicesIndex() {
             </p>
           </div>
 
+          {/* Statistiques */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
+              <p className="text-slate-600">Satisfaction client</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
+              <p className="text-slate-600">Support technique</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
+              <p className="text-slate-600">Années d'expérience</p>
+            </div>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+              <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
+              <p className="text-slate-600">Projets réalisés</p>
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {cguitech.services.map((service, index) => (
+            {CGUITECH.services.map((service, index) => (
               <div 
                 key={index} 
-                className="relative group bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+                className="relative group bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
-                <div className={`absolute h-full w-full bg-[url("${service.image}")] bg-cover bg-no-repeat opacity-50`}></div>
-                <div className="p-6">
-                  <div className={`${service.color} w-12 h-12 rounded-lg text-white flex items-center justify-center mb-5`}>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 group-hover:from-blue-600/10 group-hover:to-indigo-600/10 transition-all duration-300"></div>
+                <div className={`absolute h-full w-full bg-[url("${service.image}")] bg-cover bg-no-repeat opacity-50 group-hover:opacity-60 transition-all duration-300`}></div>
+                <div className="p-6 relative z-10">
+                  <div className={`${service.color} w-12 h-12 rounded-lg text-white flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
                     {service.icon}
                   </div>
                   
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
                     {service.title}
                   </h3>
                   
@@ -157,22 +156,30 @@ export default function ServicesIndex() {
                     {service.description}
                   </p>
                   
-                  <ul className="space-y-2 mb-6">
-                    {service.features?.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-slate-700">
-                        <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-slate-700 mb-3">Fonctionnalités clés :</h4>
+                    <ul className="space-y-2">
+                      {service.features?.slice(0, 3).map((feature, idx) => (
+                        <li key={idx} className="flex items-center text-slate-700">
+                          <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   
-                  <Link 
-                    href={service.link || '#'}
-                    className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group-hover:underline"
-                  >
-                    En savoir plus 
-                    <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  <div className="flex items-center justify-between">
+                    <Link 
+                      href={service.link || '#'}
+                      className="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium group-hover:underline"
+                    >
+                      En savoir plus 
+                      <ChevronRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <Badge variant="outline" className="bg-blue-50 text-blue-600 border-blue-200">
+                      {service.technologies?.[0]}
+                    </Badge>
+                  </div>
                 </div>
               </div>
             ))}
@@ -263,20 +270,39 @@ export default function ServicesIndex() {
             </h2>
             
             <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-              Nous comprenons les défis spécifiques de chaque industrie et proposons des solutions adaptées à vos besoins particuliers.
+              Nous comprenons les défis spécifiques de chaque industrie et proposons des solutions sur mesure pour répondre à vos besoins particuliers.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-            {industries.map((industry, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {CGUITECH.industries.map((industry, index) => (
               <div 
                 key={index} 
-                className="bg-slate-800 hover:bg-slate-700 rounded-xl p-6 text-center transition-all duration-300"
+                className="group relative bg-slate-800 rounded-xl p-6 text-center transition-all duration-300 hover:bg-slate-700 hover:-translate-y-1"
               >
-                <div className="text-4xl mb-4">{industry.icon}</div>
-                <h3 className="text-lg font-medium text-white">{industry.name}</h3>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-blue-600/10 rounded-xl flex items-center justify-center group-hover:bg-blue-600/20 transition-colors duration-300">
+                    <div className="text-3xl text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+                      {industry.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-medium text-white mb-2">{industry.name}</h3>
+                  <p className="text-slate-400 text-sm">{industry.description}</p>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* CTA Section */}
+          <div className="mt-16 text-center">
+            <Link 
+              href={route('contact.index')}
+              className="inline-flex items-center px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all duration-300 shadow-lg shadow-blue-600/30"
+            >
+              Discutons de votre projet
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>
@@ -300,7 +326,7 @@ export default function ServicesIndex() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {cguitech.testimonials.map((testimonial, index) => (
+            {CGUITECH.testimonials.map((testimonial, index) => (
               <div 
                 key={index} 
                 className="bg-slate-50 p-8 rounded-xl shadow-sm"
