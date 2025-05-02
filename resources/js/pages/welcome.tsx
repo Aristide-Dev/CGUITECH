@@ -5,19 +5,9 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import {
     PhoneCall,
-    Code,
-    Server,
-    Cloud,
-    Shield,
     Award,
     CheckCircle2,
     ArrowRight,
-    MapPin,
-    Banknote,
-    Stethoscope,
-    GraduationCap,
-    ShoppingCart,
-    Building2
 } from 'lucide-react';
 import PublicLayout from '@/layouts/public-layout';
 import {
@@ -74,46 +64,6 @@ export default function Welcome() {
         {
             title: "Innovation constante",
             description: "Nous intégrons les dernières technologies pour garder votre entreprise compétitive."
-        }
-    ];
-
-    // Industries servies avec plus de détails
-    const industries = [
-        {
-            name: "Finance & Assurance",
-            icon: <Banknote className="h-8 w-8" />,
-            description: "Solutions sécurisées pour la gestion financière et la protection des données sensibles",
-            color: "bg-emerald-500/10 text-emerald-500"
-        },
-        {
-            name: "Santé",
-            icon: <Stethoscope className="h-8 w-8" />,
-            description: "Systèmes spécialisés pour la gestion des données médicales et la conformité",
-            color: "bg-blue-500/10 text-blue-500"
-        },
-        {
-            name: "Éducation",
-            icon: <GraduationCap className="h-8 w-8" />,
-            description: "Plateformes d'apprentissage et outils de gestion académique",
-            color: "bg-purple-500/10 text-purple-500"
-        },
-        {
-            name: "Commerce & Distribution",
-            icon: <ShoppingCart className="h-8 w-8" />,
-            description: "Solutions e-commerce et gestion de la chaîne d'approvisionnement",
-            color: "bg-orange-500/10 text-orange-500"
-        },
-        {
-            name: "Télécommunications",
-            icon: <PhoneCall className="h-8 w-8" />,
-            description: "Infrastructures réseau et solutions de communication unifiée",
-            color: "bg-cyan-500/10 text-cyan-500"
-        },
-        {
-            name: "Secteur Public",
-            icon: <Building2 className="h-8 w-8" />,
-            description: "Services numériques pour l'administration et les services publics",
-            color: "bg-indigo-500/10 text-indigo-500"
         }
     ];
 

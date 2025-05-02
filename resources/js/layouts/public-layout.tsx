@@ -137,7 +137,7 @@ const AuthLinks = () => {
 const Logo = ({ className = "h-16", onClick }: LogoProps) => (
   <Link href="/" onClick={onClick}>
     <img 
-      src="/images/logo-CGUITECH-wb.svg" 
+      src="/images/logo-cguitech-wb.svg" 
       alt="CGUITECH Logo" 
       className={`${className} w-auto`} 
       width="160"
