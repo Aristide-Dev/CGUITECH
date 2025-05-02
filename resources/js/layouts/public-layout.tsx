@@ -542,7 +542,7 @@ const getMenuItems = (): MenuItem[] => [
       { label: "Solutions cloud", href: "/services/cloud" },
       { label: "Conception Web et Hébergement", href: "/services/web-design" },
       { label: "Infrastructure", href: "/services/infrastructure" },
-      { label: "IP Telephony", href: "/services/ip-telephony" },
+      { label: "Téléphonie IP", href: "/services/ip-telephony" },
       { label: "Software Development", href: "/services/software" }
     ]
   },
@@ -572,25 +572,16 @@ const getMenuItems = (): MenuItem[] => [
     label: "Industries",
     href: "/industries",
     children: [
-      { label: "Retails & e-Commerce", href: "/industries/retail" },
-      { label: "Logistics", href: "/industries/logistics" },
-      { label: "Manufacturing", href: "/industries/manufacturing" },
-      { label: "Government", href: "/industries/government" },
-      { label: "Healthcare", href: "/industries/healthcare" },
-      { label: "Finance (BFSI)", href: "/industries/finance" },
-      { label: "Media & Entertainment", href: "/industries/media" },
-      { label: "Agriculture", href: "/industries/agriculture" },
-      { label: "Automotive", href: "/industries/automotive" }
-    ]
-  },
-  {
-    label: "Ressources",
-    href: "/resources",
-    children: [
-      { label: "Études de cas", href: "/resources/case-studies" },
-      { label: "Blog & Actualités", href: "/resources/blog" },
-      { label: "Livre blanc & Guides", href: "/resources/guides" },
-      { label: "FAQ", href: "/resources/faq" }
+      { label: "Commerce & Distribution", href: "/industries#commerce-et-distribution" },
+      { label: "Logistique", href: "/industries#logistique" },
+      { label: "Automatisation industrielle", href: "/industries#manufacturing" },
+      { label: "Secteur Public", href: "/industries#gov" },
+      { label: "Santé", href: "/industries#sante" },
+      { label: "Finance & Assurance", href: "/industries#finance" },
+      { label: "Médias & Divertissement", href: "/industries#medias" },
+      { label: "Éducation", href: "/industries#education" },
+      { label: "Agriculture", href: "/industries#agriculture" },
+      { label: "Automobile", href: "/industries#automobile" }
     ]
   },
   {

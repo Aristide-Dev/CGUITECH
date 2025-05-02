@@ -247,11 +247,12 @@ export const CGUITECH = {
     ],
     industries: [
         {
+            id: "commerce-et-distribution",
             name: "Commerce & Distribution",
             icon: <ShoppingCart className="h-8 w-8" />,
             description: "Solutions digitales pour optimiser la gestion des stocks, la logistique et l'expérience client",
             color: "bg-blue-500",
-            link: "industries/commerce-et-distribution",
+            link: "industries/#commerce-et-distribution",
             challenges: [
                 "Gestion des stocks",
                 "Expérience client",
@@ -272,6 +273,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "logistique",
             name: "Logistique",
             icon: <Truck className="h-8 w-8" />,
             description: "Systèmes de suivi en temps réel et optimisation des chaînes d'approvisionnement",
@@ -297,6 +299,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "manufacturing",
             name: "Automatisation industrielle",
             icon: <Factory className="h-8 w-8" />,
             description: "Automatisation industrielle et solutions IoT pour la production intelligente",
@@ -322,6 +325,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "gov",
             name: "Secteur Public",
             icon: <Building2 className="h-8 w-8" />,
             description: "Solutions sécurisées pour la modernisation des services publics",
@@ -347,6 +351,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "sante",
             name: "Santé",
             icon: <Stethoscope className="h-8 w-8" />,
             description: "Systèmes de gestion des données patients et solutions de télémédecine",
@@ -372,6 +377,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "finance",
             name: "Finance",
             icon: <Banknote className="h-8 w-8" />,
             description: "Solutions bancaires sécurisées et systèmes de gestion financière",
@@ -397,6 +403,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "medias",
             name: "Médias",
             icon: <Video className="h-8 w-8" />,
             description: "Plateformes de streaming et solutions de gestion de contenu",
@@ -422,6 +429,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "education",
             name: "Éducation",
             icon: <GraduationCap className="h-8 w-8" />,
             description: "Systèmes d'apprentissage en ligne et gestion des établissements",
@@ -447,6 +455,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "agriculture",
             name: "Agriculture",
             icon: <Wheat className="h-8 w-8" />,
             description: "Solutions IoT pour l'agriculture de précision et la traçabilité",
@@ -472,6 +481,7 @@ export const CGUITECH = {
             ]
         },
         {
+            id: "automobile",
             name: "Automobile",
             icon: <Car className="h-8 w-8" />,
             description: "Systèmes de gestion de flotte et solutions connectées",
