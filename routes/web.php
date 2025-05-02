@@ -35,6 +35,10 @@ Route::prefix('services')->name('services.')->group(function () {
     }
 });
 
+Route::get('/industries', function () {
+    return Inertia::render('industries/index');
+})->name('industries.index');
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('dashboard');
