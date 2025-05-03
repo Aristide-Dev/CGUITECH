@@ -530,7 +530,7 @@ const getMenuItems = (): MenuItem[] => [
       { label: "Notre équipe", href: "/about/team" },
       { label: "Approche de gestion", href: "/about/management" },
       { label: "Pourquoi nous choisir", href: "/about/why-choose-us" },
-      { label: "Partenaires", href: "/about/partners" }
+      { label: "Partenaires", href: "/#partenaires" }
     ]
   },
   {

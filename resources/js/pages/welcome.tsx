@@ -439,7 +439,7 @@ export default function Welcome() {
             </section>
 
             {/* Section Partenaires */}
-            <section className="py-20 bg-white">
+            <section id="partenaires" className="py-20 bg-white">
                 <div className="container mx-auto px-4 pb-10 shadow-xl">
                     <div className="text-center mb-16">
                         <Badge className="bg-primary-100 text-primary mb-4 px-4 py-1 rounded-full">NOS PARTENAIRES</Badge>

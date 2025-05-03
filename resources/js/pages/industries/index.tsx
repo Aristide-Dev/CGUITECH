@@ -1,16 +1,17 @@
-import { Link, usePage } from '@inertiajs/react';
+// import { Link, usePage } from '@inertiajs/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { ArrowRight, CheckCircle2, Award, TrendingUp, Users, Shield, Grid, PhoneCall, ArrowUp } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Award, TrendingUp, Users, Shield, ArrowUp, Building2 } from 'lucide-react';
 import PublicLayout from '@/layouts/public-layout';
 import { CGUITECH } from '@/utils/index';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 export default function Industries() {
-  const { url } = usePage();
   const [activeIndustry, setActiveIndustry] = useState<string | null>(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
   // Détecter l'industrie active depuis l'URL au chargement
   useEffect(() => {
@@ -61,6 +62,27 @@ export default function Industries() {
       description: "Plus de 45 000 clients satisfaits à travers différents secteurs."
     }
   ];
+
+
+  
+
+  useEffect(() => {
+    // Déterminer l'industrie active au chargement de la page
+    const hash = window.location.hash.substring(1);
+    if (hash) {
+      setActiveIndustry(hash);
+    }
+  }, []);
+
+  const handleIndustryClick = (industryId: string) => {
+    setActiveIndustry(industryId);
+    const element = document.getElementById(industryId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      window.history.pushState({}, '', `/industries#${industryId}`);
+    }
+    setIsMenuOpen(false); // Fermer le menu mobile après clic
+  };
 
   return (
     <PublicLayout
@@ -137,8 +159,89 @@ export default function Industries() {
         </div>
       </section>
 
+      {/* Version desktop - barre horizontale */}
+      <div className="hidden lg:flex justify-center space-x-1 bg-white shadow-sm rounded-lg p-1 mx-auto max-w-4xl border border-gray-100">
+        {CGUITECH.industries.map((industry) => {
+          const industryId = industry.link.replace('/industries/#', '');
+          const isActive = activeIndustry === industryId;
+          
+          return (
+            <button
+              key={industryId}
+              onClick={() => handleIndustryClick(industryId)}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 ${
+                isActive
+                  ? 'bg-indigo-50 text-indigo-600 shadow-sm'
+                  : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <span className={`transition-transform ${isActive ? 'scale-110' : ''}`}>
+                {industry.icon}
+              </span>
+              <span className="font-medium text-sm whitespace-nowrap">{industry.name}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Version mobile - menu déroulant */}
+      <div className="lg:hidden relative">
+        <button 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          className="w-full flex items-center justify-between bg-white p-3 rounded-lg shadow-sm border border-gray-200"
+        >
+          <div className="flex items-center gap-2">
+            {activeIndustry ? (
+              <>
+                {CGUITECH.industries.find(i => i.link.includes(activeIndustry))?.icon}
+                <span className="font-medium">
+                  {CGUITECH.industries.find(i => i.link.includes(activeIndustry))?.name || 'Sélectionner une industrie'}
+                </span>
+              </>
+            ) : (
+              <>
+                <Building2 size={18} />
+                <span className="font-medium">Sélectionner une industrie</span>
+              </>
+            )}
+          </div>
+          <svg 
+            className={`w-5 h-5 transition-transform ${isMenuOpen ? 'rotate-180' : ''}`} 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        
+        {isMenuOpen && (
+          <div className="absolute mt-1 w-full bg-white border border-gray-200 rounded-lg shadow-lg z-50 py-1 max-h-64 overflow-auto">
+            {CGUITECH.industries.map((industry) => {
+              const industryId = industry.link.replace('/industries/#', '');
+              const isActive = activeIndustry === industryId;
+              
+              return (
+                <button
+                  key={industryId}
+                  onClick={() => handleIndustryClick(industryId)}
+                  className={`w-full text-left flex items-center gap-3 px-4 py-3 ${
+                    isActive
+                      ? 'bg-indigo-50 text-indigo-600'
+                      : 'text-gray-600 hover:bg-gray-50'
+                  }`}
+                >
+                  {industry.icon}
+                  <span className="font-medium text-sm">{industry.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
       {/* Menu de navigation des industries - Style minimaliste avec icônes */}
-      <nav className="py-8 bg-white border-y border-gray-100 sticky top-0 z-40">
+      {/* <nav className="py-8 bg-white border-y border-gray-100 sticky top-0 z-40">
         <div className="container mx-auto px-4 overflow-x-auto">
           <div className="flex space-x-6 min-w-max">
             {CGUITECH.industries.map((industry, index) => {
@@ -174,7 +277,7 @@ export default function Industries() {
             })}
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Section Industries - Cards au design épuré */}
       <section id="industries-list" className="py-24 bg-white scroll-mt-20">
@@ -199,14 +302,25 @@ export default function Industries() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {CGUITECH.industries.map((industry, index) => {
-              const isActive = activeIndustry === industry.id;
+              let selectedId = "";
+              let isActive = false;
+              const industryId = industry.link.replace('/industries/#', '');
+              if(activeIndustry === industry.id)
+              {
+                isActive = true;
+                selectedId = industry.id;
+              }else if(activeIndustry === industryId)
+              {
+                isActive = true;
+                selectedId = industryId;
+              }
               
               return (
                 <motion.div 
                   key={index}
                   variants={itemVariants}
                   className="group h-full scroll-mt-32"
-                  id={industry.id}
+                  id={selectedId}
                 >
                   <Card className={`h-full border transition-all duration-300 bg-white relative ${
                     isActive 
