@@ -51,7 +51,7 @@ export default function Welcome() {
     const benefits = [
         {
             title: "Expertise éprouvée",
-            description: "Notre équipe combine plus de 28 ans d'expérience dans les technologies les plus récentes."
+            description: `Notre équipe combine plus de ${CGUITECH.contactInfo.experience_year} ans d'expérience dans les technologies les plus récentes.`
         },
         {
             title: "Solutions personnalisées",
@@ -179,7 +179,7 @@ export default function Welcome() {
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                         <div className="p-8 rounded-2xl bg-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 border-b-4 border-primary">
-                            <div className="text-5xl font-bold text-primary mb-3">28+</div>
+                            <div className="text-5xl font-bold text-primary mb-3">{CGUITECH.contactInfo.experience_year}+</div>
                             <div className="text-gray-700 font-medium">Ans d'expérience</div>
                         </div>
                         <div className="p-8 rounded-2xl bg-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 border-b-4 border-primary">
@@ -298,7 +298,7 @@ export default function Welcome() {
                                     </div>
                                     <div>
                                         <div className="font-bold text-lg">Entreprise Certifiée</div>
-                                        <div className="text-gray-600">Nous adaptons notre prestation à votre mode de fonctionnement {currentYear}</div>
+                                        <div className="text-gray-600">Nous adaptons notre prestation à votre mode de fonctionnement</div>
                                     </div>
                                 </div>
                             </div>
@@ -406,7 +406,7 @@ export default function Welcome() {
                                     </div>
                                     
                                     <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
-                                        {industry.name}
+                                        {industry.title}
                                     </h3>
                                     
                                     <p className="text-slate-400 mb-6">

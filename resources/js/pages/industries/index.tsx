@@ -178,7 +178,7 @@ export default function Industries() {
               <span className={`transition-transform ${isActive ? 'scale-110' : ''}`}>
                 {industry.icon}
               </span>
-              <span className="font-medium text-sm whitespace-nowrap">{industry.name}</span>
+              <span className="font-medium text-sm whitespace-nowrap">{industry.title}</span>
             </button>
           );
         })}
@@ -195,7 +195,7 @@ export default function Industries() {
               <>
                 {CGUITECH.industries.find(i => i.link.includes(activeIndustry))?.icon}
                 <span className="font-medium">
-                  {CGUITECH.industries.find(i => i.link.includes(activeIndustry))?.name || 'Sélectionner une industrie'}
+                  {CGUITECH.industries.find(i => i.link.includes(activeIndustry))?.title || 'Sélectionner une industrie'}
                 </span>
               </>
             ) : (
@@ -232,7 +232,7 @@ export default function Industries() {
                   }`}
                 >
                   {industry.icon}
-                  <span className="font-medium text-sm">{industry.name}</span>
+                  <span className="font-medium text-sm">{industry.title}</span>
                 </button>
               );
             })}
@@ -338,7 +338,7 @@ export default function Industries() {
                       
                       <h3 className={`text-xl font-semibold mb-3 ${
                         isActive ? 'text-indigo-700' : 'text-gray-900'
-                      }`}>{industry.name}</h3>
+                      }`}>{industry.title}</h3>
                       <p className="text-gray-600 mb-6 text-sm">{industry.description}</p>
 
                       {/* Défis */}
@@ -461,18 +461,6 @@ export default function Industries() {
           </div>
         </div>
       </section>
-
-      {/* Navigation flottante - Design minimaliste */}
-      <div className="fixed bottom-6 right-6 flex flex-col gap-2 z-50">
-        <Button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-2 shadow-md transition-all"
-          size="icon"
-          title="Retour en haut"
-        >
-          <ArrowUp className="h-4 w-4" />
-        </Button>
-      </div>
 
       {/* Menu de navigation horizontal - Style épuré */}
       <nav className="sticky top-0 bg-white shadow-sm z-40 hidden lg:block">

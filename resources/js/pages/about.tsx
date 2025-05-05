@@ -2,35 +2,15 @@ import PublicLayout from '@/layouts/public-layout';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Users, Target, PieChart, ArrowRight, Star, Shield, Lightbulb } from 'lucide-react';
+import { CGUITECH } from '@/utils/index';
+
 
 export default function About() {
-    // Données pour l'équipe de direction
-    const leaders = [
-        {
-            name: "Mohamed Camara",
-            position: "Fondateur & PDG",
-            bio: "Plus de 15 ans d'expérience dans le secteur technologique. Visionnaire et expert en transformation digitale.",
-            image: "/api/placeholder/300/300"
-        },
-        {
-            name: "Aminata Diallo",
-            position: "Directrice Technique",
-            bio: "Spécialiste des infrastructures cloud et de la cybersécurité avec une passion pour les technologies innovantes.",
-            image: "/api/placeholder/300/300"
-        },
-        {
-            name: "Ibrahim Touré",
-            position: "Directeur des Opérations",
-            bio: "Expert en gestion de projet et optimisation des processus avec un focus sur la satisfaction client.",
-            image: "/api/placeholder/300/300"
-        }
-    ];
-
     // Données pour les statistiques
     const stats = [
-        { number: "28", label: "Années d'expérience" },
+        { number: CGUITECH.contactInfo.experience_year, label: "Années d'expérience" },
         { number: "200+", label: "Projets réalisés" },
-        { number: "50+", label: "Experts en technologie" },
+        { number: "14+", label: "Experts en technologie" },
         { number: "95%", label: "Clients satisfaits" }
     ];
 
@@ -92,7 +72,7 @@ export default function About() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
                         <div>
                             <Badge className="bg-primary-100 text-primary mb-6 py-1.5">NOTRE HISTOIRE</Badge>
-                            <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">28 années d'innovation et d'excellence technologique</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold mb-8 leading-tight">{CGUITECH.contactInfo.experience_year} années d'innovation et d'excellence technologique</h2>
                             <p className="text-gray-700 mb-6 leading-relaxed">
                                 Fondée avec la vision claire de devenir un acteur majeur des technologies de l'information en Afrique, 
                                 CGUITECH a débuté comme une petite entreprise fournissant des services informatiques de base à Conakry.
@@ -201,7 +181,7 @@ export default function About() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-                        {leaders.map((leader, index) => (
+                        {CGUITECH.teams.map((leader, index) => (
                             <div key={index} className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center">
                                 <div className="w-40 h-40 rounded-full overflow-hidden mb-8 border-4 border-primary-100 p-1">
                                     <img 
@@ -216,7 +196,7 @@ export default function About() {
                                 </div>
                                 <h3 className="text-2xl font-bold mb-2">{leader.name}</h3>
                                 <p className="text-primary font-medium mb-6 text-lg">{leader.position}</p>
-                                <p className="text-gray-600 leading-relaxed">{leader.bio}</p>
+                                <p className="text-gray-600 leading-relaxed">{leader.description}</p>
                             </div>
                         ))}
                     </div>

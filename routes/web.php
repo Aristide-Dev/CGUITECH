@@ -11,6 +11,21 @@ Route::get('/about', function () {
     return Inertia::render('about');
 })->name('about');
 
+// Routes pour les sous-pages de "À propos"
+Route::prefix('about')->name('about.')->group(function () {
+    Route::get('/team', function () {
+        return Inertia::render('about/team');
+    })->name('team');
+
+    Route::get('/management', function () {
+        return Inertia::render('about/management');
+    })->name('management');
+
+    Route::get('/why-choose-us', function () {
+        return Inertia::render('about/why-choose-us');
+    })->name('why-choose-us');
+});
+
 Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact.index');

@@ -19,6 +19,7 @@ import {
   ArrowUp
 } from 'lucide-react';
 import { type SharedData } from '@/types';
+import { CGUITECH } from '@/utils/index';
 
 // Types de base
 type PublicLayoutProps = PropsWithChildren<{
@@ -65,8 +66,8 @@ interface SocialLinkProps {
 interface FooterLinksProps {
   title: string;
   links: Array<{
-    label: string;
-    href: string;
+    title: string;
+    link: string;
   }>;
 }
 
@@ -77,20 +78,20 @@ const TopContactBar = () => (
     <div className="container mx-auto flex flex-wrap justify-between">
       <div className="flex flex-wrap items-center gap-4">
         <a 
-          href="tel:+224627969855" 
+          href={`tel:${CGUITECH.contactInfo.unespace_phone}`} 
           className="flex items-center space-x-1 hover:text-yellow-400 transition-colors"
           aria-label="Téléphone"
         >
           <PhoneCall className="h-4 w-4" aria-hidden="true" />
-          <span>+224 627 96 98 55</span>
+          <span>{CGUITECH.contactInfo.phone}</span>
         </a>
         <a 
-          href="mailto:infos@CGUITECH.com" 
+          href={`mailto:${CGUITECH.contactInfo.unespace_phone}`}
           className="flex items-center space-x-1 hover:text-yellow-400 transition-colors"
           aria-label="Email"
         >
           <Mail className="h-4 w-4" aria-hidden="true" />
-          <span>infos@CGUITECH.com</span>
+          <span>{CGUITECH.contactInfo.email}</span>
         </a>
         <div className="flex items-center space-x-1">
           <Clock className="h-4 w-4" aria-hidden="true" />
@@ -282,13 +283,13 @@ const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps
                 Obtenir un Devis
               </Button>
               <div className="flex justify-between mt-4">
-                <a href="tel:+224627969855" className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
+                <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
                   <PhoneCall className="h-4 w-4 mr-1" aria-hidden="true" />
-                  +224 627 96 98 55
+                  {CGUITECH.contactInfo.phone}
                 </a>
-                <a href="mailto:infos@CGUITECH.com" className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
+                <a href={`mailto:${CGUITECH.contactInfo.email}`} className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
                   <Mail className="h-4 w-4 mr-1" aria-hidden="true" />
-                  infos@CGUITECH.com
+                  {CGUITECH.contactInfo.email}
                 </a>
               </div>
             </div>
@@ -416,35 +417,27 @@ const Footer = () => {
               CGUITECH ("Compagnie Guinéenne de Technologies et d'Innovations") est un fournisseur dynamique et progressiste de technologie d'entreprise visant à fournir à nos clients des solutions d'affaires innovantes et rentables.
             </p>
             <div className="flex space-x-4">
-              <SocialLink href="https://facebook.com/CGUITECH" icon={<Facebook className="h-5 w-5" />} label="Facebook" />
-              <SocialLink href="https://twitter.com/CGUITECH" icon={<Twitter className="h-5 w-5" />} label="Twitter" />
-              <SocialLink href="https://linkedin.com/company/CGUITECH" icon={<Linkedin className="h-5 w-5" />} label="LinkedIn" />
-              <SocialLink href="https://instagram.com/CGUITECH" icon={<Instagram className="h-5 w-5" />} label="Instagram" />
+              {CGUITECH.contactInfo.social.map((social, index) => (
+                social && (
+                  <SocialLink 
+                    key={index}
+                    href={social.url || '#'} 
+                    icon={social.icon && <social.icon className="h-5 w-5" />} 
+                    label={social.name} 
+                  />
+                )
+              ))}
             </div>
           </div>
           
           <FooterLinks 
             title="Nos Services"
-            links={[
-              { label: "IT Management", href: "/services/it-management" },
-              { label: "Cloud Service", href: "/services/cloud" },
-              { label: "Data Center", href: "/services/infrastructure" },
-              { label: "Software Development", href: "/services/software" },
-              { label: "Machine Learning", href: "/services/ai" },
-              { label: "Cybersécurité", href: "/services/security" }
-            ]}
+            links={CGUITECH.services}
           />
           
           <FooterLinks 
-            title="Produits"
-            links={[
-              { label: "Computers", href: "/products/computers" },
-              { label: "Networking", href: "/products/networking" },
-              { label: "Servers", href: "/products/servers" },
-              { label: "Printers & Copiers", href: "/products/printers" },
-              { label: "Security", href: "/products/security" },
-              { label: "Software", href: "/products/software" }
-            ]}
+            title="Industries"
+            links={CGUITECH.industries}
           />
           
           <div>
@@ -452,7 +445,7 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 mt-1 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300">T2 Kipé Centre Emetteur, Ratoma<br/>Conakry, Guinée</span>
+                <span className="text-gray-300">{CGUITECH.contactInfo.address}</span>
               </li>
               <li className="flex items-center">
                 <Clock className="h-5 w-5 mr-3 text-yellow-400" aria-hidden="true" />
@@ -460,11 +453,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <PhoneCall className="h-5 w-5 mr-3 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300"><strong>Phone:</strong> <a href="tel:+224627969855" className="hover:text-yellow-400 transition-colors">+224 627 96 98 55</a></span>
+                <span className="text-gray-300"><strong>Phone:</strong> <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="hover:text-yellow-400 transition-colors">{CGUITECH.contactInfo.phone}</a></span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300"><a href="mailto:infos@CGUITECH.com" className="hover:text-yellow-400 transition-colors">infos@CGUITECH.com</a></span>
+                <span className="text-gray-300"><a href={`mailto:${CGUITECH.contactInfo.email}`} className="hover:text-yellow-400 transition-colors">{CGUITECH.contactInfo.email}</a></span>
               </li>
             </ul>
           </div>
@@ -502,13 +495,13 @@ const FooterLinks = ({ title, links }: FooterLinksProps) => (
     <h3 className="text-lg font-semibold text-white mb-6">{title}</h3>
     <ul className="space-y-3">
       {links.map(link => (
-        <li key={link.href}>
+        <li key={link.link}>
           <Link 
-            href={link.href} 
+            href={link.link} 
             className="hover:text-yellow-400 transition-colors flex items-center"
           >
             <ArrowRight className="h-3 w-3 mr-2" aria-hidden="true" /> 
-            {link.label}
+            {link.title}
           </Link>
         </li>
       ))}
@@ -546,28 +539,28 @@ const getMenuItems = (): MenuItem[] => [
       { label: "Software Development", href: "/services/software" }
     ]
   },
-  {
-    label: "Produits",
-    href: "/products",
-    children: [
-      { 
-        label: "Computers", 
-        href: "/products/computers",
-        children: [
-          { label: "HP", href: "/products/computers/hp" },
-          { label: "Dell", href: "/products/computers/dell" }
-        ]
-      },
-      { label: "Networking", href: "/products/networking" },
-      { label: "Power & Rack Equipment", href: "/products/power-equipment" },
-      { label: "Printers & Copiers", href: "/products/printers" },
-      { label: "Security", href: "/products/security" },
-      { label: "Servers", href: "/products/servers" },
-      { label: "Cloud & Storage", href: "/products/cloud-storage" },
-      { label: "Telecommunication", href: "/products/telecommunication" },
-      { label: "Software", href: "/products/software" }
-    ]
-  },
+  // {
+  //   label: "Produits",
+  //   href: "/products",
+  //   children: [
+  //     { 
+  //       label: "Computers", 
+  //       href: "/products/computers",
+  //       children: [
+  //         { label: "HP", href: "/products/computers/hp" },
+  //         { label: "Dell", href: "/products/computers/dell" }
+  //       ]
+  //     },
+  //     { label: "Networking", href: "/products/networking" },
+  //     { label: "Power & Rack Equipment", href: "/products/power-equipment" },
+  //     { label: "Printers & Copiers", href: "/products/printers" },
+  //     { label: "Security", href: "/products/security" },
+  //     { label: "Servers", href: "/products/servers" },
+  //     { label: "Cloud & Storage", href: "/products/cloud-storage" },
+  //     { label: "Telecommunication", href: "/products/telecommunication" },
+  //     { label: "Software", href: "/products/software" }
+  //   ]
+  // },
   {
     label: "Industries",
     href: "/industries",
