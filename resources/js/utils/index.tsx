@@ -495,19 +495,22 @@ export const CGUITECH = {
             name: "Sophie Laurent",
             position: "Directrice IT, Finance Corp",
             text: "CGUITECH a complètement transformé notre infrastructure IT. Leur expertise et leur approche sur mesure ont rendu notre système plus efficace et sécurisé.",
-            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+            avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+            rating: 3,
         },
         {
             name: "Marc Dubois",
             position: "CEO, MediTech",
             text: "L'équipe de CGUITECH comprend parfaitement les enjeux spécifiques du secteur de la santé. Leur solution a amélioré considérablement notre gestion des données patients.",
-            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+            avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+            rating: 5,
         },
         {
             name: "Julie Moreau",
             position: "COO, EduSoft",
             text: "Travailler avec CGUITECH a été une excellente décision. Leur support continu et leur réactivité font toute la différence dans notre collaboration.",
-            avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+            rating: 2,
         }
     ],
     contactInfo: {
@@ -529,7 +532,7 @@ export const CGUITECH = {
         {
             name: "Abdourahmane Diallo",
             position: "PDG",
-            image: "/images/team/ceo.jpg",
+            image: "/images/user.jpg",
             description: "Plus de 15 ans d'expérience dans le domaine des technologies de l'information.",
             department: "direction",
             experience: "15+ ans d'expérience",
@@ -546,7 +549,7 @@ export const CGUITECH = {
         {
             name: "Ibrahima Sory Diallo",
             position: "Responsable IT",
-            image: "/images/team/it-manager.jpg",
+            image: "/images/user.jpg",
             description: "Expert en infrastructure et solutions technologiques avec une solide expérience dans la mise en place et la maintenance de systèmes informatiques complexes.",
             department: "développement",
             experience: "10+ ans d'expérience",
@@ -563,7 +566,7 @@ export const CGUITECH = {
         {
             name: "Aboubacar Tounkara",
             position: "Responsable Juridique",
-            image: "/images/team/legal.jpg",
+            image: "/images/user.jpg",
             description: "Spécialiste en droit des technologies et contrats IT avec une expertise particulière dans les questions de conformité et de protection des données.",
             department: "juridique",
             experience: "8+ ans d'expérience",
@@ -580,7 +583,7 @@ export const CGUITECH = {
         {
             name: "Aissata Diallo",
             position: "Comptable",
-            image: "/images/team/accountant.jpg",
+            image: "/images/user.jpg",
             description: "Expert-comptable spécialisée dans le secteur technologique avec une connaissance approfondie de la fiscalité des entreprises numériques.",
             department: "finance",
             experience: "7+ ans d'expérience",
@@ -599,7 +602,7 @@ export const CGUITECH = {
         {
             name: "Jean-Marie Aristide GNIMASSOU",
             position: "PDG",
-            image: "/images/team/ceo.jpg",
+            image: "/images/user.jpg",
             description: "Plus de 15 ans d'expérience dans le domaine des technologies de l'information.",
             department: "direction",
             experience: "15+ ans d'expérience",
@@ -616,7 +619,7 @@ export const CGUITECH = {
         {
             name: "Ismael Diallo",
             position: "Responsable IT",
-            image: "/images/team/it-manager.jpg",
+            image: "/images/user.jpg",
             description: "Expert en infrastructure et solutions technologiques avec une solide expérience dans la mise en place et la maintenance de systèmes informatiques complexes.",
             department: "développement",
             experience: "10+ ans d'expérience",
@@ -633,7 +636,7 @@ export const CGUITECH = {
         {
             name: "Aboubacar Fabou Camara",
             position: "Responsable Juridique",
-            image: "/images/team/legal.jpg",
+            image: "/images/user.jpg",
             description: "Spécialiste en droit des technologies et contrats IT avec une expertise particulière dans les questions de conformité et de protection des données.",
             department: "juridique",
             experience: "8+ ans d'expérience",
@@ -650,7 +653,7 @@ export const CGUITECH = {
         {
             name: "Abdoul Karim Oularé",
             position: "Comptable",
-            image: "/images/team/accountant.jpg",
+            image: "/images/user.jpg",
             description: "Expert-comptable spécialisée dans le secteur technologique avec une connaissance approfondie de la fiscalité des entreprises numériques.",
             department: "finance",
             experience: "7+ ans d'expérience",
@@ -667,7 +670,7 @@ export const CGUITECH = {
         {
             name: "Ibrahima Sory Kaba",
             position: "Comptable",
-            image: "/images/team/accountant.jpg",
+            image: "/images/user.jpg",
             description: "Expert-comptable spécialisée dans le secteur technologique avec une connaissance approfondie de la fiscalité des entreprises numériques.",
             department: "finance",
             experience: "7+ ans d'expérience",

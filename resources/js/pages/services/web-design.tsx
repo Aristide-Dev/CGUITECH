@@ -126,8 +126,9 @@ export default function WebDesignService() {
       description="Créez votre présence en ligne avec nos services de conception web professionnelle et solutions d'hébergement fiables. Sites vitrines, e-commerce et applications sur mesure."
     >
       {/* Hero Section - Style plus moderne avec design asymétrique */}
-      <section className="relative bg-gradient-to-br from-blue-500 via-indigo-400 to-violet-400 py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-pattern opacity-10"></div>
+      <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/services/3d-rendering-website-hosting-concept.jpg')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-black opacity-50"></div>
         {/* Formes géométriques flottantes */}
         <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-white/20 blur-3xl animate-pulse"></div>
         <div className="absolute bottom-10 left-20 w-80 h-80 rounded-full bg-blue-300/20 blur-3xl animate-pulse animation-delay-2000"></div>
@@ -144,7 +145,7 @@ export default function WebDesignService() {
               Établissez votre présence en ligne avec un site web qui convertit les visiteurs en clients grâce à un design captivant et une expérience utilisateur exceptionnelle.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button className="bg-white hover:bg-white/90 text-blue-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+              <Button className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
                 Demander un devis gratuit
               </Button>
               <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
@@ -156,45 +157,45 @@ export default function WebDesignService() {
       </section>
 
       {/* Introduction - Design avec overlay et effet de perspective */}
-      <section className="py-24 bg-gradient-to-b from-white to-blue-50">
+      <section className="py-24 bg-gradient-to-b from-white to-primary-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <Badge className="bg-blue-100 text-blue-600 mb-6 uppercase tracking-wide font-medium">Notre expertise</Badge>
-              <h2 className="text-4xl font-bold mb-8 leading-tight">Créez une expérience web qui vous <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600">démarque</span></h2>
-              <p className="text-blue-900 mb-8 leading-relaxed text-lg">
+              <Badge className="bg-primary-50 text-primary-600 mb-6 uppercase tracking-wide font-medium">Notre expertise</Badge>
+              <h2 className="text-4xl font-bold mb-8 leading-tight">Créez une expérience web qui vous <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">démarque</span></h2>
+              <p className="text-primary-900 mb-8 leading-relaxed text-lg">
                 À l'ère du numérique, un site web professionnel est essentiel pour établir la crédibilité et la visibilité de votre entreprise. Chez CGUITECH, nous concevons des sites web qui non seulement sont visuellement attrayants, mais aussi fonctionnels et optimisés pour les moteurs de recherche.
               </p>
-              <p className="text-blue-800 mb-10 leading-relaxed text-lg">
+              <p className="text-primary-800 mb-10 leading-relaxed text-lg">
                 Notre équipe de concepteurs et développeurs web expérimentés travaille en étroite collaboration avec vous pour comprendre vos objectifs commerciaux et créer une solution web sur mesure qui répond parfaitement à vos besoins et aux attentes de vos clients.
               </p>
               <div className="grid grid-cols-2 gap-6">
-                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-50">
-                  <Zap className="h-8 w-8 text-blue-600 flex-shrink-0" />
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Zap className="h-8 w-8 text-primary-600 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-lg text-blue-900">Design moderne</h3>
-                    <p className="text-blue-700 mt-1">Interfaces élégantes et intuitives</p>
+                    <h3 className="font-semibold text-lg text-primary-800">Design moderne</h3>
+                    <p className="text-primary-700 mt-1">Interfaces élégantes et intuitives</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-50">
-                  <Smartphone className="h-8 w-8 text-blue-600 flex-shrink-0" />
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Smartphone className="h-8 w-8 text-primary-600 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-lg text-blue-900">100% responsive</h3>
-                    <p className="text-blue-700 mt-1">Parfait sur tous les appareils</p>
+                    <h3 className="font-semibold text-lg text-primary-800">100% responsive</h3>
+                    <p className="text-primary-700 mt-1">Parfait sur tous les appareils</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-50">
-                  <Search className="h-8 w-8 text-blue-600 flex-shrink-0" />
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Search className="h-8 w-8 text-primary-600 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-lg text-blue-900">SEO intégré</h3>
-                    <p className="text-blue-700 mt-1">Visible dans les recherches</p>
+                    <h3 className="font-semibold text-lg text-primary-800">SEO intégré</h3>
+                    <p className="text-primary-700 mt-1">Visible dans les recherches</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-50">
-                  <Shield className="h-8 w-8 text-blue-600 flex-shrink-0" />
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Shield className="h-8 w-8 text-primary-600 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold text-lg text-blue-900">Sécurité avancée</h3>
-                    <p className="text-blue-700 mt-1">Protection des données</p>
+                    <h3 className="font-semibold text-lg text-primary-800">Sécurité avancée</h3>
+                    <p className="text-primary-700 mt-1">Protection des données</p>
                   </div>
                 </div>
               </div>
@@ -204,7 +205,7 @@ export default function WebDesignService() {
               <div className="absolute -inset-4 bg-violet-600/10 rounded-3xl transform rotate-2"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-all duration-500">
                 <img
-                  src="https://img.freepik.com/premium-photo/young-woman-using-phone-while-sitting-table_1048944-3844506.jpg?w=1380"
+                  src="/images/services/378429.jpg"
                   alt="Conception web professionnelle"
                   className="w-full h-full object-cover"
                 />
@@ -215,36 +216,36 @@ export default function WebDesignService() {
       </section>
 
       {/* Web Design Services - Cards avec effet de survol */}
-      <section className="py-24 bg-gradient-to-b from-blue-50 to-white">
+      <section className="py-24 bg-gradient-to-b from-white to-primary-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="bg-blue-100 text-blue-600 mb-4 uppercase tracking-wide font-medium">Nos services</Badge>
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">Solutions web adaptées à vos besoins</h2>
-            <p className="text-blue-700 max-w-3xl mx-auto text-lg">
+            <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Nos services</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Solutions web adaptées à vos besoins</h2>
+            <p className="text-primary-700 max-w-3xl mx-auto text-lg">
               Que vous ayez besoin d'un site vitrine, d'une boutique en ligne ou d'une application web sur mesure, nous avons la solution qu'il vous faut.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {webSiteTypes.map((type, index) => (
-              <div key={index} className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-blue-100">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-violet-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div key={index} className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-primary-100">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-primary-700/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="p-8 relative z-10">
-                  <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl inline-flex mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <div className="bg-primary-50 text-primary-600 p-4 rounded-2xl inline-flex mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
                     {type.icon}
                   </div>
-                  <h3 className="text-2xl font-bold mb-3 text-blue-900 group-hover:text-blue-600 transition-colors">{type.title}</h3>
-                  <p className="text-blue-700 mb-6">{type.description}</p>
+                  <h3 className="text-2xl font-bold mb-3 text-primary-800 group-hover:text-primary-600 transition-colors">{type.title}</h3>
+                  <p className="text-primary-700 mb-6">{type.description}</p>
                   <ul className="space-y-3">
                     {type.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
-                        <span className="text-blue-800">{feature}</span>
+                        <CheckCircle2 className="h-5 w-5 text-primary-600 mt-1 flex-shrink-0" />
+                        <span className="text-primary-800">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-8 pt-6 border-t border-blue-100">
-                    <Button variant="ghost" className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 font-medium p-0 group flex items-center">
+                  <div className="mt-8 pt-6 border-t border-primary-100">
+                    <Button variant="ghost" className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 font-medium p-0 group flex items-center">
                       En savoir plus 
                       <ChevronRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
                     </Button>
@@ -257,12 +258,12 @@ export default function WebDesignService() {
       </section>
 
       {/* Notre processus - Timeline moderne */}
-      <section className="py-24 bg-gradient-to-br from-blue-50 via-white to-violet-50">
+      <section className="py-24 bg-gradient-to-br from-primary-50 via-white to-primary-100">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="bg-blue-100 text-blue-600 mb-4 uppercase tracking-wide font-medium">Notre processus</Badge>
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">Comment nous créons votre site web</h2>
-            <p className="text-blue-700 max-w-3xl mx-auto text-lg">
+            <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Notre processus</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Comment nous créons votre site web</h2>
+            <p className="text-primary-700 max-w-3xl mx-auto text-lg">
               Notre approche structurée garantit que votre projet web soit livré à temps, dans le respect du budget et selon vos attentes.
             </p>
           </div>
@@ -272,15 +273,15 @@ export default function WebDesignService() {
               {processSteps.map((step, index) => (
                 <div key={index} className="flex flex-col md:flex-row gap-6 items-start">
                   <div className="md:w-1/4 flex-shrink-0">
-                    <div className="bg-white shadow-lg rounded-2xl p-6 transform hover:-translate-y-1 transition-all hover:shadow-xl border border-blue-100">
-                      <span className="text-4xl font-black bg-gradient-to-br from-blue-600 to-violet-600 text-transparent bg-clip-text">
+                    <div className="bg-white shadow-lg rounded-2xl p-6 transform hover:-translate-y-1 transition-all hover:shadow-xl border border-primary-100">
+                      <span className="text-4xl font-black bg-gradient-to-br from-primary-600 to-primary-700 text-transparent bg-clip-text">
                         {step.number}
                       </span>
                     </div>
                   </div>
-                  <div className="md:w-3/4 bg-white shadow-lg rounded-2xl p-8 transform hover:-translate-y-1 transition-all hover:shadow-xl border border-blue-100">
-                    <h3 className="text-2xl font-bold mb-4 text-blue-900">{step.title}</h3>
-                    <p className="text-blue-700">{step.description}</p>
+                  <div className="md:w-3/4 bg-white shadow-lg rounded-2xl p-8 transform hover:-translate-y-1 transition-all hover:shadow-xl border border-primary-100">
+                    <h3 className="text-2xl font-bold mb-4 text-primary-900">{step.title}</h3>
+                    <p className="text-primary-700">{step.description}</p>
                   </div>
                 </div>
               ))}
@@ -290,35 +291,35 @@ export default function WebDesignService() {
       </section>
 
       {/* Hosting Services - Cards flottantes */}
-      <section className="py-24 bg-gradient-to-b from-violet-50 to-white">
+      <section className="py-24 bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <Badge className="bg-blue-100 text-blue-600 mb-4 uppercase tracking-wide font-medium">Hébergement</Badge>
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">Solutions d'hébergement fiables</h2>
-            <p className="text-blue-700 max-w-3xl mx-auto text-lg">
+            <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Hébergement</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Solutions d'hébergement fiables</h2>
+            <p className="text-primary-700 max-w-3xl mx-auto text-lg">
               Un site web performant nécessite un hébergement de qualité. Nous proposons des solutions d'hébergement fiables et sécurisées pour garantir la disponibilité et la rapidité de votre site.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
             {hostingServices.map((service, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-blue-100 relative overflow-hidden hover:-translate-y-1">
-                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-blue-500 to-violet-500"></div>
+              <div key={index} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border border-primary-100 relative overflow-hidden hover:-translate-y-1">
+                <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-primary-500 to-primary-600"></div>
                 <div className="flex items-start gap-6 mb-6">
-                  <div className="bg-blue-100 text-blue-600 p-4 rounded-2xl">
+                  <div className="bg-primary-100 text-primary-600 p-4 rounded-2xl">
                     {service.icon}
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold mb-2 text-blue-900">{service.title}</h3>
-                    <p className="text-blue-700">{service.description}</p>
+                    <h3 className="text-2xl font-bold mb-2 text-primary-900">{service.title}</h3>
+                    <p className="text-primary-700">{service.description}</p>
                   </div>
                 </div>
                 <div className="pl-20">
                   <ul className="space-y-3 mt-4">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-blue-600 mt-1 flex-shrink-0" />
-                        <span className="text-blue-800">{feature}</span>
+                        <CheckCircle2 className="h-5 w-5 text-primary-600 mt-1 flex-shrink-0" />
+                        <span className="text-primary-800">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -330,15 +331,15 @@ export default function WebDesignService() {
       </section>
 
       {/* SEO Section - Design asymétrique */}
-      <section className="py-24 bg-gradient-to-b from-white to-blue-50">
+      <section className="py-24 bg-gradient-to-b from-primary-100 to-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
             <div className="lg:col-span-2 relative">
-              <div className="absolute -inset-4 bg-blue-600/10 rounded-3xl transform rotate-3"></div>
-              <div className="absolute -inset-4 bg-violet-600/10 rounded-3xl transform -rotate-2"></div>
+              <div className="absolute -inset-4 bg-primary-600/10 rounded-3xl transform rotate-3"></div>
+              <div className="absolute -inset-4 bg-primary-700/10 rounded-3xl transform -rotate-2"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://img.freepik.com/free-psd/girl-character-with-browser-tab_23-2149838746.jpg?t=st=1746031056~exp=1746034656~hmac=8c7a4d4c10e2ffeb1a00f5ca75290d7d2477a007b2ae58ee6f6000de4ec62809&w=826"
+                  src="/images/services/woman-business-laptop-search-engine-information-hologram-seo-graphic-iot-research-thinking-worker-african-employee-with-coffee-technology-internet-office-browsing-overlay.jpg"
                   alt="Optimisation pour les moteurs de recherche"
                   className="w-full h-full object-cover"
                 />
@@ -346,30 +347,30 @@ export default function WebDesignService() {
             </div>
             
             <div className="lg:col-span-3">
-              <Badge className="bg-blue-100 text-blue-600 mb-6 uppercase tracking-wide font-medium">Référencement</Badge>
-              <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-violet-600 text-transparent bg-clip-text">Optimisation pour les moteurs de recherche</h2>
-              <p className="text-blue-800 mb-8 leading-relaxed text-lg">
+              <Badge className="bg-primary-50 text-primary-600 mb-6 uppercase tracking-wide font-medium">Référencement</Badge>
+              <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Optimisation pour les moteurs de recherche</h2>
+              <p className="text-primary-800 mb-8 leading-relaxed text-lg">
                 Avoir un beau site web ne suffit pas - il doit aussi être trouvé par vos clients potentiels. Nous intégrons des stratégies d'optimisation pour les moteurs de recherche (SEO) dès la conception de votre site pour améliorer sa visibilité en ligne.
               </p>
-              <p className="text-blue-700 mb-10 leading-relaxed text-lg">
+              <p className="text-primary-700 mb-10 leading-relaxed text-lg">
                 Notre approche SEO comprend l'optimisation technique, la recherche de mots-clés, la création de contenu de qualité et l'amélioration de l'expérience utilisateur - tous des facteurs essentiels pour un bon classement dans les résultats de recherche.
               </p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-100">
-                  <Search className="h-10 w-10 text-blue-600 mb-4" />
-                  <h3 className="font-bold text-xl mb-3 text-blue-900">Recherche de mots-clés</h3>
-                  <p className="text-blue-700">Identification des termes de recherche pertinents pour votre entreprise.</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Search className="h-10 w-10 text-primary-600 mb-4" />
+                  <h3 className="font-bold text-xl mb-3 text-primary-900">Recherche de mots-clés</h3>
+                  <p className="text-primary-700">Identification des termes de recherche pertinents pour votre entreprise.</p>
                 </div>
-                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-100">
-                  <PenTool className="h-10 w-10 text-blue-600 mb-4" />
-                  <h3 className="font-bold text-xl mb-3 text-blue-900">Contenu optimisé</h3>
-                  <p className="text-blue-700">Création de contenus de qualité qui répondent aux requêtes des utilisateurs.</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <PenTool className="h-10 w-10 text-primary-600 mb-4" />
+                  <h3 className="font-bold text-xl mb-3 text-primary-900">Contenu optimisé</h3>
+                  <p className="text-primary-700">Création de contenus de qualité qui répondent aux requêtes des utilisateurs.</p>
                 </div>
-                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-blue-100">
-                  <Code className="h-10 w-10 text-blue-600 mb-4" />
-                  <h3 className="font-bold text-xl mb-3 text-blue-900">Optimisation technique</h3>
-                  <p className="text-blue-700">Structure du site, balisage, vitesse et facteurs techniques.</p>
+                <div className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Code className="h-10 w-10 text-primary-600 mb-4" />
+                  <h3 className="font-bold text-xl mb-3 text-primary-900">Optimisation technique</h3>
+                  <p className="text-primary-700">Structure du site, balisage, vitesse et facteurs techniques.</p>
                 </div>
               </div>
             </div>
@@ -378,7 +379,7 @@ export default function WebDesignService() {
       </section>
 
       {/* CTA Section - Design moderne avec gradient */}
-      <section className="py-20 bg-gradient-to-br from-blue-500 via-indigo-400 to-violet-400 text-white">
+      <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center relative">
             <div className="absolute inset-0 -mt-10 -ml-10 w-40 h-40 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
@@ -392,7 +393,7 @@ export default function WebDesignService() {
                 Contactez-nous dès aujourd'hui pour discuter de votre projet web et découvrir comment nous pouvons vous aider à établir une présence en ligne efficace.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <Button className="bg-white hover:bg-white/90 text-blue-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                <Button className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
                   Demander un devis gratuit
                 </Button>
                 <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">

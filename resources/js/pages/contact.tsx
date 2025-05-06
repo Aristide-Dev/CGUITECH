@@ -28,8 +28,8 @@ export default function contact() {
             
 
             {/* Hero Section Améliorée */}
-            <div className="relative bg-gradient-to-r from-primary to-primary-800 py-32 overflow-hidden">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1577017040065-650ee4d43339')] bg-cover bg-center opacity-10"></div>
+            <div className="relative bg-black py-32 overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/images/contact/cover.jpg')] bg-cover bg-center"></div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
                 <div className="relative container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center">

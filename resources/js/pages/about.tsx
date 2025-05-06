@@ -21,7 +21,8 @@ export default function About() {
         >
             {/* En-tête de page amélioré avec overlay et animation */}
             <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
-                <div className="absolute inset-0 bg-black opacity-20"></div>
+                <div className="absolute inset-0 bg-[url('/images/about/cover.jpg')] bg-cover bg-center"></div>
+                <div className="absolute inset-0 bg-black opacity-50"></div>
                 <div className="absolute right-0 top-0 w-1/3 h-full opacity-10">
                     <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                         <path fill="currentColor" d="M45.7,-51.9C59.5,-41.5,71.3,-27.5,74.4,-11.6C77.5,4.4,72,22.3,61.7,35.9C51.4,49.5,36.4,58.7,19.5,65.8C2.7,72.9,-16,77.8,-33.3,72.8C-50.7,67.8,-66.7,52.9,-72.5,35C-78.3,17.1,-73.9,-3.8,-65.8,-21.9C-57.6,-40,-45.8,-55.2,-31.9,-65.2C-18,-75.1,-1.9,-79.7,12.3,-75.7C26.5,-71.8,31.9,-62.3,45.7,-51.9Z" transform="translate(100 100)" />
@@ -89,25 +90,25 @@ export default function About() {
                             </p>
                         </div>
                         <div className="grid grid-cols-2 gap-6">
-                            <div className="aspect-square rounded-2xl overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" 
+                            <div className="aspect-square rounded-2xl overflow-hidden bg-black">
+                                <img src="/images/logo-cguitech-wb.svg"
                                     alt="Bureaux modernes CGUITECH" 
-                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                                    className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" />
                             </div>
                             <div className="aspect-square rounded-2xl overflow-hidden mt-12">
-                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80" 
+                                <img src="/images/cropped-cguitech.png" 
                                     alt="Équipe CGUITECH en réunion" 
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
                             </div>
                             <div className="aspect-square rounded-2xl overflow-hidden">
-                                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80" 
+                                <img src="/images/logo-cguitech-wb.svg" 
                                     alt="Centre de données CGUITECH" 
-                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                                    className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" />
                             </div>
-                            <div className="aspect-square rounded-2xl overflow-hidden mt-12">
-                                <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80" 
+                            <div className="aspect-square rounded-2xl overflow-hidden mt-12 bg-primary-950">
+                                <img src="/images/logo-bg-dark2.svg" 
                                     alt="Support technique CGUITECH" 
-                                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                                    className="w-full h-full object-contain hover:scale-105 transition-transform duration-300" />
                             </div>
                         </div>
                     </div>
@@ -185,11 +186,7 @@ export default function About() {
                             <div key={index} className="bg-white p-8 rounded-2xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center">
                                 <div className="w-40 h-40 rounded-full overflow-hidden mb-8 border-4 border-primary-100 p-1">
                                     <img 
-                                        src={[
-                                            "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80",
-                                            "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80",
-                                            "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80"
-                                        ][index]} 
+                                        src={leader.image} 
                                         alt={leader.name} 
                                         className="w-full h-full object-cover rounded-full" 
                                     />

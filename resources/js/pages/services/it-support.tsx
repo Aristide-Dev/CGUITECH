@@ -83,130 +83,168 @@ export default function ITSupportService() {
       description="Services de support informatique professionnels pour garantir le bon fonctionnement de vos systèmes IT. Support à distance, sur site et helpdesk complets."
     >
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="container mx-auto px-4 relative">
+      <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/services/services-it-supports.jpg')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-white/20 blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-20 w-80 h-80 rounded-full bg-primary-300/20 blur-3xl animate-pulse animation-delay-2000"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl">
-            <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm">SUPPORT IT</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Support informatique professionnel</h1>
-            <p className="text-xl opacity-90 mb-8 leading-relaxed">
+            <Badge className="bg-white/30 hover:bg-white/40 text-white mb-6 py-2 px-4 text-sm uppercase tracking-wide backdrop-blur-sm">Support IT</Badge>
+            <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-tight text-white">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-primary-100 to-primary-200">
+                Support informatique professionnel
+              </span>
+            </h1>
+            <p className="text-xl text-white mb-10 leading-relaxed max-w-2xl">
               Une assistance technique complète pour garantir le bon fonctionnement de vos systèmes informatiques et maintenir votre productivité.
             </p>
-            <Button className="bg-white text-primary-600 hover:bg-white/90">
-              Contactez-nous
-            </Button>
+            <div className="flex flex-wrap gap-4">
+              <Button className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                Contactez-nous
+              </Button>
+              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
+                En savoir plus
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Introduction */}
-      <section className="py-16 bg-white">
+      <section className="py-24 bg-gradient-to-b from-white to-primary-50">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <Badge className="bg-primary-100 text-primary mb-6">NOTRE APPROCHE</Badge>
-              <h2 className="text-3xl font-bold mb-6">Un support réactif à vos problèmes informatiques</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <Badge className="bg-primary-50 text-primary-600 mb-6 uppercase tracking-wide font-medium">Notre approche</Badge>
+              <h2 className="text-4xl font-bold mb-8 leading-tight">Un support réactif à vos <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">problèmes informatiques</span></h2>
+              <p className="text-primary-900 mb-8 leading-relaxed text-lg">
                 Les problèmes informatiques peuvent sérieusement impacter votre productivité et votre activité. Chez CGUITECH, nous comprenons l'importance d'un support informatique réactif et efficace pour minimiser les temps d'arrêt et assurer la continuité de vos opérations.
               </p>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-primary-800 mb-10 leading-relaxed text-lg">
                 Notre équipe de techniciens certifiés est disponible pour vous fournir une assistance de qualité, que ce soit à distance ou sur site, avec des solutions adaptées à vos besoins spécifiques et à votre budget.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">Support multi-niveaux</span>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <CheckCircle2 className="h-8 w-8 text-primary-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-primary-800">Support multi-niveaux</h3>
+                    <p className="text-primary-700 mt-1">Solutions adaptées</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">Techniciens certifiés</span>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <CheckCircle2 className="h-8 w-8 text-primary-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-primary-800">Techniciens certifiés</h3>
+                    <p className="text-primary-700 mt-1">Expertise garantie</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">Temps de réponse rapide</span>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <CheckCircle2 className="h-8 w-8 text-primary-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-primary-800">Réponse rapide</h3>
+                    <p className="text-primary-700 mt-1">Support réactif</p>
+                  </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-gray-700">Solutions personnalisées</span>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <CheckCircle2 className="h-8 w-8 text-primary-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-primary-800">Solutions personnalisées</h3>
+                    <p className="text-primary-700 mt-1">Adaptées à vos besoins</p>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="rounded-xl overflow-hidden shadow-xl">
-              <img
-                src="https://images.unsplash.com/photo-1581092921461-d3217bc18eac?auto=format&fit=crop&q=80"
-                alt="Support informatique professionnel"
-                className="w-full h-full object-cover"
-              />
+            <div className="relative">
+              <div className="absolute -inset-4 bg-primary-600/10 rounded-3xl transform -rotate-2"></div>
+              <div className="absolute -inset-4 bg-primary-700/10 rounded-3xl transform rotate-2"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-all duration-500">
+                <img
+                  src="/images/services/woman-having-online-meeting-work.jpg"
+                  alt="Support informatique professionnel"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Support Services */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-24 bg-gradient-to-b from-white to-primary-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge className="bg-primary-100 text-primary mb-4">NOS SERVICES</Badge>
-            <h2 className="text-3xl font-bold mb-6">Solutions de support adaptées à vos besoins</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Nos services</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Solutions de support adaptées à vos besoins</h2>
+            <p className="text-primary-700 max-w-3xl mx-auto text-lg">
               Nous proposons différentes options de support informatique pour répondre aux besoins spécifiques de votre entreprise.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {supportServices.map((service, index) => (
-              <Card key={index} className="border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-                <CardHeader className="flex flex-col items-center text-center pb-2">
-                  <div className="bg-primary-50 p-3 rounded-full mb-4">
+              <div key={index} className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-primary-100">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-primary-700/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="p-8 relative z-10">
+                  <div className="bg-primary-50 text-primary-600 p-4 rounded-2xl inline-flex mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
                     {service.icon}
                   </div>
-                  <CardTitle className="text-xl font-bold">{service.title}</CardTitle>
-                  <p className="text-gray-600 mt-2">{service.description}</p>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 mt-4">
+                  <h3 className="text-2xl font-bold mb-3 text-primary-800 group-hover:text-primary-600 transition-colors">{service.title}</h3>
+                  <p className="text-primary-700 mb-6">{service.description}</p>
+                  <ul className="space-y-3">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                        <span className="text-gray-700">{feature}</span>
+                        <CheckCircle2 className="h-5 w-5 text-primary-600 mt-1 flex-shrink-0" />
+                        <span className="text-primary-800">{feature}</span>
                       </li>
                     ))}
                   </ul>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Niveaux de support */}
-      <section className="py-16 bg-white">
+      <section className="py-24 bg-gradient-to-br from-primary-50 via-white to-primary-100">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge className="bg-primary-100 text-primary mb-4">NIVEAUX DE SUPPORT</Badge>
-            <h2 className="text-3xl font-bold mb-6">Support technique multi-niveaux</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Niveaux de support</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Support technique multi-niveaux</h2>
+            <p className="text-primary-700 max-w-3xl mx-auto text-lg">
               Notre structure de support à plusieurs niveaux garantit que vos problèmes sont traités efficacement par des techniciens ayant l'expertise appropriée.
             </p>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <Tabs defaultValue="niveau1" className="w-full">
-              <TabsList className="grid grid-cols-3 mb-8">
-                <TabsTrigger value="niveau1">Support Niveau 1</TabsTrigger>
-                <TabsTrigger value="niveau2">Support Niveau 2</TabsTrigger>
-                <TabsTrigger value="niveau3">Support Niveau 3</TabsTrigger>
+              <TabsList className="grid grid-cols-3 mb-8 bg-white p-1 rounded-xl shadow-sm">
+                {supportLevels.map((level, index) => (
+                  <TabsTrigger 
+                    key={index} 
+                    value={`niveau${index+1}`}
+                    className="data-[state=active]:bg-primary-600 data-[state=active]:text-white rounded-lg transition-all"
+                  >
+                    {level.title}
+                  </TabsTrigger>
+                ))}
               </TabsList>
               
               {supportLevels.map((level, index) => (
-                <TabsContent key={index} value={`niveau${index+1}`} className="p-6 border rounded-lg bg-gray-50">
-                  <h3 className="text-2xl font-bold mb-4">{level.title}</h3>
-                  <p className="text-gray-600 mb-6">{level.description}</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <TabsContent 
+                  key={index} 
+                  value={`niveau${index+1}`} 
+                  className="p-8 rounded-2xl bg-white shadow-lg border border-primary-100"
+                >
+                  <h3 className="text-2xl font-bold mb-4 text-primary-900">{level.title}</h3>
+                  <p className="text-primary-700 mb-8">{level.description}</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {level.tasks.map((task, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
-                        <span className="text-gray-700">{task}</span>
+                      <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-primary-50/50">
+                        <CheckCircle2 className="h-6 w-6 text-primary-600 mt-1 flex-shrink-0" />
+                        <span className="text-primary-800">{task}</span>
                       </div>
                     ))}
                   </div>
@@ -218,118 +256,106 @@ export default function ITSupportService() {
       </section>
 
       {/* Avantages du support informatique */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-24 bg-gradient-to-b from-white to-primary-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Badge className="bg-primary-100 text-primary mb-4">AVANTAGES</Badge>
-            <h2 className="text-3xl font-bold mb-6">Pourquoi choisir notre support informatique ?</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Avantages</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Pourquoi choisir notre support informatique ?</h2>
+            <p className="text-primary-700 max-w-3xl mx-auto text-lg">
               Un support informatique professionnel offre de nombreux avantages pour votre entreprise, bien au-delà de la simple résolution de problèmes techniques.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="border border-gray-200">
-              <CardHeader className="flex flex-col items-center text-center">
-                <div className="bg-primary-50 p-3 rounded-full mb-4">
-                  <Clock className="h-8 w-8 text-primary" />
+            {[
+              {
+                icon: <Clock className="h-8 w-8 text-primary-600" />,
+                title: "Réduction des temps d'arrêt",
+                description: "Minimisez les interruptions de service grâce à une résolution rapide des problèmes techniques."
+              },
+              {
+                icon: <PieChart className="h-8 w-8 text-primary-600" />,
+                title: "Amélioration de la productivité",
+                description: "Permettez à vos employés de se concentrer sur leur travail plutôt que sur les problèmes informatiques."
+              },
+              {
+                icon: <Shield className="h-8 w-8 text-primary-600" />,
+                title: "Sécurité renforcée",
+                description: "Bénéficiez d'une surveillance constante et d'une protection contre les menaces informatiques."
+              },
+              {
+                icon: <BarChart className="h-8 w-8 text-primary-600" />,
+                title: "Coûts prévisibles",
+                description: "Maîtrisez votre budget IT avec des forfaits de support à tarifs fixes et sans surprises."
+              }
+            ].map((advantage, index) => (
+              <div key={index} className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-primary-100">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-primary-700/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="p-8 relative z-10">
+                  <div className="bg-primary-50 text-primary-600 p-4 rounded-2xl inline-flex mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                    {advantage.icon}
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-primary-800 group-hover:text-primary-600 transition-colors">{advantage.title}</h3>
+                  <p className="text-primary-700">{advantage.description}</p>
                 </div>
-                <CardTitle className="text-xl font-bold">Réduction des temps d'arrêt</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-600">
-                  Minimisez les interruptions de service grâce à une résolution rapide des problèmes techniques.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-gray-200">
-              <CardHeader className="flex flex-col items-center text-center">
-                <div className="bg-primary-50 p-3 rounded-full mb-4">
-                  <PieChart className="h-8 w-8 text-primary" />
-                </div>
-                <CardTitle className="text-xl font-bold">Amélioration de la productivité</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-600">
-                  Permettez à vos employés de se concentrer sur leur travail plutôt que sur les problèmes informatiques.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-gray-200">
-              <CardHeader className="flex flex-col items-center text-center">
-                <div className="bg-primary-50 p-3 rounded-full mb-4">
-                  <Shield className="h-8 w-8 text-primary" />
-                </div>
-                <CardTitle className="text-xl font-bold">Sécurité renforcée</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-600">
-                  Bénéficiez d'une surveillance constante et d'une protection contre les menaces informatiques.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border border-gray-200">
-              <CardHeader className="flex flex-col items-center text-center">
-                <div className="bg-primary-50 p-3 rounded-full mb-4">
-                  <BarChart className="h-8 w-8 text-primary" />
-                </div>
-                <CardTitle className="text-xl font-bold">Coûts prévisibles</CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-gray-600">
-                  Maîtrisez votre budget IT avec des forfaits de support à tarifs fixes et sans surprises.
-                </p>
-              </CardContent>
-            </Card>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Notre expertise */}
-      <section className="py-16 bg-white">
+      <section className="py-24 bg-gradient-to-br from-primary-50 via-white to-primary-100">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="rounded-xl overflow-hidden shadow-xl">
-              <img
-                src="https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80"
-                alt="Techniciens qualifiés"
-                className="w-full h-full object-cover"
-              />
+            <div className="relative">
+              <div className="absolute -inset-4 bg-primary-600/10 rounded-3xl transform -rotate-2"></div>
+              <div className="absolute -inset-4 bg-primary-700/10 rounded-3xl transform rotate-2"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-all duration-500">
+                <img
+                  src="/images/services/study-group-african-people.jpg"
+                  alt="Techniciens qualifiés"
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
             <div>
-              <Badge className="bg-primary-100 text-primary mb-6">NOTRE EXPERTISE</Badge>
-              <h2 className="text-3xl font-bold mb-6">Une équipe de techniciens qualifiés</h2>
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <Badge className="bg-primary-50 text-primary-600 mb-6 uppercase tracking-wide font-medium">Notre expertise</Badge>
+              <h2 className="text-4xl font-bold mb-8 leading-tight">Une équipe de <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">techniciens qualifiés</span></h2>
+              <p className="text-primary-900 mb-8 leading-relaxed text-lg">
                 Nos techniciens en support informatique sont certifiés dans les technologies les plus récentes et bénéficient d'une formation continue pour maintenir leur expertise à jour.
               </p>
-              <p className="text-gray-600 mb-8 leading-relaxed">
+              <p className="text-primary-800 mb-10 leading-relaxed text-lg">
                 Que ce soit pour résoudre des problèmes complexes de réseau, de sécurité ou de matériel, notre équipe dispose des compétences nécessaires pour fournir des solutions efficaces et durables.
               </p>
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <Cpu className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-gray-900">Expertise matérielle</h3>
-                    <p className="text-gray-600">Diagnostic et réparation d'ordinateurs, serveurs, imprimantes et autres équipements informatiques.</p>
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: <Cpu className="h-8 w-8 text-primary-600" />,
+                    title: "Expertise matérielle",
+                    description: "Diagnostic et réparation d'ordinateurs, serveurs, imprimantes et autres équipements informatiques."
+                  },
+                  {
+                    icon: <Shield className="h-8 w-8 text-primary-600" />,
+                    title: "Expertise logicielle",
+                    description: "Support pour les systèmes d'exploitation, applications professionnelles et logiciels spécialisés."
+                  },
+                  {
+                    icon: <HelpCircle className="h-8 w-8 text-primary-600" />,
+                    title: "Formation utilisateur",
+                    description: "Formation et assistance aux utilisateurs pour améliorer leur efficacité avec les outils informatiques."
+                  }
+                ].map((expertise, index) => (
+                  <div key={index} className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                    <div className="bg-primary-50 p-3 rounded-xl">
+                      {expertise.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-primary-800 mb-2">{expertise.title}</h3>
+                      <p className="text-primary-700">{expertise.description}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Shield className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-gray-900">Expertise logicielle</h3>
-                    <p className="text-gray-600">Support pour les systèmes d'exploitation, applications professionnelles et logiciels spécialisés.</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <HelpCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
-                  <div>
-                    <h3 className="font-bold text-gray-900">Formation utilisateur</h3>
-                    <p className="text-gray-600">Formation et assistance aux utilisateurs pour améliorer leur efficacité avec les outils informatiques.</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -337,22 +363,48 @@ export default function ITSupportService() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Besoin d'assistance technique ?</h2>
-          <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Contactez-nous dès aujourd'hui pour discuter de vos besoins en support informatique et découvrir comment nous pouvons vous aider à maintenir vos systèmes en parfait état de fonctionnement.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-white text-primary hover:bg-white/90">
-              Demander un devis
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white/10">
-              En savoir plus
-            </Button>
+      <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center relative">
+            <div className="absolute inset-0 -mt-10 -ml-10 w-40 h-40 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 -mb-10 -mr-10 w-60 h-60 bg-primary-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+            
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                Besoin d'assistance technique ?
+              </h2>
+              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                Contactez-nous dès aujourd'hui pour discuter de vos besoins en support informatique et découvrir comment nous pouvons vous aider à maintenir vos systèmes en parfait état de fonctionnement.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                  Demander un devis
+                </Button>
+                <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
+                  En savoir plus
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
+
+      {/* Ajout de style global pour les animations */}
+      <style>{`
+        @keyframes pulse {
+          0% { opacity: 0.4; }
+          50% { opacity: 0.6; }
+          100% { opacity: 0.4; }
+        }
+
+        .animate-pulse {
+          animation: pulse 3s ease-in-out infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </PublicLayout>
   );
 } 
