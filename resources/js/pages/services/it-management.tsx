@@ -24,7 +24,8 @@ export default function ITManagementService() {
     >
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
+        <div className="absolute inset-0 bg-[url('/images/services/portrait-smiling-engineer-wearing-headphones-data-center.jpg')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="container mx-auto px-4 relative">
           <div className="max-w-3xl">
             <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm">SERVICES IT GÉRÉS</Badge>
@@ -78,7 +79,7 @@ export default function ITManagementService() {
             </div>
             <div className="rounded-xl overflow-hidden shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80"
+                src="/images/services/black-man-it-technician-server-room-cyber-security-data-network-storage-inspection-african-male-person-networking-administrator-checking-system-cables-installation-datacenter.jpg"
                 alt="Centre de données moderne"
                 className="w-full h-full object-cover"
               />
