@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CheckCircle2, Phone, Video, Headphones, Save, Users, Building, Settings, CircleDollarSign, ArrowRight, ChevronRight, Shield, Clock, TrendingUp, Globe, MessageSquare, Zap } from 'lucide-react';
+import { CheckCircle2, Phone, Video, Headphones, Save, Users, Building, PhoneCall, Settings, CircleDollarSign, ArrowRight, ChevronRight, Shield, Clock, TrendingUp, Globe, MessageSquare, Zap } from 'lucide-react';
 import { Link } from '@inertiajs/react';
 
 export default function IPTelephonyService() {
@@ -30,7 +30,7 @@ export default function IPTelephonyService() {
       title: "VoIP",
       description: "Systèmes de téléphonie sur IP pour des communications vocales claires et économiques.",
       icon: <Phone className="h-8 w-8" />,
-      image: "https://img.freepik.com/premium-psd/modern-black-office-phone-with-red-accents-displaying-message_632498-44148.jpg?w=826",
+      image: "/images/services/close-up-person-working-call-center_23-2149288225.jpg",
       features: [
         "Appels haute définition",
         "Numéros virtuels",
@@ -44,7 +44,7 @@ export default function IPTelephonyService() {
       title: "Visioconférence",
       description: "Solutions de visioconférence HD pour des réunions virtuelles efficaces.",
       icon: <Video className="h-8 w-8" />,
-      image: "https://img.freepik.com/free-photo/company-worker-talking-online-videoconference-using-teleconference-meeting-with-colleagues-webcam-chatting-remote-videocall-conference-computer-working-remotely-home_482257-50220.jpg?t=st=1746022046~exp=1746025646~hmac=03bc06dce55333dd178269d16f305db2040356dea9dd42b7cc6b382c75c9f647&w=1380",
+      image: "/images/services/410753706_95273441-e87d-4ab3-a717-cc3daad2cc10.jpg",
       features: [
         "Vidéo haute définition",
         "Partage d'écran en temps réel",
@@ -58,7 +58,7 @@ export default function IPTelephonyService() {
       title: "Centres d'appels",
       description: "Solutions de centres d'appels modernes pour améliorer l'expérience client.",
       icon: <Headphones className="h-8 w-8" />,
-      image: "https://img.freepik.com/free-photo/operator-answering-client-phone-call-customer-care-service-helping-people-call-center-support-male-receptionist-giving-telemarketing-assistance-phone-helpline-office_482257-47212.jpg?t=st=1746022252~exp=1746025852~hmac=0d5ba1ee131cd7121ab39de80b74a20e6b6c37214536bdd0814b968d880194c0&w=1380",
+      image: "/images/services/portrait-girl-his-hone-headset-transparent-background.png",
       features: [
         "Distribution intelligente des appels",
         "Supervision en temps réel",
@@ -72,7 +72,7 @@ export default function IPTelephonyService() {
       title: "Communications unifiées",
       description: "Plateforme intégrée regroupant tous vos outils de communication.",
       icon: <Settings className="h-8 w-8" />,
-      image: "https://img.freepik.com/premium-vector/call-center-support-young-woman-with-headphones-different-internet-technology-icons-her_768258-3558.jpg?w=826",
+      image: "/images/services/office-telephone-system-with-multiple-handsets-isolated-transparent-background.png",
       features: [
         "Messagerie instantanée d'entreprise",
         "Présence et statut",
@@ -90,28 +90,28 @@ export default function IPTelephonyService() {
       title: "Réduction des coûts",
       description: "Économisez jusqu'à 60% sur vos factures de téléphone grâce à des tarifs compétitifs et l'élimination des lignes physiques.",
       icon: <CircleDollarSign className="h-6 w-6 text-primary" />,
-      image: "https://img.freepik.com/premium-photo/african-man-holding-come-money-doing-paperwork-also_216356-629.jpg?w=1380",
+      image: "/images/services/african-man-holding-come-money-doing-paperwork-also_216356-629.avif",
       stats: "60% d'économies"
     },
     {
       title: "Mobilité et flexibilité",
       description: "Accédez à votre système téléphonique de n'importe où, permettant le télétravail et la continuité des activités.",
       icon: <Users className="h-6 w-6 text-primary" />,
-      image: "https://img.freepik.com/free-photo/portrait-young-beautiful-woman-gesticulating_273609-40358.jpg?t=st=1746022605~exp=1746026205~hmac=ad793013bf1a1b7cd6a1203625e3b60884cf4edb531bbaa7676abb57b005b2d7&w=1380",
+      image: "/images/services/portrait-young-beautiful-woman-gesticulating_273609-40358.avif",
       stats: "100% mobile"
     },
     {
       title: "Évolutivité",
       description: "Ajoutez ou supprimez facilement des lignes selon vos besoins, sans investissement matériel majeur.",
       icon: <Building className="h-6 w-6 text-primary" />,
-      image: "https://img.freepik.com/premium-photo/man-looking-bills-while-using-mobile-phone-desk-bedroom-comfortable-home_13339-359256.jpg?w=740",
+      image: "/images/services/man-looking-bills-while-using-mobile-phone-desk-bedroom-comfortable-home_13339-359256.avif",
       stats: "Évolutif à l'infini"
     },
     {
       title: "Fonctionnalités avancées",
       description: "Accédez à des fonctionnalités professionnelles comme les standards automatiques, le routage intelligent et la messagerie unifiée.",
       icon: <Save className="h-6 w-6 text-primary" />,
-      image: "https://img.freepik.com/free-photo/woman-protecting-safeguarding-her-identity-passwords-from-spyware_482257-83357.jpg?t=st=1746022739~exp=1746026339~hmac=651d32bb62222fa2ba79ac2604aeb9e20ff70b8dc4fb4d093e9026504670af8f&w=1380",
+      image: "/images/services/woman-protecting-safeguarding-her-identity-passwords-from-spyware_482257-83357.avif",
       stats: "50+ fonctionnalités"
     }
   ];
@@ -129,6 +129,7 @@ export default function IPTelephonyService() {
         "Support technique dédié",
         "Formation des utilisateurs"
       ],
+      image: '/images/services/407363448_3308dd59-d2e4-496d-9e4e-60c7430d7e26.jpg',
       icon: <Building className="h-6 w-6 text-primary" />
     },
     {
@@ -142,6 +143,7 @@ export default function IPTelephonyService() {
         "Gestion centralisée",
         "Sécurité renforcée"
       ],
+      image: '/images/services/happy-business-people-group-with-teamwork-overlay-tablet-with-support-planning-cooperation-staff-manager-employee-with-banner-innovation-tech-with-collaboration-brainstorming.jpg',
       icon: <Globe className="h-6 w-6 text-primary" />
     },
     {
@@ -155,6 +157,7 @@ export default function IPTelephonyService() {
         "Intégration CRM",
         "Analyse prédictive"
       ],
+      image: '/images/services/female-employee-call-center-video-link-tech-support-employee-uses-headset-webcam.jpg.jpg',
       icon: <Headphones className="h-6 w-6 text-primary" />
     }
   ];
@@ -164,67 +167,31 @@ export default function IPTelephonyService() {
       title="Téléphonie IP & Communications Unifiées | CGUITECH"
       description="Solutions de téléphonie IP et communications unifiées pour votre entreprise. Services VoIP, visioconférence, centres d'appels et communications unifiées."
     >
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-32 text-white overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden opacity-20">
-          <div className="absolute -top-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-0 -right-20 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-40 left-20 w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div 
-              className="max-w-3xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm backdrop-blur-sm">TÉLÉPHONIE IP</Badge>
+    {/* Hero Section */}
+    <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/images/services/contact-cta.jpg')] bg-cover bg-center"></div>
+      <div className="absolute inset-0 bg-black opacity-30"></div>
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-3xl">
+          <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm">TÉLÉPHONIE IP</Badge>
               <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">Communications d'entreprise <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">intelligentes</span></h1>
-              <p className="text-xl opacity-90 mb-12 leading-relaxed max-w-2xl">
+          <p className="text-xl opacity-90 mb-8 leading-relaxed">
                 Des solutions de téléphonie IP et de communications unifiées pour rendre vos échanges professionnels plus efficaces et économiques.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href={route('contact.index')} className="bg-white text-primary-600 hover:bg-white/90 rounded-full px-8 py-6 text-lg shadow-lg shadow-primary-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary-900/30">
-                  Contactez-nous
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Button variant="outline" className="border-white/50 text-white hover:bg-white/10 rounded-full px-8 py-6 text-lg backdrop-blur-sm">
-                  Découvrir nos solutions
-                </Button>
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-              <img 
-                src="/images/services/ip-telephony/hero-image.jpg" 
-                alt="Solutions de téléphonie IP" 
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-            </motion.div>
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button className="bg-white text-primary-600 hover:bg-white/90">
+              Demander un devis
+            </Button>
+            <Button variant="outline" className="border-white text-white hover:bg-white/10">
+              Découvrir nos forfaits
+            </Button>
           </div>
         </div>
-        
-        {/* Abstract shape divider */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-br from-primary/90 via-primary/80 to-primary/70">
-          <svg className="absolute bottom-0 w-full h-32 fill-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" className="shape-fill"></path>
-            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" className="shape-fill"></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" className="shape-fill"></path>
-          </svg>
-        </div>
-      </section>
+      </div>
+    </section>
 
       {/* Statistiques clés */}
-      <section className="py-16 bg-white">
+      {/* <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <motion.div 
@@ -236,7 +203,7 @@ export default function IPTelephonyService() {
             >
               <div className="relative w-20 h-20 mx-auto mb-4">
                 <img 
-                  src="/images/services/ip-telephony/stats-1.svg" 
+                  src="/images/services/ip-telephony/stats.jpg" 
                   alt="Clients satisfaits" 
                   className="w-full h-full object-contain"
                 />
@@ -253,7 +220,7 @@ export default function IPTelephonyService() {
             >
               <div className="relative w-20 h-20 mx-auto mb-4">
                 <img 
-                  src="/images/services/ip-telephony/stats-2.svg" 
+                  src="/images/services/ip-telephony/stats.jpg" 
                   alt="Disponibilité" 
                   className="w-full h-full object-contain"
                 />
@@ -270,7 +237,7 @@ export default function IPTelephonyService() {
             >
               <div className="relative w-20 h-20 mx-auto mb-4">
                 <img 
-                  src="/images/services/ip-telephony/stats-3.svg" 
+                  src="/images/services/ip-telephony/stats.jpg" 
                   alt="Support technique" 
                   className="w-full h-full object-contain"
                 />
@@ -287,7 +254,7 @@ export default function IPTelephonyService() {
             >
               <div className="relative w-20 h-20 mx-auto mb-4">
                 <img 
-                  src="/images/services/ip-telephony/stats-4.svg" 
+                  src="/images/services/ip-telephony/stats.jpg" 
                   alt="Économies réalisées" 
                   className="w-full h-full object-contain"
                 />
@@ -297,7 +264,7 @@ export default function IPTelephonyService() {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Solutions de téléphonie IP */}
       <section className="py-24 bg-gray-50">
@@ -479,7 +446,7 @@ export default function IPTelephonyService() {
                     </div>
                     <div className="relative rounded-xl overflow-hidden">
                       <img 
-                        src={`/images/services/ip-telephony/use-case-${index + 1}.jpg`}
+                        src={useCase.image}
                         alt={useCase.title}
                         className="w-full h-full object-cover"
                       />
@@ -519,25 +486,25 @@ export default function IPTelephonyService() {
                   title: "Analyse des besoins",
                   description: "Évaluation complète de vos besoins en communication et de votre infrastructure existante.",
                   icon: <MessageSquare className="h-6 w-6" />,
-                  image: "/images/services/ip-telephony/step-1.jpg"
+                  image: "/images/services/unrecognizable-black-lady-sitting-desk-office-night-writing-journal.jpg"
                 },
                 {
                   title: "Conception de solution",
                   description: "Élaboration d'une solution personnalisée adaptée à vos exigences spécifiques.",
                   icon: <Settings className="h-6 w-6" />,
-                  image: "/images/services/ip-telephony/step-2.jpg"
+                  image: "/images/services/man-working-desk-flat-lay_32987897.jpg"
                 },
                 {
                   title: "Déploiement",
                   description: "Installation et configuration de votre nouveau système avec une transition progressive.",
                   icon: <Zap className="h-6 w-6" />,
-                  image: "/images/services/ip-telephony/step-3.jpg"
+                  image: "/images/services/side-view-woman-working-with-wires.jpg"
                 },
                 {
                   title: "Formation et support",
                   description: "Formation des utilisateurs et support continu pour garantir une utilisation optimale.",
                   icon: <Shield className="h-6 w-6" />,
-                  image: "/images/services/ip-telephony/step-4.jpg"
+                  image: "/images/services/closeup-wireless-headphones-african-american-woman-video-call-with-startup-owner-team-members-selective-focus-headset-job-seeker-online-interview-using-pc-home.jpg"
                 }
               ].map((step, index) => (
                 <motion.div 
@@ -578,55 +545,41 @@ export default function IPTelephonyService() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-primary to-primary-600 text-white relative overflow-hidden">
-        {/* Background elements */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-10 rounded-bl-full"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-tr-full"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div 
-              className="max-w-3xl"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <Badge className="bg-white/20 text-white mb-6 py-1 px-4 backdrop-blur-sm">COMMENCER MAINTENANT</Badge>
-              <h2 className="text-4xl font-bold mb-6">Prêt à moderniser vos communications ?</h2>
-              <p className="text-xl opacity-90 mb-10 leading-relaxed">
-                Contactez-nous dès aujourd'hui pour discuter de vos besoins en téléphonie IP et découvrir comment nous pouvons vous aider à optimiser vos communications d'entreprise.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href={route('contact.index')} className="bg-white text-primary hover:bg-white/90 rounded-full px-8 py-6 text-lg shadow-lg shadow-primary-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-primary-900/30">
-                  Demander un devis gratuit
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Button variant="outline" className="border-white/50 text-white hover:bg-white/10 rounded-full px-8 py-6 text-lg backdrop-blur-sm">
-                  Consulter notre portfolio
-                </Button>
+      {/* Section CTA */}
+      <section className="py-20 bg-gradient-to-tl from-gray-900 via-primary/90 to-blue-900">
+          <div className="container mx-auto px-4">
+              <div className="bg-gradient-to-br from-primary-900 to-primary-700 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="grid grid-cols-1 md:grid-cols-2 items-center">
+                      <div className="p-12 md:p-16">
+                          <Badge className="bg-yellow-500 text-primary-900 mb-6 px-4 py-1 rounded-full font-medium">COMMENCEZ MAINTENANT</Badge>
+                          <h2 className="text-4xl font-bold mb-6 text-white">Prêt à transformer votre infrastructure IT?</h2>
+                          <p className="mb-8 text-white/90 text-lg">
+                              Contactez nos experts dès aujourd'hui pour une consultation gratuite et découvrez
+                              comment CGUITECH peut accompagner votre entreprise vers l'excellence technologique.
+                          </p>
+                          <div className="flex flex-col sm:flex-row gap-6">
+                              <Link href={route('contact.index')} className="bg-yellow-500 hover:bg-yellow-600 text-primary-900 px-8 py-6 text-lg font-medium rounded-full">
+                                  Prendre rendez-vous
+                              </Link>
+                              <a href="tel:+224627969855" className="flex items-center text-white font-medium text-lg group">
+                                  <div className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors">
+                                      <PhoneCall className="h-6 w-6" />
+                                  </div>
+                                  +224 627 96 98 55
+                              </a>
+                          </div>
+                      </div>
+                      <div className="hidden md:block relative h-full">
+                          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-primary-900/50 z-10"></div>
+                          <img
+                              src="/images/services/woman-with-headset-laptop-working-from-home_23-2148708942.avif"
+                              alt="Contactez-nous"
+                              className="w-full h-full object-cover"
+                          />
+                      </div>
+                  </div>
               </div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="absolute -top-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-              <img 
-                src="https://img.freepik.com/free-photo/woman-with-headset-laptop-working-from-home_23-2148708942.jpg?t=st=1746022908~exp=1746026508~hmac=206c118c7d04cd2d1411c06cb9dc6a26544278e4172181c710da186ea527ff9c&w=996" 
-                alt="Contactez-nous" 
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
-            </motion.div>
           </div>
-        </div>
       </section>
 
       {/* Ajout de style global pour les animations */}

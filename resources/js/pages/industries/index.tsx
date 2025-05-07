@@ -124,7 +124,7 @@ export default function Industries() {
             <div className="hidden lg:block relative">
               <div className="relative z-0 overflow-hidden rounded-lg shadow-lg">
                 <img
-                  src="https://img.freepik.com/premium-photo/person-protective-gear-meticulously-joins-metal-parts-showcasing-their-welding-skill-precision_1222399-68547.jpg?w=1800"
+                  src="/images/services/person-protective-gear-meticulously-joins-metal-parts-showcasing-their-welding-skill-precision_1222399-68547.avif"
                   alt="Solutions sectorielles"
                   className="w-full h-96 object-cover"
                 />

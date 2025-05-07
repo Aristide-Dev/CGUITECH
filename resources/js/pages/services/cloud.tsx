@@ -57,22 +57,28 @@ export default function CloudService() {
       title="Solutions Cloud | CGUITECH"
       description="Découvrez nos solutions cloud sécurisées et évolutives adaptées aux besoins de votre entreprise pour stocker, gérer et traiter vos données."
     >
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20"></div>
-        <div className="container mx-auto px-4 relative">
-          <div className="max-w-3xl">
-            <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm">SOLUTIONS CLOUD</Badge>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Infrastructure cloud flexible et sécurisée</h1>
-            <p className="text-xl opacity-90 mb-8 leading-relaxed">
+    {/* Hero Section */}
+    <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/images/services/african-woman-typing-laptop-cloud-service-hologram-files-backup-isolated-with-white.jpg')] bg-cover bg-center"></div>
+      <div className="absolute inset-0 bg-black opacity-60"></div>
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-3xl">
+          <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm backdrop-blur-sm">SOLUTIONS CLOUD</Badge>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">Infrastructure <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-violet-200">cloud</span> flexible et sécurisée</h1>
+          <p className="text-xl opacity-90 mb-8 leading-relaxed">
               Optimisez vos opérations avec nos solutions cloud évolutives, vous permettant d'accéder à vos données et applications en toute sécurité, partout et à tout moment.
-            </p>
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
             <Button className="bg-white text-primary-600 hover:bg-white/90">
-              Demander une démonstration
+              Demander un devis
+            </Button>
+            <Button variant="outline" className="border-white text-white hover:bg-white/10">
+              Découvrir nos forfaits
             </Button>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
       {/* Introduction */}
       <section className="py-16 bg-white">
@@ -108,7 +114,7 @@ export default function CloudService() {
             </div>
             <div className="rounded-xl overflow-hidden shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1636622433525-127afdf3662d?auto=format&fit=crop&q=80"
+                src="/images/services/woman-using-tablet-upload-with-cloud-icon-hologram-effect.jpg"
                 alt="Centre de données cloud"
                 className="w-full h-full object-cover"
               />

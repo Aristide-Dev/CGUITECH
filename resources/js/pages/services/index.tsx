@@ -287,7 +287,7 @@ export default function ServicesIndex() {
                       {industry.icon}
                     </div>
                   </div>
-                  <h3 className="text-lg font-medium text-white mb-2">{industry.name}</h3>
+                  <h3 className="text-lg font-medium text-white mb-2">{industry.title}</h3>
                   <p className="text-slate-400 text-sm">{industry.description}</p>
                 </div>
               </div>

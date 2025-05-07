@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { 
   CheckCircle2, 
   Server, 
@@ -12,17 +11,13 @@ import {
   Shield, 
   Cloud, 
   HardDrive, 
-  Lock,
   ArrowRight,
   ChevronRight,
   Users,
-  Clock,
-  TrendingUp,
   Zap,
   Cpu,
   Wifi,
-  Building2,
-  BarChart3,
+  PhoneCall,
   Settings,
   AlertCircle
 } from 'lucide-react';
@@ -168,45 +163,25 @@ export default function InfrastructureService() {
       description="Solutions d'infrastructure informatique robustes et évolutives pour votre entreprise : serveurs, stockage, virtualisation, réseaux et data center."
     >
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-indigo-500 to-violet-600 text-white overflow-hidden">
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden opacity-20">
-          <div className="absolute -top-40 -left-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl animate-blob"></div>
-          <div className="absolute top-0 -right-20 w-72 h-72 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-40 left-20 w-96 h-96 bg-violet-400 rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 relative z-10 py-32">
-          <motion.div 
-            className="max-w-3xl"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+      <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/services/african-man-with-tablet-facial-recognition.jpg')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-3xl">
             <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm backdrop-blur-sm">INFRASTRUCTURE IT</Badge>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">Infrastructure <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-violet-200">intelligente</span> pour votre entreprise</h1>
-            <p className="text-xl opacity-90 mb-12 leading-relaxed max-w-2xl">
+            <p className="text-xl opacity-90 mb-8 leading-relaxed">
               Des solutions d'infrastructure robustes et évolutives pour soutenir la croissance de votre entreprise et optimiser vos performances.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href={route('contact.index')} className="bg-white text-blue-600 hover:bg-white/90 rounded-full px-8 py-6 text-lg shadow-lg shadow-blue-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/30">
-                Démarrer un projet
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Button variant="outline" className="border-white/50 text-white hover:bg-white/10 rounded-full px-8 py-6 text-lg backdrop-blur-sm">
-                Découvrir nos solutions
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button className="bg-white text-primary-600 hover:bg-white/90">
+                Demander un devis
+              </Button>
+              <Button variant="outline" className="border-white text-white hover:bg-white/10">
+                Découvrir nos forfaits
               </Button>
             </div>
-          </motion.div>
-        </div>
-        
-        {/* Abstract shape divider */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-br from-blue-600 via-indigo-500 to-violet-600">
-          <svg className="absolute bottom-0 w-full h-32 fill-white" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" className="shape-fill"></path>
-            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" className="shape-fill"></path>
-            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" className="shape-fill"></path>
-          </svg>
+          </div>
         </div>
       </section>
 
@@ -364,38 +339,45 @@ export default function InfrastructureService() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-600 via-indigo-500 to-violet-600 text-white relative overflow-hidden">
+      {/* Section CTA */}
+      <section className="relative py-20 bg-gradient-to-tl from-gray-900 via-primary/90 to-blue-900">
         {/* Background elements */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-10 rounded-bl-full"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-50 rounded-bl-full"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-white opacity-5 rounded-tr-full"></div>
         </div>
-        
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div 
-            className="max-w-3xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="bg-white/20 text-white mb-6 py-1 px-4 backdrop-blur-sm">COMMENCER MAINTENANT</Badge>
-            <h2 className="text-4xl font-bold mb-6">Prêt à moderniser votre infrastructure IT ?</h2>
-            <p className="text-xl opacity-90 mb-10 leading-relaxed">
-              Discutons de votre projet et voyons comment notre expertise peut vous aider à atteindre vos objectifs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={route('contact.index')} className="bg-white text-blue-600 hover:bg-white/90 rounded-full px-8 py-6 text-lg shadow-lg shadow-blue-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-blue-900/30">
-                Demander un devis gratuit
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Button variant="outline" className="border-white/50 text-white hover:bg-white/10 rounded-full px-8 py-6 text-lg backdrop-blur-sm">
-                Consulter notre portfolio
-              </Button>
-            </div>
-          </motion.div>
-        </div>
+          <div className="container mx-auto px-4">
+              <div className="bg-gradient-to-br from-primary-900 to-primary-700 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="grid grid-cols-1 md:grid-cols-2 items-center">
+                      <div className="p-12 md:p-16">
+                          <Badge className="bg-yellow-500 text-primary-900 mb-6 px-4 py-1 rounded-full font-medium">COMMENCEZ MAINTENANT</Badge>
+                          <h2 className="text-4xl font-bold mb-6 text-white">Prêt à transformer votre infrastructure IT?</h2>
+                          <p className="mb-8 text-white/90 text-lg">
+                            Discutons de votre projet et voyons comment notre expertise peut vous aider à atteindre vos objectifs.
+                          </p>
+                          <div className="flex flex-col sm:flex-row gap-6">
+                              <Link href={route('contact.index')} className="bg-yellow-500 hover:bg-yellow-600 text-primary-900 px-8 py-6 text-lg font-medium rounded-full">
+                                  Prendre rendez-vous
+                              </Link>
+                              <a href="tel:+224627969855" className="flex items-center text-white font-medium text-lg group">
+                                  <div className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors">
+                                      <PhoneCall className="h-6 w-6" />
+                                  </div>
+                                  +224 627 96 98 55
+                              </a>
+                          </div>
+                      </div>
+                      <div className="hidden md:block relative h-full">
+                          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-primary-900/50 z-10"></div>
+                          <img
+                              src="/images/services/side-view-woman-using-laptop-while-sitting-cafe.jpg"
+                              alt="Contactez-nous"
+                              className="w-full h-full object-cover"
+                          />
+                      </div>
+                  </div>
+              </div>
+          </div>
       </section>
 
       {/* Ajout de style global pour les animations */}
