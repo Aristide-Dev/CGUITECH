@@ -2,8 +2,7 @@ import PublicLayout from '@/layouts/public-layout';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { 
-    Users, Target, Award, Clock, 
-    BarChart3, Shield, Zap, Heart,
+    Users, Shield, Badge, Heart,
     ChevronRight, PenTool, Code, Lightbulb
 } from 'lucide-react';
 
@@ -84,34 +83,38 @@ export default function Management() {
 
     return (
         <PublicLayout>
-            {/* Hero Section avec vidéo en arrière-plan */}
-            <div className="relative h-screen flex items-center">
-                <div className="absolute inset-0 bg-black">
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-black/50 mix-blend-multiply"></div>
-                    <div className="absolute inset-0 bg-[url('/images/management-bg.jpg')] bg-cover bg-center opacity-40"></div>
-                </div>
-                <div className="relative container mx-auto px-4 z-10">
-                    <div className="max-w-4xl">
-                        <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                            Excellence & <br/><span className="text-primary-200">Innovation</span>
-                        </h1>
-                        <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-2xl mb-8">
+            {/* Hero Section */}
+            <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
+                <video 
+                    autoPlay 
+                    loop
+                    className="absolute inset-0 z-0 w-full h-auto object-cover" 
+                >
+                    <source 
+                        src="/images/about/freepik__smooth-dolly-shot-a-person-seated-in-a-modern-circ__85890.mp4" 
+                        type="video/mp4"
+                        className='object-contain'
+                    /> 
+                </video>
+                <div className="absolute inset-0 bg-black opacity-50"></div>
+                <div className="container mx-auto px-4 relative">
+                    <div className="max-w-3xl">
+                        <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm backdrop-blur-sm">APPROCHE DE GESTION</Badge>
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">Excellence &  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-violet-200">Innovation</span></h1>
+                        <p className="text-xl opacity-90 mb-8 leading-relaxed">
                             Notre méthodologie de gestion unique combine rigueur analytique et créativité pour transformer vos défis en opportunités stratégiques.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Button size="lg" className="bg-white text-primary hover:bg-white/90">
-                                Découvrir notre approche
+                            <Button className="bg-white text-primary-600 hover:bg-white/90">
+                                Demander un devis
                             </Button>
-                            <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10">
+                            <Button className="border-white text-white hover:bg-white/10">
                                 Prendre rendez-vous
                             </Button>
                         </div>
                     </div>
                 </div>
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                    <ChevronRight className="w-10 h-10 text-white/80 rotate-90" />
-                </div>
-            </div>
+            </section>
 
             {/* Introduction Section */}
             <section className="py-24 bg-white">
@@ -136,7 +139,7 @@ export default function Management() {
                         </div>
                         <div className="w-full md:w-1/2 relative">
                             <div className="aspect-video bg-gray-200 rounded-xl overflow-hidden shadow-2xl">
-                                <div className="absolute inset-0 bg-[url('/images/team-working.jpg')] bg-cover bg-center"></div>
+                                <div className="absolute inset-0 bg-[url('/images/about/business-development-goal-plan-png-transparent-background.jpg')] bg-cover bg-center"></div>
                                 <div className="absolute inset-0 bg-gradient-to-tr from-black/30 to-transparent"></div>
                             </div>
                             <div className="absolute -bottom-8 -left-8 bg-primary text-white p-6 rounded-lg shadow-xl">

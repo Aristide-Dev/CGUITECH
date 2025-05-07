@@ -32,7 +32,7 @@ export default function Team() {
       <div className="relative h-screen flex items-center">
         <div className="absolute inset-0 bg-black">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-black/80 mix-blend-multiply"></div>
-          <div className="absolute inset-0 bg-[url('/images/team-bg.jpg')] bg-cover bg-fixed bg-center opacity-50"></div>
+          <div className="absolute inset-0 bg-[url('/images/about/2002640_265509-P5CGU8-547.svg')] bg-cover bg-fixed bg-center opacity-50"></div>
         </div>
         <div className="relative container mx-auto px-4 z-10">
           <div className="max-w-4xl">
@@ -119,16 +119,16 @@ export default function Team() {
             <div className="w-full md:w-1/2 relative">
               <div className="grid grid-cols-2 gap-4">
                 <div className="aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-lg">
-                  <div className="h-full bg-[url('/images/team-photo1.jpg')] bg-cover bg-center"></div>
+                  <div className="h-full bg-[url('/images/logo-cguitech-wb.svg')] bg-contain bg-center bg-no-repeat"></div>
                 </div>
-                <div className="aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-lg mt-8">
-                  <div className="h-full bg-[url('/images/team-photo2.jpg')] bg-cover bg-center"></div>
+                <div className="aspect-square bg-primary-200 rounded-xl overflow-hidden shadow-lg mt-8">
+                  <div className="h-full bg-[url('/images/logo-bg-dark2.svg')] bg-contain bg-center bg-no-repeat"></div>
                 </div>
-                <div className="aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-lg">
-                  <div className="h-full bg-[url('/images/team-photo3.jpg')] bg-cover bg-center"></div>
+                <div className="aspect-square bg-primary-900 rounded-xl overflow-hidden shadow-lg">
+                  <div className="h-full bg-[url('/images/logo-cguitech-wb.svg')] bg-contain bg-center bg-no-repeat"></div>
                 </div>
-                <div className="aspect-square bg-gray-200 rounded-xl overflow-hidden shadow-lg mt-8">
-                  <div className="h-full bg-[url('/images/team-photo4.jpg')] bg-cover bg-center"></div>
+                <div className="aspect-square bg-primary-950 rounded-xl overflow-hidden shadow-lg mt-8">
+                  <div className="h-full bg-[url('/images/logo-bg-dark2.svg')] bg-contain bg-center bg-no-repeat"></div>
                 </div>
               </div>
             </div>

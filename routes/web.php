@@ -8,7 +8,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/about', function () {
-    return Inertia::render('about');
+    return Inertia::render('about/index');
 })->name('about');
 
 // Routes pour les sous-pages de "À propos"
