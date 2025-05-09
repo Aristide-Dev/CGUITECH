@@ -19,9 +19,30 @@ import {
   Laptop
 } from 'lucide-react';
 import { Link } from '@inertiajs/react';
+import { motion } from 'framer-motion';
 
 import { CGUITECH } from '@/utils/index';
 
+// Variantes d'animation réutilisables
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6 }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
 
 export default function ServicesIndex() {
 
@@ -59,123 +80,291 @@ export default function ServicesIndex() {
         <div className="absolute inset-0 bg-[url('/images/services/team-male-female-software-developers-writing-code-laptops-real-working-environment.jpg')] bg-cover bg-center"></div>
         <div className="absolute inset-0 bg-black opacity-50"></div>
         {/* Formes géométriques flottantes */}
-        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-white/20 blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 left-20 w-80 h-80 rounded-full bg-blue-300/20 blur-3xl animate-pulse animation-delay-2000"></div>
+        <motion.div 
+          className="absolute top-10 right-10 w-64 h-64 rounded-full bg-white/20 blur-3xl"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.3, 0.2]
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        ></motion.div>
+        <motion.div 
+          className="absolute bottom-10 left-20 w-80 h-80 rounded-full bg-blue-300/20 blur-3xl"
+          animate={{ 
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.3, 0.2] 
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        ></motion.div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl">
+          <motion.div 
+            className="max-w-3xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <Badge className="bg-white/30 hover:bg-white/40 text-white mb-6 py-2 px-4 text-sm uppercase tracking-wide backdrop-blur-sm">Services IT</Badge>
-            <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-tight text-white">
+            <motion.h1 
+              className="text-4xl md:text-7xl font-extrabold mb-8 leading-tight text-white"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-violet-100">
                 Propulsez votre entreprise vers l'excellence numérique
               </span>
-            </h1>
-            <p className="text-xl text-white mb-10 leading-relaxed max-w-2xl">
+            </motion.h1>
+            <motion.p 
+              className="text-xl text-white mb-10 leading-relaxed max-w-2xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
               Des solutions IT sur mesure pour les entreprises guinéennes qui visent l'excellence. Votre transformation digitale commence ici.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href={route('contact.index')} className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
-                Demander un devis
-                <ArrowRight className="ml-2 h-5 w-5 inline" />
-              </Link>
-              <a href="#services-overview" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
-                Explorer nos services
-              </a>
-            </div>
-          </div>
+            </motion.p>
+            <motion.div 
+              className="flex flex-wrap gap-4"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Link href={route('contact.index')} className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                  Demander un devis
+                  <ArrowRight className="ml-2 h-5 w-5 inline" />
+                </Link>
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <a href="#services-overview" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
+                  Explorer nos services
+                </a>
+              </motion.div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* Ils nous font confiance - Design amélioré */}
       <section className="py-16 bg-gradient-to-b from-white to-primary-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <motion.div 
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
             <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Nos partenaires</Badge>
             <h2 className="text-3xl font-bold mb-6">Ils nous font confiance</h2>
             <p className="text-primary-700 max-w-2xl mx-auto">
               Rejoignez les entreprises qui nous ont choisi pour leurs besoins en technologies de l'information.
             </p>
-          </div>
+          </motion.div>
           
-          <div className="flex flex-wrap justify-center items-center gap-12">
+          <motion.div 
+            className="flex flex-wrap justify-center items-center gap-12"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {CGUITECH.partners.map((partner, i) => (
-              <div key={i} className="group">
+              <motion.div 
+                key={i} 
+                className="group"
+                variants={fadeInUp}
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
                 <img 
                   src={partner.logo} 
                   alt={partner.name} 
-                  className="h-16 w-auto grayscale group-hover:grayscale-0 transition-all duration-300 group-hover:scale-110"
+                  className="h-16 w-auto grayscale group-hover:grayscale-0 transition-all duration-300"
                 />
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Principales caractéristiques - Nouvelle section */}
       <section className="py-24 bg-gradient-to-b from-primary-50 to-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
             <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Notre promesse</Badge>
             <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">L'excellence technologique à votre service</h2>
             <p className="text-primary-700 max-w-3xl mx-auto text-lg">
               Notre engagement est de vous fournir des services IT de qualité supérieure qui répondent précisément à vos besoins.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {keyFeatures.map((feature, index) => (
-              <div key={index} className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100">
-                <div className="bg-primary-50 text-primary-600 p-4 rounded-xl inline-flex mb-6 group-hover:scale-110 transition-transform duration-300">
+              <motion.div 
+                key={index} 
+                className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100"
+                variants={fadeInUp}
+                whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" }}
+              >
+                <motion.div 
+                  className="bg-primary-50 text-primary-600 p-4 rounded-xl inline-flex mb-6"
+                  whileHover={{ rotate: [0, -5, 5, 0], scale: 1.1 }}
+                  transition={{ duration: 0.5 }}
+                >
                   {feature.icon}
-                </div>
+                </motion.div>
                 <h3 className="text-xl font-bold mb-3 text-primary-800">{feature.title}</h3>
                 <p className="text-primary-700">{feature.description}</p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Services Section - Cards design amélioré */}
       <section id="services-overview" className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
+          <motion.div 
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={fadeInUp}
+          >
             <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Nos services</Badge>
             <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Solutions IT complètes pour votre entreprise</h2>
             <p className="text-primary-700 max-w-3xl mx-auto text-lg">
               Notre expertise couvre tous les aspects des technologies de l'information pour répondre à vos besoins professionnels avec excellence.
             </p>
-          </div>
+          </motion.div>
 
           {/* Statistiques avec design amélioré */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100 text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-3">98%</div>
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            <motion.div 
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100 text-center"
+              variants={fadeInUp}
+              whileHover={{ y: -10 }}
+            >
+              <motion.div 
+                className="text-4xl font-bold text-primary-600 mb-3"
+                initial={{ scale: 0.5, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                98%
+              </motion.div>
               <p className="text-primary-700">Satisfaction client</p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100 text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-3">24/7</div>
+            </motion.div>
+            
+            <motion.div 
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100 text-center"
+              variants={fadeInUp}
+              whileHover={{ y: -10 }}
+            >
+              <motion.div 
+                className="text-4xl font-bold text-primary-600 mb-3"
+                initial={{ scale: 0.5, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                viewport={{ once: true }}
+              >
+                24/7
+              </motion.div>
               <p className="text-primary-700">Support technique</p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100 text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-3">15+</div>
+            </motion.div>
+            
+            <motion.div 
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100 text-center"
+              variants={fadeInUp}
+              whileHover={{ y: -10 }}
+            >
+              <motion.div 
+                className="text-4xl font-bold text-primary-600 mb-3"
+                initial={{ scale: 0.5, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                15+
+              </motion.div>
               <p className="text-primary-700">Années d'expérience</p>
-            </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100 text-center">
-              <div className="text-4xl font-bold text-primary-600 mb-3">500+</div>
+            </motion.div>
+            
+            <motion.div 
+              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 border border-primary-100 text-center"
+              variants={fadeInUp}
+              whileHover={{ y: -10 }}
+            >
+              <motion.div 
+                className="text-4xl font-bold text-primary-600 mb-3"
+                initial={{ scale: 0.5, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
+                500+
+              </motion.div>
               <p className="text-primary-700">Projets réalisés</p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+          >
             {CGUITECH.services.map((service, index) => (
-              <div key={index} className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-primary-100">
+              <motion.div 
+                key={index} 
+                className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-primary-100"
+                variants={fadeInUp}
+                whileHover={{ y: -10 }}
+              >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-primary-700/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <div className="h-48 relative overflow-hidden">
-                  <img 
+                  <motion.img 
                     src={service.image} 
                     alt={service.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                   <div className="absolute bottom-4 left-4">
@@ -185,9 +374,13 @@ export default function ServicesIndex() {
                   </div>
                 </div>
                 <div className="p-8 relative z-10">
-                  <div className={`${service.color} w-14 h-14 rounded-2xl text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 -mt-12 shadow-lg`}>
+                  <motion.div 
+                    className={`${service.color} w-14 h-14 rounded-2xl text-white flex items-center justify-center mb-6 -mt-12 shadow-lg`}
+                    whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
+                    transition={{ duration: 0.5 }}
+                  >
                     {service.icon}
-                  </div>
+                  </motion.div>
                   
                   <h3 className="text-2xl font-bold mb-3 text-primary-800 group-hover:text-primary-600 transition-colors">
                     {service.title}
@@ -201,27 +394,42 @@ export default function ServicesIndex() {
                     <h4 className="text-sm font-semibold text-primary-800 mb-3">Fonctionnalités clés :</h4>
                     <ul className="space-y-2">
                       {service.features?.slice(0, 3).map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
+                        <motion.li 
+                          key={idx} 
+                          className="flex items-start gap-3"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.1 * idx, duration: 0.4 }}
+                          viewport={{ once: true }}
+                        >
                           <CheckCircle className="h-5 w-5 text-green-500 mt-1 flex-shrink-0" />
                           <span className="text-primary-700">{feature}</span>
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
                   
                   <div className="mt-6 pt-6 border-t border-primary-100">
-                    <Link 
-                      href={service.link || '#'}
-                      className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 font-medium p-0 group flex items-center"
-                    >
-                      En savoir plus 
-                      <ChevronRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
-                    </Link>
+                    <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+                      <Link 
+                        href={service.link || '#'}
+                        className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 font-medium p-0 group flex items-center"
+                      >
+                        En savoir plus 
+                        <motion.span
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 3 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <ChevronRight className="ml-2 h-4 w-4 transform transition-transform" />
+                        </motion.span>
+                      </Link>
+                    </motion.div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 

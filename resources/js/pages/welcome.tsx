@@ -16,13 +16,38 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
+    type CarouselApi
 } from "@/components/ui/carousel";
+import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 
 import { CGUITECH } from '@/utils/index';
 
 export default function Welcome() {
     // const { auth } = usePage<SharedData>().props;
     const currentYear = new Date().getFullYear();
+    const [activeSlide, setActiveSlide] = useState(0);
+    const [carouselApi, setCarouselApi] = useState<CarouselApi>();
+
+    // Effet d'animation pour les slides
+    const slideInterval = 5000; // 5 secondes entre chaque slide
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (carouselApi) {
+                carouselApi.scrollNext();
+            }
+        }, slideInterval);
+
+        return () => clearInterval(interval);
+    }, [carouselApi]);
+
+    useEffect(() => {
+        if (!carouselApi) return;
+
+        carouselApi.on("select", () => {
+            setActiveSlide(carouselApi.selectedScrollSnap());
+        });
+    }, [carouselApi]);
 
     // Données pour le slider avec images libres
     const slides = [
@@ -67,107 +92,230 @@ export default function Welcome() {
         }
     ];
 
+    // Variants d'animation pour les éléments
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.3,
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: { 
+            y: 0, 
+            opacity: 1,
+            transition: { duration: 0.5 }
+        }
+    };
+
     return (
         <PublicLayout>
             {/* Bannière principale avec slider */}
             <section className="bg-gradient-to-b from-gray-900 via-primary/80 to-indigo-900 py-20 md:py-28 text-white relative overflow-hidden">
-                {/* Formes décoratives améliorées */}
+                {/* Formes décoratives améliorées et animées */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                    <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary-600 opacity-20 blur-3xl animate-pulse"></div>
-                    <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-primary-500 opacity-10 blur-3xl"></div>
-                    <div className="absolute top-1/2 left-1/3 w-40 h-40 rounded-full bg-yellow-500 opacity-5 blur-2xl"></div>
-                    <div className="absolute bottom-1/4 left-2/3 w-56 h-56 rounded-full bg-blue-500 opacity-10 blur-3xl"></div>
+                    <motion.div 
+                        className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary-600 opacity-20 blur-3xl"
+                        animate={{ 
+                            scale: [1, 1.2, 1],
+                            opacity: [0.2, 0.3, 0.2]
+                        }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    ></motion.div>
+                    <motion.div 
+                        className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-primary-500 opacity-10 blur-3xl"
+                        animate={{ 
+                            scale: [1, 1.3, 1],
+                            opacity: [0.1, 0.2, 0.1]
+                        }}
+                        transition={{
+                            duration: 10,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1
+                        }}
+                    ></motion.div>
+                    <motion.div 
+                        className="absolute top-1/2 left-1/3 w-40 h-40 rounded-full bg-yellow-500 opacity-5 blur-2xl"
+                        animate={{ 
+                            x: [0, 20, 0],
+                            y: [0, -20, 0],
+                        }}
+                        transition={{
+                            duration: 12,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    ></motion.div>
+                    <motion.div 
+                        className="absolute bottom-1/4 left-2/3 w-56 h-56 rounded-full bg-blue-500 opacity-10 blur-3xl"
+                        animate={{ 
+                            x: [0, -30, 0],
+                            y: [0, 20, 0]
+                        }}
+                        transition={{
+                            duration: 15,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 2
+                        }}
+                    ></motion.div>
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">
-                    <Carousel className="w-full">
+                    <Carousel 
+                        className="w-full"
+                        setApi={setCarouselApi}
+                    >
                         <CarouselContent>
                             {slides.map((slide, index) => (
                                 <CarouselItem key={index} className="transition-all duration-500">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                                        <div className="animate-fadeIn">
-                                            <Badge className="bg-black/70 text-blue-200 mb-4 px-3 py-1 rounded-full font-medium backdrop-blur">Leader Technologique en Guinée</Badge>
-                                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
+                                        <motion.div
+                                            variants={containerVariants}
+                                            initial="hidden"
+                                            animate={activeSlide === index ? "visible" : "hidden"}
+                                            className="space-y-6"
+                                        >
+                                            <motion.div variants={itemVariants}>
+                                                <Badge className="bg-black/70 text-blue-200 mb-4 px-3 py-1 rounded-full font-medium backdrop-blur">Leader Technologique en Guinée</Badge>
+                                            </motion.div>
+                                            <motion.h1 
+                                                variants={itemVariants}
+                                                className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight"
+                                            >
                                                 {slide.title} <span className="text-blue-300 block mt-2">{slide.subtitle}</span>
-                                            </h1>
-                                            <p className="mb-8 text-lg opacity-90 max-w-lg">
+                                            </motion.h1>
+                                            <motion.p 
+                                                variants={itemVariants}
+                                                className="mb-8 text-lg opacity-90 max-w-lg"
+                                            >
                                                 CGUITECH vous accompagne dans votre transformation digitale avec des services IT sur mesure qui répondent précisément à vos besoins.
-                                            </p>
-                                            <div className="flex flex-col sm:flex-row gap-4">
-                                                <Link href={ route('contact.index') } className="bg-white hover:bg-gray-300 text-primary hover:text-blue-500 text-lg px-8 py-6 font-medium rounded-full transition-all duration-300 shadow-lg hover:shadow-xl">
+                                            </motion.p>
+                                            <motion.div 
+                                                variants={itemVariants}
+                                                className="flex flex-col sm:flex-row gap-4"
+                                            >
+                                                <Link href={ route('contact.index') } className="bg-white hover:bg-gray-300 text-primary hover:text-blue-500 text-lg px-8 py-6 font-medium rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
                                                     {slide.buttonText}
-                            </Link>
-                                                <Link href={ route('services.index') } className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-full transition-all duration-300">
+                                                </Link>
+                                                <Link href={ route('services.index') } className="border-white text-white hover:bg-white/20 text-lg px-8 py-6 rounded-full transition-all duration-300 transform hover:scale-105">
                                                     Nos services
-                                </Link>
-                                            </div>
-                                        </div>
+                                                </Link>
+                                            </motion.div>
+                                        </motion.div>
                                         <div className="flex justify-center">
                                             {/* Container avec amélioration pour l'image */}
-                                            <div className="relative group transform transition-all duration-500 hover:scale-102">
+                                            <motion.div 
+                                                className="relative group transform transition-all duration-500 hover:scale-102"
+                                                initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+                                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                            >
                                                 {/* Effet de halo derrière l'image */}
-                                                <div className="absolute inset-0 bg-gradient-to-tr from-primary-600 to-blue-400 rounded-3xl opacity-20 blur transform rotate-6 scale-105 group-hover:scale-110 transition-all duration-700"></div>
+                                                <motion.div 
+                                                    className="absolute inset-0 bg-gradient-to-tr from-primary-600 to-blue-400 rounded-3xl opacity-20 blur transform rotate-6 scale-105"
+                                                    animate={{ scale: [1.05, 1.1, 1.05], rotate: [6, 4, 6] }}
+                                                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                                                ></motion.div>
                                                 
                                                 {/* Cadre décoratif */}
-                                                <div className="absolute inset-0 border-5 border-white/20 rounded-2xl rotate-8 opacity-80"></div>
+                                                <motion.div 
+                                                    className="absolute inset-0 border-5 border-white/20 rounded-2xl rotate-8 opacity-80"
+                                                    animate={{ rotate: [8, 6, 8] }}
+                                                    transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                                                ></motion.div>
                                                 
                                                 {/* Image principale avec effet de flottement */}
                                                 <div className="overflow-hidden rounded-3xl border-4 border-white/10 shadow-2xl relative">
-                                                    {/* <div className="absolute mt-5 inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60 z-10"></div> */}
                                                     {slide.type === 'video' ? (
                                                     <video 
                                                         autoPlay={true} 
                                                         loop={true}
                                                         className="relative z-0 w-full object-cover h-96 transform transition-transform duration-5000 hover:scale-110" 
                                                     >
-                                                        
                                                         <source src={slide.image} type="video/mp4"/> 
-
                                                     </video>
-
                                                     ):(
                                                         <img 
                                                             src={slide.image} 
                                                             alt={slide.title} 
                                                             className="relative z-0 w-full object-cover h-96 transform transition-transform duration-5000 hover:scale-110" 
                                                         />
-
                                                     )}
                                                 </div>
                                                 
                                                 {/* Badge flottant */}
-                                                <div className="absolute -bottom-6 -right-6 bg-white text-primary-900 p-4 rounded-full shadow-lg z-20 hidden md:block transition-all duration-300 hover:scale-110">
+                                                <motion.div 
+                                                    className="absolute -bottom-6 -right-6 bg-white text-primary-900 p-4 rounded-full shadow-lg z-20 hidden md:block"
+                                                    initial={{ y: 20, opacity: 0 }}
+                                                    animate={{ y: 0, opacity: 1 }}
+                                                    transition={{ delay: 0.5, duration: 0.6 }}
+                                                    whileHover={{ scale: 1.2, rotate: 10 }}
+                                                >
                                                     <Award className="h-8 w-8" />
-                                                </div>
+                                                </motion.div>
                                                 
                                                 {/* Points décoratifs */}
-                                                <div className="absolute -top-4 -left-4 bg-blue-500 h-8 w-8 rounded-full opacity-70 hidden md:block"></div>
-                                                <div className="absolute -bottom-4 left-1/3 bg-indigo-500 h-6 w-6 rounded-full opacity-60 hidden md:block"></div>
-                                            </div>
+                                                <motion.div 
+                                                    className="absolute -top-4 -left-4 bg-blue-500 h-8 w-8 rounded-full opacity-70 hidden md:block"
+                                                    animate={{ y: [0, -10, 0], x: [0, 5, 0] }}
+                                                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                                ></motion.div>
+                                                <motion.div 
+                                                    className="absolute -bottom-4 left-1/3 bg-indigo-500 h-6 w-6 rounded-full opacity-60 hidden md:block"
+                                                    animate={{ y: [0, 10, 0], x: [0, -8, 0] }}
+                                                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                                                ></motion.div>
+                                            </motion.div>
                                         </div>
                                     </div>
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
                         
-                        {/* Navigation améliorée */}
+                        {/* Navigation améliorée et animée */}
                         <div className="mt-8 flex justify-center items-center gap-4">
-                            <CarouselPrevious className="static bg-white/20 hover:bg-white/40 text-white border-none rounded-full h-12 w-12 shadow-lg transition-all duration-300" />
+                            <motion.div 
+                                whileHover={{ scale: 1.2 }} 
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <CarouselPrevious className="static bg-white/20 hover:bg-white/40 text-white border-none rounded-full h-12 w-12 shadow-lg transition-all duration-300" />
+                            </motion.div>
                             
                             {/* Indicateurs de slides */}
                             <div className="flex gap-2">
                                 {slides.map((_, index) => (
-                                    <button 
+                                    <motion.button 
                                         key={index}
-                                        onClick={() => {/* Fonction pour aller au slide spécifique */}}
+                                        onClick={() => carouselApi?.scrollTo(index)}
                                         className={`h-2 rounded-full transition-all duration-300 ${
-                                            index === 0 ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
+                                            index === activeSlide ? 'w-8 bg-white' : 'w-2 bg-white/40 hover:bg-white/60'
                                         }`}
+                                        whileHover={{ scale: 1.2 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.1 * index }}
                                     />
                                 ))}
                             </div>
                             
-                            <CarouselNext className="static bg-white/20 hover:bg-white/40 text-white border-none rounded-full h-12 w-12 shadow-lg transition-all duration-300" />
+                            <motion.div 
+                                whileHover={{ scale: 1.2 }} 
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <CarouselNext className="static bg-white/20 hover:bg-white/40 text-white border-none rounded-full h-12 w-12 shadow-lg transition-all duration-300" />
+                            </motion.div>
                         </div>
                     </Carousel>
                 </div>
@@ -202,19 +350,58 @@ export default function Welcome() {
             <section className="py-24 bg-gradient-to-br from-primary-50 to-primary-100 relative overflow-hidden">
                 {/* Éléments décoratifs en arrière-plan */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                    <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary-200 opacity-40 blur-3xl"></div>
-                    <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-yellow-100 opacity-40 blur-3xl"></div>
-                    <div className="absolute top-1/2 left-1/4 w-64 h-64 rounded-full bg-blue-100 opacity-30 blur-3xl"></div>
+                    <motion.div 
+                        className="absolute top-0 right-0 w-96 h-96 rounded-full bg-primary-200 opacity-40 blur-3xl"
+                        animate={{ 
+                            x: [0, 30, 0],
+                            opacity: [0.4, 0.5, 0.4]
+                        }}
+                        transition={{
+                            duration: 15,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    ></motion.div>
+                    <motion.div 
+                        className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-yellow-100 opacity-40 blur-3xl"
+                        animate={{ 
+                            y: [0, 40, 0],
+                            opacity: [0.4, 0.6, 0.4]
+                        }}
+                        transition={{
+                            duration: 20,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    ></motion.div>
+                    <motion.div 
+                        className="absolute top-1/2 left-1/4 w-64 h-64 rounded-full bg-blue-100 opacity-30 blur-3xl"
+                        animate={{ 
+                            scale: [1, 1.3, 1],
+                            y: [0, -20, 0]
+                        }}
+                        transition={{
+                            duration: 18,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    ></motion.div>
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">
-                    <div className="text-center mb-20">
+                    <motion.div 
+                        className="text-center mb-20"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                    >
                         <Badge className="bg-primary-100 text-primary mb-4 px-5 py-2 rounded-full text-sm font-medium uppercase tracking-wider">Nos Services</Badge>
                         <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-primary-700 to-primary-500 bg-clip-text text-transparent">Solutions technologiques complètes</h2>
                         <p className="max-w-2xl mx-auto text-gray-600 text-lg leading-relaxed">
                             Notre expertise couvre tous les aspects des technologies de l'information pour répondre à vos besoins professionnels avec excellence.
                         </p>
-                    </div>
+                    </motion.div>
 
                     <Carousel
                         opts={{
@@ -226,56 +413,105 @@ export default function Welcome() {
                         <CarouselContent className="-ml-6">
                             {CGUITECH.services.map((service, index) => (
                                 <CarouselItem key={index} className="pl-6 md:basis-1/2 lg:basis-1/3">
-                                    <Card className="h-full border-0 hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden group relative">
-                                        {/* Image de fond avec effet de zoom au survol */}
-                                        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 z-10"></div>
-                                        <div className="absolute inset-0 overflow-hidden">
-                                            <img
-                                                src={service.image}
-                                                alt={service.title}
-                                                className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
-                                            />
-                                        </div>
-
-                                        {/* Contenu de la carte */}
-                                        <div className="relative z-20 p-8 h-full flex flex-col justify-between">
-                                            <div>
-                                                <div className="p-4 bg-white/90 backdrop-blur-md rounded-2xl inline-block mb-6 text-primary group-hover:bg-primary group-hover:text-white shadow-lg transition-all duration-300 transform group-hover:scale-110">
-                                                    {service.icon}
-                                                </div>
-                                                <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-primary-100 transition-colors duration-300">
-                                                    {service.title}
-                                                </h3>
-                                                <p className="text-gray-200 mb-6 opacity-90 group-hover:opacity-100 max-w-xs">
-                                                    {service.description}
-                                                </p>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        viewport={{ once: true, margin: "-50px" }}
+                                        whileHover={{ y: -10 }}
+                                    >
+                                        <Card className="h-full border-0 hover:shadow-2xl transition-all duration-500 rounded-2xl overflow-hidden group relative">
+                                            {/* Image de fond avec effet de zoom au survol */}
+                                            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/70 z-10"></div>
+                                            <div className="absolute inset-0 overflow-hidden">
+                                                <motion.img
+                                                    src={service.image}
+                                                    alt={service.title}
+                                                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-all duration-700"
+                                                    whileHover={{ scale: 1.1, transition: { duration: 0.7 } }}
+                                                />
                                             </div>
 
-                                            <Link
-                                                href={service.link}
-                                                className="inline-flex items-center text-white bg-primary/80 backdrop-blur-sm hover:bg-primary px-5 py-3 rounded-full font-medium text-sm group-hover:shadow-lg transition-all duration-300 w-fit"
-                                            >
-                                                En savoir plus <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                                            </Link>
-                                        </div>
-                                    </Card>
+                                            {/* Contenu de la carte */}
+                                            <div className="relative z-20 p-8 h-full flex flex-col justify-between">
+                                                <div>
+                                                    <motion.div 
+                                                        className="p-4 bg-white/90 backdrop-blur-md rounded-2xl inline-block mb-6 text-primary group-hover:bg-primary group-hover:text-white shadow-lg transition-all duration-300"
+                                                        whileHover={{ rotate: [0, -5, 5, 0], transition: { duration: 0.5 } }}
+                                                    >
+                                                        {service.icon}
+                                                    </motion.div>
+                                                    <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-primary-100 transition-colors duration-300">
+                                                        {service.title}
+                                                    </h3>
+                                                    <p className="text-gray-200 mb-6 opacity-90 group-hover:opacity-100 max-w-xs">
+                                                        {service.description}
+                                                    </p>
+                                                </div>
+
+                                                <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.3 }}>
+                                                    <Link
+                                                        href={service.link}
+                                                        className="inline-flex items-center text-white bg-primary/80 backdrop-blur-sm hover:bg-primary px-5 py-3 rounded-full font-medium text-sm group-hover:shadow-lg transition-all duration-300 w-fit"
+                                                    >
+                                                        En savoir plus 
+                                                        <motion.span 
+                                                            initial={{ x: 0 }}
+                                                            whileHover={{ x: 3 }}
+                                                            transition={{ duration: 0.3, repeat: Infinity, repeatType: "reverse" }}
+                                                        >
+                                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                                        </motion.span>
+                                                    </Link>
+                                                </motion.div>
+                                            </div>
+                                        </Card>
+                                    </motion.div>
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
 
                         {/* Contrôles de navigation améliorés */}
                         <div className="flex justify-center gap-4 mt-12">
-                            <CarouselPrevious className="static bg-white hover:bg-primary hover:text-white text-primary border-none rounded-full h-14 w-14 shadow-lg transition-all duration-300 hover:scale-110" />
-                            <CarouselNext className="static bg-white hover:bg-primary hover:text-white text-primary border-none rounded-full h-14 w-14 shadow-lg transition-all duration-300 hover:scale-110" />
+                            <motion.div 
+                                whileHover={{ scale: 1.2, rotate: -5 }} 
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <CarouselPrevious className="static bg-white hover:bg-primary hover:text-white text-primary border-none rounded-full h-14 w-14 shadow-lg transition-all duration-300" />
+                            </motion.div>
+                            <motion.div 
+                                whileHover={{ scale: 1.2, rotate: 5 }} 
+                                whileTap={{ scale: 0.9 }}
+                            >
+                                <CarouselNext className="static bg-white hover:bg-primary hover:text-white text-primary border-none rounded-full h-14 w-14 shadow-lg transition-all duration-300" />
+                            </motion.div>
                         </div>
                     </Carousel>
 
                     {/* Bouton CTA amélioré */}
-                    <div className="text-center mt-16">
-                        <Link href={route('services.index')} className="bg-primary hover:bg-primary-600 text-white text-lg px-10 py-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 font-medium">
-                            Découvrir tous nos services
-                        </Link>
-                    </div>
+                    <motion.div 
+                        className="text-center mt-16"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.2 }}
+                        viewport={{ once: true }}
+                    >
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <Link href={route('services.index')} className="bg-primary hover:bg-primary-600 text-white text-lg px-10 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-medium inline-flex items-center">
+                                Découvrir tous nos services
+                                <motion.span 
+                                    initial={{ x: 0 }}
+                                    animate={{ x: [0, 5, 0] }}
+                                    transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop" }}
+                                >
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </motion.span>
+                            </Link>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -283,27 +519,72 @@ export default function Welcome() {
             <section className="py-24 bg-white bg-[url('/images/welcome/about-bg.jpg')] bg-no-repeat bg-cover">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                        <div className="relative">
-                            <div className="absolute -top-8 -left-8 w-36 h-36 bg-gradient-to-tr from-primary-900 via-blue-500 to-indigo-900 rounded-2xl z-0"></div>
-                            <div className="absolute -bottom-8 -right-8 w-36 h-36 bg-gradient-to-br from-blue-900 via-blue-500 to-indigo-900 rounded-2xl z-0"></div>
-                            <img
-                                src="/images/welcome/about-card.jpg"
-                                alt="À propos de CGUITECH"
-                                className="rounded-2xl shadow-2xl relative z-10 border-8 border-white max-h-sm"
-                            />
-                            <div className="absolute bottom-12 right-12 bg-white p-5 rounded-xl shadow-xl z-20 border-l-4 border-blue-300">
+                        <motion.div 
+                            className="relative"
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                        >
+                            <motion.div 
+                                className="absolute -top-8 -left-8 w-36 h-36 bg-gradient-to-tr from-primary-900 via-blue-500 to-indigo-900 rounded-2xl z-0"
+                                animate={{ 
+                                    rotate: [0, 5, 0, -5, 0],
+                                    scale: [1, 1.05, 1, 1.05, 1]
+                                }}
+                                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                            ></motion.div>
+                            <motion.div 
+                                className="absolute -bottom-8 -right-8 w-36 h-36 bg-gradient-to-br from-blue-900 via-blue-500 to-indigo-900 rounded-2xl z-0"
+                                animate={{ 
+                                    rotate: [0, -5, 0, 5, 0],
+                                    scale: [1, 1.05, 1, 1.05, 1]
+                                }}
+                                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                            ></motion.div>
+                            <motion.div
+                                className="relative z-10"
+                                whileHover={{ scale: 1.03, transition: { duration: 0.5 } }}
+                            >
+                                <img
+                                    src="/images/welcome/about-card.jpg"
+                                    alt="À propos de CGUITECH"
+                                    className="rounded-2xl shadow-2xl border-8 border-white max-h-sm"
+                                />
+                            </motion.div>
+                            <motion.div 
+                                className="absolute bottom-12 right-12 bg-white p-5 rounded-xl shadow-xl z-20 border-l-4 border-blue-300"
+                                initial={{ opacity: 0, y: 50, x: 20 }}
+                                whileInView={{ opacity: 1, y: 0, x: 0 }}
+                                transition={{ duration: 0.6, delay: 0.4 }}
+                                viewport={{ once: true }}
+                                whileHover={{ 
+                                    scale: 1.05, 
+                                    boxShadow: "0 25px 50px -12px rgba(0, 0, 102, 0.25)",
+                                    transition: { duration: 0.3 }
+                                }}
+                            >
                                 <div className="flex items-center">
-                                    <div className="mr-4">
+                                    <motion.div 
+                                        className="mr-4"
+                                        animate={{ rotate: [0, 360] }}
+                                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                    >
                                         <Award className="h-12 w-12 rounded-full text-white bg-gradient-to-br from-blue-900 via-blue-500 to-indigo-900" />
-                                    </div>
+                                    </motion.div>
                                     <div>
                                         <div className="font-bold text-lg">Entreprise Certifiée</div>
                                         <div className="text-gray-600">Nous adaptons notre prestation à votre mode de fonctionnement</div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div>
+                            </motion.div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                        >
                             <Badge className="bg-primary-100 text-primary mb-4 px-4 py-1 rounded-full">POURQUOI NOUS CHOISIR</Badge>
                             <h2 className="text-4xl font-bold mb-6">L'expertise technologique au service de votre succès</h2>
                             <p className="mb-8 text-gray-700 text-lg">
@@ -315,22 +596,43 @@ export default function Welcome() {
 
                             <div className="grid grid-cols-1 gap-6 mb-8">
                                 {benefits.map((benefit, index) => (
-                                    <div key={index} className="flex items-start p-4 bg-gray-50 rounded-xl hover:shadow-md transition-all duration-300">
-                                        <div className="p-2 bg-primary-100 rounded-full mr-4 mt-1">
+                                    <motion.div 
+                                        key={index} 
+                                        className="flex items-start p-4 bg-gray-50 rounded-xl hover:shadow-md transition-all duration-300"
+                                        initial={{ opacity: 0, x: 30 }}
+                                        whileInView={{ opacity: 1, x: 0 }}
+                                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                                        viewport={{ once: true, margin: "-100px" }}
+                                        whileHover={{ 
+                                            x: 5, 
+                                            backgroundColor: "#f8fafc",
+                                            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+                                            transition: { duration: 0.3 }
+                                        }}
+                                    >
+                                        <motion.div 
+                                            className="p-2 bg-primary-100 rounded-full mr-4 mt-1"
+                                            whileHover={{ scale: 1.2, rotate: 10 }}
+                                        >
                                             <CheckCircle2 className="h-6 w-6 text-primary" />
-                                        </div>
+                                        </motion.div>
                                         <div>
                                             <h5 className="font-bold text-lg">{benefit.title}</h5>
                                             <p className="text-gray-600">{benefit.description}</p>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
 
-                            <Button className="mt-6 bg-primary hover:bg-primary-600 text-lg px-8 py-6 rounded-full">
-                                Découvrir notre équipe
-                            </Button>
-                        </div>
+                            <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <Button className="mt-6 bg-primary hover:bg-primary-600 text-lg px-8 py-6 rounded-full">
+                                    Découvrir notre équipe
+                                </Button>
+                            </motion.div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -338,35 +640,64 @@ export default function Welcome() {
             {/* Section Témoignages avec vraies photos */}
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-16">
+                    <motion.div 
+                        className="text-center mb-16"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                    >
                         <Badge className="bg-primary-100 text-primary mb-4 px-4 py-1 rounded-full">TÉMOIGNAGES</Badge>
                         <h2 className="text-4xl font-bold mb-6">Ce que nos clients disent</h2>
                         <p className="max-w-2xl mx-auto text-gray-600 text-lg">
                             Découvrez l'impact de nos solutions à travers les expériences de nos clients.
                         </p>
-                    </div>
+                    </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                         {CGUITECH.testimonials.map((testimonial, index) => (
-                            <Card key={index} className="p-8 border-none shadow-xl rounded-2xl bg-white hover:transform hover:-translate-y-2 transition-all duration-300">
-                                <div className="mb-6 text-yellow-500">
-                                    {[...Array(5)].map((_, i) => (
-                                        <span key={i} className="text-2xl">★</span>
-                                    ))}
-                                </div>
-                                <p className="text-gray-700 mb-6 italic">{testimonial.text}</p>
-                                <div className="flex items-center">
-                                    <img
-                                        src={testimonial.avatar}
-                                        alt={testimonial.name}
-                                        className="w-12 h-12 rounded-full mr-4 border-2 border-primary object-cover"
-                                    />
-                                    <div>
-                                        <h5 className="font-bold">{testimonial.name}</h5>
-                                        <p className="text-sm text-gray-500">{testimonial.position}</p>
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: index * 0.2 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                whileHover={{ y: -10 }}
+                            >
+                                <Card className="p-8 border-none shadow-xl rounded-2xl bg-white hover:transform transition-all duration-300">
+                                    <motion.div 
+                                        className="mb-6 text-yellow-500"
+                                        initial={{ opacity: 0 }}
+                                        whileInView={{ opacity: 1 }}
+                                        transition={{ delay: 0.3 + index * 0.1, staggerChildren: 0.1 }}
+                                        viewport={{ once: true }}
+                                    >
+                                        {[...Array(5)].map((_, i) => (
+                                            <motion.span 
+                                                key={i} 
+                                                className="text-2xl"
+                                                initial={{ opacity: 0, y: 10 }}
+                                                whileInView={{ opacity: 1, y: 0 }}
+                                                transition={{ duration: 0.3, delay: i * 0.1 }}
+                                                viewport={{ once: true }}
+                                            >★</motion.span>
+                                        ))}
+                                    </motion.div>
+                                    <p className="text-gray-700 mb-6 italic">{testimonial.text}</p>
+                                    <div className="flex items-center">
+                                        <motion.img
+                                            src={testimonial.avatar}
+                                            alt={testimonial.name}
+                                            className="w-12 h-12 rounded-full mr-4 border-2 border-primary object-cover"
+                                            whileHover={{ scale: 1.2, transition: { duration: 0.3 } }}
+                                        />
+                                        <div>
+                                            <h5 className="font-bold">{testimonial.name}</h5>
+                                            <p className="text-sm text-gray-500">{testimonial.position}</p>
+                                        </div>
                                     </div>
-                                </div>
-                            </Card>
+                                </Card>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -376,13 +707,53 @@ export default function Welcome() {
             <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
                 {/* Éléments décoratifs */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-                    <div className="absolute top-20 right-20 w-80 h-80 rounded-full bg-blue-600/20 blur-3xl"></div>
-                    <div className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-indigo-600/20 blur-3xl"></div>
-                    <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-purple-600/20 blur-3xl"></div>
+                    <motion.div 
+                        className="absolute top-20 right-20 w-80 h-80 rounded-full bg-blue-600/20 blur-3xl"
+                        animate={{ 
+                            scale: [1, 1.2, 1],
+                            opacity: [0.2, 0.3, 0.2]
+                        }}
+                        transition={{
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    ></motion.div>
+                    <motion.div 
+                        className="absolute bottom-20 left-20 w-96 h-96 rounded-full bg-indigo-600/20 blur-3xl"
+                        animate={{ 
+                            scale: [1, 1.3, 1],
+                            opacity: [0.2, 0.3, 0.2]
+                        }}
+                        transition={{
+                            duration: 12,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 2
+                        }}
+                    ></motion.div>
+                    <motion.div 
+                        className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-purple-600/20 blur-3xl"
+                        animate={{ 
+                            x: [0, 30, 0],
+                            y: [0, -20, 0]
+                        }}
+                        transition={{
+                            duration: 15,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    ></motion.div>
                 </div>
 
                 <div className="container mx-auto px-4 relative z-10">
-                    <div className="text-center mb-16">
+                    <motion.div 
+                        className="text-center mb-16"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                    >
                         <Badge className="bg-white/10 backdrop-blur-sm text-white mb-4 px-4 py-1 rounded-full">SECTEURS D'ACTIVITÉ</Badge>
                         <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                             Solutions adaptées à votre secteur
@@ -390,20 +761,42 @@ export default function Welcome() {
                         <p className="max-w-2xl mx-auto text-slate-300 text-lg">
                             Notre expertise couvre les besoins spécifiques de chaque industrie, avec des solutions sur mesure pour votre secteur d'activité.
                         </p>
-                    </div>
+                    </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {CGUITECH.industries.map((industry, index) => (
-                            <div 
+                            <motion.div 
                                 key={index}
-                                className="group relative bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 hover:bg-slate-800/70 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                                className="group relative bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 hover:bg-slate-800/70 transition-all duration-300 hover:shadow-xl"
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: index * 0.1 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                whileHover={{ 
+                                    y: -10,
+                                    scale: 1.02,
+                                    transition: { duration: 0.3 }
+                                }}
                             >
-                                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                <motion.div 
+                                    className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                    animate={{ 
+                                        opacity: [0, 0.1, 0]
+                                    }}
+                                    transition={{
+                                        duration: 5,
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                ></motion.div>
                                 
                                 <div className="relative z-10">
-                                    <div className={`${industry.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                                    <motion.div 
+                                        className={`${industry.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}
+                                        whileHover={{ rotate: [0, -5, 5, 0], transition: { duration: 0.5 } }}
+                                    >
                                         {industry.icon}
-                                    </div>
+                                    </motion.div>
                                     
                                     <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors duration-300">
                                         {industry.title}
@@ -413,45 +806,91 @@ export default function Welcome() {
                                         {industry.description}
                                     </p>
                                     
-                                    <Link 
-                                        href={industry.link}
-                                        className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium group-hover:underline"
+                                    <motion.div
+                                        whileHover={{ x: 5 }}
+                                        transition={{ duration: 0.2 }}
                                     >
-                                        En savoir plus
-                                        <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                                    </Link>
+                                        <Link 
+                                            href={industry.link}
+                                            className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium group-hover:underline"
+                                        >
+                                            En savoir plus
+                                            <motion.span 
+                                                initial={{ x: 0 }}
+                                                animate={{ x: [0, 5, 0] }}
+                                                transition={{ duration: 1.5, repeat: Infinity, repeatType: "loop", delay: index * 0.2 }}
+                                            >
+                                                <ArrowRight className="ml-1 h-4 w-4" />
+                                            </motion.span>
+                                        </Link>
+                                    </motion.div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
 
                     {/* CTA Section */}
-                    <div className="mt-16 text-center">
-                        <Link 
-                            href={route('contact.index')}
-                            className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all duration-300 shadow-lg shadow-blue-600/30"
+                    <motion.div 
+                        className="mt-16 text-center"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.3 }}
+                        viewport={{ once: true }}
+                    >
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
-                            Discutons de votre projet
-                            <ArrowRight className="ml-2 h-5 w-5" />
-                        </Link>
-                    </div>
+                            <Link 
+                                href={route('contact.index')}
+                                className="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-all duration-300 shadow-lg shadow-blue-600/30"
+                            >
+                                Discutons de votre projet
+                                <motion.span 
+                                    initial={{ x: 0 }}
+                                    animate={{ x: [0, 5, 0] }}
+                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                >
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </motion.span>
+                            </Link>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Section Partenaires */}
             <section id="partenaires" className="py-20 bg-white">
                 <div className="container mx-auto px-4 pb-10 shadow-xl">
-                    <div className="text-center mb-16">
+                    <motion.div 
+                        className="text-center mb-16"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                    >
                         <Badge className="bg-primary-100 text-primary mb-4 px-4 py-1 rounded-full">NOS PARTENAIRES</Badge>
                         <h2 className="text-4xl font-bold mb-6">Nous collaborons avec les meilleurs</h2>
                         <p className="max-w-2xl mx-auto text-gray-600 text-lg">Des partenariats stratégiques pour vous offrir des solutions de pointe.</p>
-                    </div>
+                    </motion.div>
 
                     <div className="flex flex-wrap justify-center items-center gap-16">
                         {CGUITECH.partners.map((partner, index) => (
-                            <div key={index} className="p-6 grayscale hover:grayscale-0 transition-all duration-300 hover:transform hover:scale-110">
+                            <motion.div 
+                                key={index} 
+                                className="p-6 grayscale hover:grayscale-0 transition-all duration-300"
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                whileHover={{ 
+                                    scale: 1.2,
+                                    rotate: [0, -5, 5, 0],
+                                    transition: { duration: 0.5 }
+                                }}
+                            >
                                 <img src={partner.logo} alt={partner.name} className="h-16 w-auto" />
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
@@ -460,37 +899,122 @@ export default function Welcome() {
             {/* Section CTA */}
             <section className="py-20 bg-gradient-to-tl from-gray-900 via-primary/90 to-blue-900">
                 <div className="container mx-auto px-4">
-                    <div className="bg-gradient-to-br from-primary-900 to-primary-700 rounded-3xl overflow-hidden shadow-2xl">
+                    <motion.div 
+                        className="bg-gradient-to-br from-primary-900 to-primary-700 rounded-3xl overflow-hidden shadow-2xl"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        whileHover={{ 
+                            boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+                            y: -5,
+                            transition: { duration: 0.3 }
+                        }}
+                    >
                         <div className="grid grid-cols-1 md:grid-cols-2 items-center">
                             <div className="p-12 md:p-16">
-                                <Badge className="bg-yellow-500 text-primary-900 mb-6 px-4 py-1 rounded-full font-medium">COMMENCEZ MAINTENANT</Badge>
-                                <h2 className="text-4xl font-bold mb-6 text-white">Prêt à transformer votre infrastructure IT?</h2>
-                                <p className="mb-8 text-white/90 text-lg">
-                                    Contactez nos experts dès aujourd'hui pour une consultation gratuite et découvrez
-                                    comment CGUITECH peut accompagner votre entreprise vers l'excellence technologique.
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-6">
-                                    <Link href={route('contact.index')} className="bg-yellow-500 hover:bg-yellow-600 text-primary-900 px-8 py-6 text-lg font-medium rounded-full">
-                                        Prendre rendez-vous
-                                    </Link>
-                                    <a href="tel:+224627969855" className="flex items-center text-white font-medium text-lg group">
-                                        <div className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors">
-                                            <PhoneCall className="h-6 w-6" />
-                                        </div>
-                                        +224 627 96 98 55
-                                    </a>
-                                </div>
+                                <motion.div
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
+                                    variants={{
+                                        visible: {
+                                            opacity: 1,
+                                            transition: {
+                                                staggerChildren: 0.2,
+                                                delayChildren: 0.3,
+                                            }
+                                        },
+                                        hidden: { opacity: 0 }
+                                    }}
+                                >
+                                    <motion.div
+                                        variants={{
+                                            visible: { opacity: 1, y: 0 },
+                                            hidden: { opacity: 0, y: 20 }
+                                        }}
+                                    >
+                                        <Badge className="bg-yellow-500 text-primary-900 mb-6 px-4 py-1 rounded-full font-medium">COMMENCEZ MAINTENANT</Badge>
+                                    </motion.div>
+                                    <motion.h2
+                                        className="text-4xl font-bold mb-6 text-white"
+                                        variants={{
+                                            visible: { opacity: 1, y: 0 },
+                                            hidden: { opacity: 0, y: 20 }
+                                        }}
+                                    >
+                                        Prêt à transformer votre infrastructure IT?
+                                    </motion.h2>
+                                    <motion.p
+                                        className="mb-8 text-white/90 text-lg"
+                                        variants={{
+                                            visible: { opacity: 1, y: 0 },
+                                            hidden: { opacity: 0, y: 20 }
+                                        }}
+                                    >
+                                        Contactez nos experts dès aujourd'hui pour une consultation gratuite et découvrez
+                                        comment CGUITECH peut accompagner votre entreprise vers l'excellence technologique.
+                                    </motion.p>
+                                    <motion.div
+                                        className="flex flex-col sm:flex-row gap-6"
+                                        variants={{
+                                            visible: { opacity: 1, y: 0 },
+                                            hidden: { opacity: 0, y: 20 }
+                                        }}
+                                    >
+                                        <motion.div
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            <Link href={route('contact.index')} className="bg-yellow-500 hover:bg-yellow-600 text-primary-900 px-8 py-6 text-lg font-medium rounded-full inline-flex items-center">
+                                                Prendre rendez-vous
+                                                <motion.span 
+                                                    initial={{ x: 0 }}
+                                                    animate={{ x: [0, 5, 0] }}
+                                                    transition={{ duration: 1.5, repeat: Infinity }}
+                                                >
+                                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                                </motion.span>
+                                            </Link>
+                                        </motion.div>
+                                        <motion.a 
+                                            href="tel:+224627969855" 
+                                            className="flex items-center text-white font-medium text-lg group"
+                                            whileHover={{ x: 5 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            <motion.div 
+                                                className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors"
+                                                animate={{ 
+                                                    scale: [1, 1.1, 1],
+                                                }}
+                                                transition={{
+                                                    duration: 2,
+                                                    repeat: Infinity,
+                                                    ease: "easeInOut"
+                                                }}
+                                            >
+                                                <PhoneCall className="h-6 w-6" />
+                                            </motion.div>
+                                            +224 627 96 98 55
+                                        </motion.a>
+                                    </motion.div>
+                                </motion.div>
                             </div>
                             <div className="hidden md:block relative h-full">
                                 <div className="absolute inset-0 bg-gradient-to-l from-transparent to-primary-900/50 z-10"></div>
-                                <img
+                                <motion.img
                                     src="/images/welcome/contact-cta.jpg"
                                     alt="Contactez-nous"
                                     className="w-full h-full object-cover"
+                                    initial={{ scale: 1.1, x: 20 }}
+                                    whileInView={{ scale: 1, x: 0 }}
+                                    transition={{ duration: 1 }}
+                                    viewport={{ once: true }}
                                 />
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
         </PublicLayout>

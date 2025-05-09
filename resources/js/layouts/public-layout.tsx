@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { type SharedData } from '@/types';
 import { CGUITECH } from '@/utils/index';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Types de base
 type PublicLayoutProps = PropsWithChildren<{
@@ -74,12 +75,17 @@ interface FooterLinksProps {
 
 // Extraction des composants pour une meilleure organisation
 const TopContactBar = () => (
-  <div className="bg-primary-900 text-white py-2 px-4 text-sm">
+  <motion.div 
+    initial={{ opacity: 0, y: -20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3 }}
+    className="bg-primary-900 text-white py-2 px-4 text-sm"
+  >
     <div className="container mx-auto flex flex-wrap justify-between">
       <div className="flex flex-wrap items-center gap-4">
         <a 
           href={`tel:${CGUITECH.contactInfo.unespace_phone}`} 
-          className="flex items-center space-x-1 hover:text-yellow-400 transition-colors"
+          className="flex items-center space-x-1 hover:text-yellow-400 transition-colors duration-300"
           aria-label="Téléphone"
         >
           <PhoneCall className="h-4 w-4" aria-hidden="true" />
@@ -87,7 +93,7 @@ const TopContactBar = () => (
         </a>
         <a 
           href={`mailto:${CGUITECH.contactInfo.unespace_phone}`}
-          className="flex items-center space-x-1 hover:text-yellow-400 transition-colors"
+          className="flex items-center space-x-1 hover:text-yellow-400 transition-colors duration-300"
           aria-label="Email"
         >
           <Mail className="h-4 w-4" aria-hidden="true" />
@@ -100,7 +106,7 @@ const TopContactBar = () => (
       </div>
       <AuthLinks />
     </div>
-  </div>
+  </motion.div>
 );
 
 const AuthLinks = () => {
@@ -111,7 +117,7 @@ const AuthLinks = () => {
       {auth.user ? (
         <Link
           href={route('dashboard')}
-          className="hover:text-yellow-400 transition-colors"
+          className="hover:text-yellow-400 transition-colors duration-300"
         >
           Tableau de bord
         </Link>
@@ -119,13 +125,13 @@ const AuthLinks = () => {
         <>
           <Link
             href={route('login')}
-            className="hover:text-yellow-400 transition-colors"
+            className="hover:text-yellow-400 transition-colors duration-300"
           >
             Connexion
           </Link>
           <Link
             href={route('register')}
-            className="hover:text-yellow-400 transition-colors"
+            className="hover:text-yellow-400 transition-colors duration-300"
           >
             Inscription
           </Link>
@@ -136,7 +142,7 @@ const AuthLinks = () => {
 };
 
 const Logo = ({ className = "h-16", onClick }: LogoProps) => (
-  <Link href="/" onClick={onClick}>
+  <Link href="/" onClick={onClick} className="transition-transform duration-300 hover:scale-105">
     <img 
       src="/images/logo-cguitech-wb.svg" 
       alt="CGUITECH Logo" 
@@ -147,7 +153,7 @@ const Logo = ({ className = "h-16", onClick }: LogoProps) => (
   </Link>
 );
 
-// Composant pour le sous-menu
+// Composant pour le sous-menu mobile amélioré
 const SubMenu = ({ item, depth = 0, onItemClick, isActive }: SubMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
   
@@ -167,39 +173,53 @@ const SubMenu = ({ item, depth = 0, onItemClick, isActive }: SubMenuProps) => {
             isActive 
               ? 'text-primary font-semibold' 
               : 'text-gray-700 hover:text-primary'
-          } transition-colors duration-200`}
+          } transition-colors duration-300`}
           onClick={() => !item.children && onItemClick()}
         >
           {item.label}
         </Link>
         {item.children && (
-          <button
+          <motion.button
             onClick={toggleSubmenu}
-            className="p-2 text-gray-500 hover:text-primary transition-colors"
+            className="p-2 text-gray-500 hover:text-primary transition-colors duration-300"
+            whileTap={{ scale: 0.95 }}
             aria-expanded={isOpen}
             aria-label={`Expand ${item.label} submenu`}
           >
-            <ChevronDown 
-              className={`h-5 w-5 transition-transform duration-200 ${isOpen ? 'transform rotate-180' : ''}`}
-              aria-hidden="true"
-            />
-          </button>
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ChevronDown 
+                className="h-5 w-5"
+                aria-hidden="true"
+              />
+            </motion.div>
+          </motion.button>
         )}
       </div>
       
-      {item.children && isOpen && (
-        <div className={`bg-gray-${depth === 0 ? '50' : '100'} pl-4`}>
-          {item.children.map((subItem) => (
-            <SubMenu 
-              key={subItem.label} 
-              item={subItem} 
-              depth={depth + 1}
-              onItemClick={onItemClick}
-              isActive={isActive}
-            />
-          ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {item.children && isOpen && (
+          <motion.div 
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className={`bg-gray-${depth === 0 ? '50' : '100'} pl-4 overflow-hidden`}
+          >
+            {item.children.map((subItem) => (
+              <SubMenu 
+                key={subItem.label} 
+                item={subItem} 
+                depth={depth + 1}
+                onItemClick={onItemClick}
+                isActive={isActive}
+              />
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -212,39 +232,59 @@ const isMenuItemActive = (href: string, currentPath: string): boolean => {
   return currentPath.startsWith(href);
 };
 
-// Composant pour le menu mobile
+// Composant pour le menu mobile amélioré
 const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps) => {
   return (
     <>
-      <button 
-        className="lg:hidden focus:outline-none p-2 text-gray-700 hover:text-primary transition-colors"
+      <motion.button 
+        className="lg:hidden focus:outline-none p-2 text-gray-700 hover:text-primary transition-colors duration-300"
         onClick={() => onClose()}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
         aria-label="Toggle menu"
       >
         <MenuIcon className="h-6 w-6" aria-hidden="true" />
-      </button>
+      </motion.button>
       
       <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent side="right" className="w-full sm:w-[400px] p-0 overflow-hidden bg-white">
           <div className="flex flex-col h-full">
-            <div className="flex justify-between items-center border-b p-4 bg-primary-50">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="flex justify-between items-center border-b p-4 bg-primary-50"
+            >
               <Logo className="h-10" onClick={onClose} />
-              <button 
+              <motion.button 
                 onClick={onClose}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 aria-label="Fermer le menu"
-                className="text-gray-500 hover:text-primary transition-colors"
+                className="text-gray-500 hover:text-primary transition-colors duration-300"
               >
                 <X className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
+              </motion.button>
+            </motion.div>
             
-            <div className="flex-grow overflow-y-auto py-2">
+            <motion.div 
+              className="flex-grow overflow-y-auto py-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+            >
               <div className="space-y-1">
-                {menuItems.map((item) => {
+                {menuItems.map((item, index) => {
                   const isActive = isMenuItemActive(item.href, currentPath);
                   
                   return (
-                    <div key={item.label} className="relative">
+                    <motion.div 
+                      key={item.label} 
+                      className="relative"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: 0.05 * index }}
+                    >
                       {item.children ? (
                         <SubMenu 
                           key={item.label} 
@@ -259,22 +299,27 @@ const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps
                             isActive 
                               ? 'text-primary font-semibold bg-primary-50' 
                               : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-                          } transition-colors duration-200`}
+                          } transition-colors duration-300`}
                           onClick={onClose}
                         >
                           {item.label}
                         </Link>
                       )}
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
             
-            <div className="border-t p-4 bg-gray-50">
+            <motion.div 
+              className="border-t p-4 bg-gray-50"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+            >
               <Button 
                 variant="default" 
-                className="w-full bg-primary hover:bg-primary-600 text-white transition-colors"
+                className="w-full bg-primary hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
                 onClick={() => {
                   window.location.href = '/contact';
                   onClose();
@@ -283,16 +328,16 @@ const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps
                 Obtenir un Devis
               </Button>
               <div className="flex justify-between mt-4">
-                <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
+                <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors duration-300">
                   <PhoneCall className="h-4 w-4 mr-1" aria-hidden="true" />
                   {CGUITECH.contactInfo.phone}
                 </a>
-                <a href={`mailto:${CGUITECH.contactInfo.email}`} className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors">
+                <a href={`mailto:${CGUITECH.contactInfo.email}`} className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors duration-300">
                   <Mail className="h-4 w-4 mr-1" aria-hidden="true" />
                   {CGUITECH.contactInfo.email}
                 </a>
               </div>
-            </div>
+            </motion.div>
           </div>
         </SheetContent>
       </Sheet>
@@ -300,7 +345,7 @@ const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps
   );
 };
 
-// Composant pour le menu de navigation desktop
+// Composant pour le menu de navigation desktop amélioré
 const DesktopNavigation = ({ menuItems, currentPath }: DesktopNavigationProps) => {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const menuRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
@@ -321,95 +366,137 @@ const DesktopNavigation = ({ menuItems, currentPath }: DesktopNavigationProps) =
     <nav className="hidden lg:block" aria-label="Navigation principale">
       <ul className="flex space-x-6">
         {menuItems.map((item) => (
-          <li 
+          <motion.li 
             key={item.label} 
             className="relative group"
             ref={(el) => {
               menuRefs.current[item.label] = el;
             }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3 }}
+            whileHover={{ scale: 1.05 }}
           >
             <div 
               className={`flex items-center gap-1 cursor-pointer font-medium ${
                 isMenuItemActive(item.href, currentPath) 
                   ? 'text-primary after:w-full' 
                   : 'text-gray-700 hover:text-primary after:w-0 hover:after:w-full'
-              } py-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-primary after:transition-all duration-200`}
+              } py-2 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-primary after:transition-all duration-300`}
               onMouseEnter={() => setOpenSubmenu(item.label)}
               aria-expanded={openSubmenu === item.label}
               role={item.children ? "button" : undefined}
             >
               <Link href={item.href}>{item.label}</Link>
               {item.children && (
-                <ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" aria-hidden="true" />
+                <motion.div
+                  animate={{ rotate: openSubmenu === item.label ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <ChevronDown className="h-4 w-4" aria-hidden="true" />
+                </motion.div>
               )}
             </div>
             
             {/* Sous-menu desktop niveau 1 */}
-            {item.children && openSubmenu === item.label && (
-              <div 
-                className="absolute top-full left-0 mt-1 bg-white shadow-lg rounded-md min-w-[220px] py-2 z-50 border border-primary-100"
-                onMouseLeave={() => setOpenSubmenu(null)}
-                role="menu"
-              >
-                {item.children.map((subItem) => (
-                  <div key={subItem.label} className="relative group/submenu">
-                    <Link 
-                      href={subItem.href}
-                      className={`block px-4 py-2 ${
-                        isMenuItemActive(subItem.href, currentPath)
-                          ? 'text-primary bg-primary-50 font-semibold'
-                          : 'text-gray-700 hover:text-primary hover:bg-primary-50'
-                      } transition-colors duration-200 flex items-center justify-between`}
-                      role="menuitem"
+            <AnimatePresence>
+              {item.children && openSubmenu === item.label && (
+                <motion.div 
+                  className="absolute top-full left-0 mt-1 bg-white shadow-lg rounded-md min-w-[220px] py-2 z-50 border border-primary-100"
+                  onMouseLeave={() => setOpenSubmenu(null)}
+                  role="menu"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {item.children.map((subItem, idx) => (
+                    <motion.div 
+                      key={subItem.label} 
+                      className="relative group/submenu"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.2, delay: idx * 0.03 }}
                     >
-                      {subItem.label}
-                      {subItem.children && (
-                        <ChevronDown className="h-4 w-4 -rotate-90 transition-transform duration-200 group-hover/submenu:rotate-0" aria-hidden="true" />
-                      )}
-                    </Link>
-                    
-                    {/* Sous-menu desktop niveau 2 */}
-                    {subItem.children && (
-                      <div 
-                        className="absolute left-full top-0 mt-0 ml-0 bg-white shadow-lg rounded-md min-w-[180px] py-2 hidden group-hover/submenu:block border border-primary-100"
-                        role="menu"
+                      <Link 
+                        href={subItem.href}
+                        className={`block px-4 py-2 ${
+                          isMenuItemActive(subItem.href, currentPath)
+                            ? 'text-primary bg-primary-50 font-semibold'
+                            : 'text-gray-700 hover:text-primary hover:bg-primary-50'
+                        } transition-colors duration-300 flex items-center justify-between`}
+                        role="menuitem"
                       >
-                        {subItem.children.map((nestedSubItem) => (
-                          <Link 
-                            key={nestedSubItem.label} 
-                            href={nestedSubItem.href}
-                            className={`block px-4 py-2 ${
-                              isMenuItemActive(nestedSubItem.href, currentPath)
-                                ? 'text-primary bg-primary-50 font-semibold'
-                                : 'text-gray-700 hover:text-primary hover:bg-primary-50'
-                            } transition-colors duration-200`}
-                            role="menuitem"
+                        {subItem.label}
+                        {subItem.children && (
+                          <ChevronDown className="h-4 w-4 -rotate-90 transition-transform duration-300 group-hover/submenu:rotate-0" aria-hidden="true" />
+                        )}
+                      </Link>
+                      
+                      {/* Sous-menu desktop niveau 2 */}
+                      <AnimatePresence>
+                        {subItem.children && (
+                          <motion.div 
+                            className="absolute left-full top-0 mt-0 ml-0 bg-white shadow-lg rounded-md min-w-[180px] py-2 hidden group-hover/submenu:block border border-primary-100"
+                            role="menu"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -10 }}
+                            transition={{ duration: 0.2 }}
                           >
-                            {nestedSubItem.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </li>
+                            {subItem.children.map((nestedSubItem) => (
+                              <motion.div
+                                key={nestedSubItem.label}
+                                initial={{ opacity: 0, x: -5 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.2 }}
+                              >
+                                <Link 
+                                  href={nestedSubItem.href}
+                                  className={`block px-4 py-2 ${
+                                    isMenuItemActive(nestedSubItem.href, currentPath)
+                                      ? 'text-primary bg-primary-50 font-semibold'
+                                      : 'text-gray-700 hover:text-primary hover:bg-primary-50'
+                                  } transition-colors duration-300`}
+                                  role="menuitem"
+                                >
+                                  {nestedSubItem.label}
+                                </Link>
+                              </motion.div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.li>
         ))}
       </ul>
     </nav>
   );
 };
 
-// Composant pour le footer
+// Composant pour le footer amélioré
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-gradient-to-br from-blue-900 via-blue-500 to-indigo-900 text-white pt-16 pb-8">
-      <div className="container mx-auto px-4">
+    <footer className="bg-gradient-to-br from-blue-900 via-blue-700 to-indigo-900 text-white pt-16 pb-8 overflow-hidden relative">
+      {/* Éléments décoratifs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl transform translate-x-1/3 -translate-y-1/4"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl transform -translate-x-1/3 translate-y-1/4"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
             <div className="flex items-center mb-6">
               <Logo className="h-10" />
             </div>
@@ -419,59 +506,93 @@ const Footer = () => {
             <div className="flex space-x-4">
               {CGUITECH.contactInfo.social.map((social, index) => (
                 social && (
-                  <SocialLink 
+                  <motion.div
                     key={index}
-                    href={social.url || '#'} 
-                    icon={social.icon && <social.icon className="h-5 w-5" />} 
-                    label={social.name} 
-                  />
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <SocialLink 
+                      href={social.url || '#'} 
+                      icon={social.icon && <social.icon className="h-5 w-5" />} 
+                      label={social.name} 
+                    />
+                  </motion.div>
                 )
               ))}
             </div>
-          </div>
+          </motion.div>
           
-          <FooterLinks 
-            title="Nos Services"
-            links={CGUITECH.services}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <FooterLinks 
+              title="Nos Services"
+              links={CGUITECH.services}
+            />
+          </motion.div>
           
-          <FooterLinks 
-            title="Industries"
-            links={CGUITECH.industries}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <FooterLinks 
+              title="Industries"
+              links={CGUITECH.industries}
+            />
+          </motion.div>
           
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
             <h3 className="text-lg font-semibold text-white mb-6">Contact Info</h3>
             <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 mr-3 mt-1 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300">{CGUITECH.contactInfo.address}</span>
+              <li className="flex items-start group">
+                <MapPin className="h-5 w-5 mr-3 mt-1 text-yellow-400 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+                <span className="text-gray-300 group-hover:text-white transition-colors duration-300">{CGUITECH.contactInfo.address}</span>
               </li>
-              <li className="flex items-center">
-                <Clock className="h-5 w-5 mr-3 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300"><strong>Opening Hours:</strong> 8:00 – 17:00</span>
+              <li className="flex items-center group">
+                <Clock className="h-5 w-5 mr-3 text-yellow-400 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+                <span className="text-gray-300 group-hover:text-white transition-colors duration-300"><strong>Opening Hours:</strong> 8:00 – 17:00</span>
               </li>
-              <li className="flex items-center">
-                <PhoneCall className="h-5 w-5 mr-3 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300"><strong>Phone:</strong> <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="hover:text-yellow-400 transition-colors">{CGUITECH.contactInfo.phone}</a></span>
+              <li className="flex items-center group">
+                <PhoneCall className="h-5 w-5 mr-3 text-yellow-400 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+                <span className="text-gray-300 group-hover:text-white transition-colors duration-300">
+                  <strong>Phone:</strong> <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="hover:text-yellow-400 transition-colors duration-300">{CGUITECH.contactInfo.phone}</a>
+                </span>
               </li>
-              <li className="flex items-center">
-                <Mail className="h-5 w-5 mr-3 text-yellow-400" aria-hidden="true" />
-                <span className="text-gray-300"><a href={`mailto:${CGUITECH.contactInfo.email}`} className="hover:text-yellow-400 transition-colors">{CGUITECH.contactInfo.email}</a></span>
+              <li className="flex items-center group">
+                <Mail className="h-5 w-5 mr-3 text-yellow-400 group-hover:scale-110 transition-transform duration-300" aria-hidden="true" />
+                <span className="text-gray-300 group-hover:text-white transition-colors duration-300">
+                  <a href={`mailto:${CGUITECH.contactInfo.email}`} className="hover:text-yellow-400 transition-colors duration-300">{CGUITECH.contactInfo.email}</a>
+                </span>
               </li>
             </ul>
-          </div>
+          </motion.div>
         </div>
         
         <Separator className="my-8 bg-primary-700" />
         
-        <div className="flex flex-col md:flex-row justify-between items-center">
+        <motion.div 
+          className="flex flex-col md:flex-row justify-between items-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
           <p className="text-gray-300">&copy; Copyright {currentYear}. Tous droits réservés par CGUITECH</p>
           <div className="flex flex-wrap gap-4 mt-4 md:mt-0 justify-center">
-            <Link href="/privacy-policy" className="hover:text-yellow-400 transition-colors text-gray-300">Politique de confidentialité</Link>
-            <Link href="/terms" className="hover:text-yellow-400 transition-colors text-gray-300">Conditions d'utilisation</Link>
+            <Link href="/privacy-policy" className="hover:text-yellow-400 transition-colors duration-300 text-gray-300">Politique de confidentialité</Link>
+            <Link href="/terms" className="hover:text-yellow-400 transition-colors duration-300 text-gray-300">Conditions d'utilisation</Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
@@ -481,7 +602,7 @@ const Footer = () => {
 const SocialLink = ({ href, icon, label }: SocialLinkProps) => (
   <a 
     href={href} 
-    className="bg-primary-800 hover:bg-primary-700 transition-colors p-2 rounded-full"
+    className="bg-primary-800 hover:bg-primary-700 transition-all duration-300 p-2 rounded-full hover:shadow-lg"
     aria-label={label}
     target="_blank"
     rel="noopener noreferrer"
@@ -494,16 +615,28 @@ const FooterLinks = ({ title, links }: FooterLinksProps) => (
   <div>
     <h3 className="text-lg font-semibold text-white mb-6">{title}</h3>
     <ul className="space-y-3">
-      {links.map(link => (
-        <li key={link.link}>
+      {links.map((link, index) => (
+        <motion.li 
+          key={link.link}
+          initial={{ opacity: 0, x: -10 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3, delay: 0.05 * index }}
+          viewport={{ once: true }}
+        >
           <Link 
             href={link.link} 
-            className="hover:text-yellow-400 transition-colors flex items-center"
+            className="hover:text-yellow-400 transition-colors duration-300 flex items-center group"
           >
-            <ArrowRight className="h-3 w-3 mr-2" aria-hidden="true" /> 
+            <motion.div
+              className="mr-2"
+              whileHover={{ x: 3 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowRight className="h-3 w-3 group-hover:text-yellow-400 transition-colors duration-300" aria-hidden="true" />
+            </motion.div>
             {link.title}
           </Link>
-        </li>
+        </motion.li>
       ))}
     </ul>
   </div>
@@ -607,15 +740,23 @@ const BackToTop = () => {
   };
 
   return (
-    <button
+    <motion.button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 p-3 rounded-full bg-primary text-white shadow-lg transition-all duration-300 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-400 z-50 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12 pointer-events-none'
+      className={`fixed bottom-8 right-8 p-3 rounded-full bg-primary text-white shadow-lg transition-all duration-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-400 z-50 ${
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-0 pointer-events-none'
       }`}
       aria-label="Retour en haut"
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ 
+        opacity: isVisible ? 1 : 0,
+        scale: isVisible ? 1 : 0 
+      }}
+      transition={{ duration: 0.3 }}
     >
       <ArrowUp className="h-6 w-6" />
-    </button>
+    </motion.button>
   );
 };
 
@@ -628,6 +769,7 @@ export default function PublicLayout({
   const menuItems = getMenuItems();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { url } = usePage();
+  const [scrolled, setScrolled] = useState(false);
   
   // Empêche le scroll quand le menu mobile est ouvert
   useEffect(() => {
@@ -641,6 +783,19 @@ export default function PublicLayout({
       document.body.style.overflow = 'unset';
     };
   }, [mobileMenuOpen]);
+
+  // Animation de l'en-tête au défilement
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
 
   return (
     <>
@@ -658,10 +813,19 @@ export default function PublicLayout({
         <TopContactBar />
 
         {/* En-tête avec navigation */}
-        <header className="sticky top-0 z-50 bg-white border-b border-primary-100 py-4 shadow-sm">
+        <motion.header 
+          className={`sticky top-0 z-50 bg-white backdrop-blur-md transition-all duration-300 ${
+            scrolled 
+              ? 'border-b border-primary-100 py-2 shadow-md' 
+              : 'border-b border-primary-50 py-4 shadow-sm'
+          }`}
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
           <div className="container mx-auto flex items-center justify-between px-4">
             <div className="flex items-center">
-              <Logo />
+              <Logo className={scrolled ? "h-12" : "h-16"} />
             </div>
             
             {/* Navigation desktop */}
@@ -671,13 +835,18 @@ export default function PublicLayout({
             />
             
             <div className="flex items-center space-x-4">
-              <Button 
-                variant="default" 
-                className="bg-primary hover:bg-primary-600 text-white hidden md:flex items-center gap-2"
-                onClick={() => window.location.href = '/contact'}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Obtenir un Devis
-              </Button>
+                <Button 
+                  variant="default" 
+                  className="bg-primary hover:bg-primary-600 text-white hidden md:flex items-center gap-2 transition-all duration-300 hover:shadow-md"
+                  onClick={() => window.location.href = '/contact'}
+                >
+                  Obtenir un Devis
+                </Button>
+              </motion.div>
               
               {/* Menu mobile */}
               <MobileMenu 
@@ -688,12 +857,18 @@ export default function PublicLayout({
               />
             </div>
           </div>
-        </header>
+        </motion.header>
 
         {/* Contenu principal */}
-        <main id="main-content" tabIndex={-1}>
+        <motion.main 
+          id="main-content" 
+          tabIndex={-1}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           {children}
-        </main>
+        </motion.main>
 
         {/* Footer */}
         <Footer />
