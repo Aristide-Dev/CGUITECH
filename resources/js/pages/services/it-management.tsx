@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { CheckCircle2, Server, Shield, Clock, BarChart } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Link } from '@inertiajs/react';
 
 export default function ITManagementService() {
   // Liste des avantages
@@ -197,16 +198,47 @@ export default function ITManagementService() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-primary text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Prêt à optimiser votre infrastructure IT ?</h2>
-          <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Contactez-nous dès aujourd'hui pour discuter de vos besoins spécifiques et découvrir comment nos services IT gérés peuvent vous aider.
-          </p>
-          <Button className="bg-white text-primary hover:bg-white/90 px-8 py-3 text-lg">
-            Demander une consultation gratuite
-          </Button>
+      <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center relative">
+            <div className="absolute inset-0 -mt-10 -ml-10 w-40 h-40 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 -mb-10 -mr-10 w-60 h-60 bg-primary-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+            
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                Prêt à optimiser votre infrastructure IT ?
+              </h2>
+              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                Contactez-nous dès aujourd'hui pour discuter de vos besoins spécifiques et découvrir comment nos services IT gérés peuvent vous aider.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Button className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                  Demander une consultation gratuite
+                </Button>
+                <Link href={route('contact.index')} className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
+                  Nous contacter
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
+
+        {/* Ajout de style global pour les animations */}
+        <style>{`
+          @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.6; }
+            100% { opacity: 0.4; }
+          }
+
+          .animate-pulse {
+            animation: pulse 3s ease-in-out infinite;
+          }
+
+          .animation-delay-2000 {
+            animation-delay: 2s;
+          }
+        `}</style>
       </section>
     </PublicLayout>
   );

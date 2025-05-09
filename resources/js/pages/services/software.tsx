@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { CheckCircle2, Code, Lightbulb, Database, Globe, SmartphoneNfc, Laptop, Layout, BarChart3, Briefcase, Clock, Milestone, ArrowRight, ChevronRight, Users, Shield, TrendingUp } from 'lucide-react';
+import { CheckCircle2, Code, Lightbulb, Database, Globe, SmartphoneNfc, Laptop, Layout, BarChart3, Briefcase, Clock, Milestone, ArrowRight, ChevronRight, Users, Shield, TrendingUp, PhoneCall } from 'lucide-react';
 import { Link } from '@inertiajs/react';
 import { CGUITECH } from '@/utils/index';
 
@@ -304,32 +304,80 @@ export default function SoftwareDevelopmentService() {
         </div>
       </section>
 
-      {/* CTA Section - Design moderne avec gradient */}
-      <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center relative">
-            <div className="absolute inset-0 -mt-10 -ml-10 w-40 h-40 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 -mb-10 -mr-10 w-60 h-60 bg-primary-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
-            
-            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                Prêt à transformer votre vision en réalité ?
-              </h2>
-              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-                Contactez-nous dès aujourd'hui pour discuter de votre projet et découvrir comment notre expertise peut vous aider à atteindre vos objectifs.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Link href={route('contact.index')} className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
-                  Demander un devis gratuit
-                  <ArrowRight className="ml-2 h-5 w-5 inline" />
-                </Link>
-                <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
-                  Nous contacter
-                </Button>
+      {/* CTA Section */}
+      <section className="relative py-20 overflow-hidden">
+        {/* Background avec overlay */}
+        <div className="absolute inset-0 bg-[url('/images/services/software-development-team.jpg')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-800/95 via-primary-700/95 to-primary-600/90"></div>
+        
+        {/* Formes décoratives flottantes */}
+        <div className="absolute top-20 right-10 w-64 h-64 bg-primary-400/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
+        
+        <div className="container mx-auto px-4 relative z-10 text-white">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-5 gap-10 items-center">
+              <div className="md:col-span-3">
+                <Badge className="bg-primary-500/60 text-white hover:bg-primary-500/80 mb-4 backdrop-blur-sm">Développement logiciel</Badge>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Prêt à concrétiser votre projet logiciel ?</h2>
+                <p className="text-lg text-white/90 mb-8 max-w-2xl">
+                  Nos experts en développement sont prêts à transformer vos idées en solutions performantes et sur mesure.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link 
+                    href={route('contact.index')} 
+                    className="bg-white hover:bg-white/90 text-primary-600 font-medium px-6 py-3 rounded-lg flex items-center justify-center transition-all hover:shadow-lg"
+                  >
+                    <span>Demander un devis gratuit</span>
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                  <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="flex items-center text-white font-medium text-lg group">
+                    <div className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors">
+                      <PhoneCall className="h-6 w-6" />
+                    </div>
+                    {CGUITECH.contactInfo.phone}
+                  </a>
+                </div>
+              </div>
+              <div className="md:col-span-2 flex justify-end">
+                <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl border border-white/20 shadow-xl">
+                  <h3 className="text-xl font-semibold mb-4">Parlons de votre projet</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start">
+                      <CheckCircle2 className="h-5 w-5 text-green-400 mr-2 mt-0.5" />
+                      <span>Consultation initiale gratuite</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle2 className="h-5 w-5 text-green-400 mr-2 mt-0.5" />
+                      <span>Estimation précise des coûts</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle2 className="h-5 w-5 text-green-400 mr-2 mt-0.5" />
+                      <span>Planning de développement détaillé</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle2 className="h-5 w-5 text-green-400 mr-2 mt-0.5" />
+                      <span>Support après-livraison inclus</span>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        
+        {/* Styles pour l'animation */}
+        <style>{`
+          @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.4; }
+          }
+
+          .animate-pulse {
+            animation: pulse 3s ease-in-out infinite;
+          }
+        `}</style>
       </section>
 
       {/* Technologies showcase - Bande horizontale défilante */}

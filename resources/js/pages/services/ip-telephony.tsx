@@ -2,607 +2,400 @@ import PublicLayout from '@/layouts/public-layout';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CheckCircle2, Phone, Video, Headphones, Save, Users, Building, PhoneCall, Settings, CircleDollarSign, ArrowRight, ChevronRight, Shield, Clock, TrendingUp, Globe, MessageSquare, Zap } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { 
+  CheckCircle2, 
+  Phone, 
+  Headphones, 
+  PhoneCall, 
+  ArrowRight, 
+  Globe, 
+  Cloud, 
+  LucideHeadphones, 
+  Building, 
+  Video,
+  Shield,
+  ChevronRight,
+  Clock,
+  Smartphone,
+  Zap,
+  Users,
+  BarChart,
+  Wifi
+} from 'lucide-react';
 import { Link } from '@inertiajs/react';
+import { CGUITECH } from '@/utils';
 
 export default function IPTelephonyService() {
-  // Animation variants
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  // Données pour les solutions de téléphonie IP
-  const ipTelephonySolutions = [
+  // Solutions de téléphonie IP
+  const telephonySolutions = [
     {
-      title: "VoIP",
-      description: "Systèmes de téléphonie sur IP pour des communications vocales claires et économiques.",
-      icon: <Phone className="h-8 w-8" />,
-      image: "/images/services/close-up-person-working-call-center_23-2149288225.jpg",
+      title: "Centrex IP",
+      description: "Solution de téléphonie hébergée dans le cloud, offrant une flexibilité et une mobilité maximales.",
+      icon: <Cloud className="h-8 w-8" />,
       features: [
-        "Appels haute définition",
-        "Numéros virtuels",
-        "Messagerie vocale avancée",
-        "Intégration avec votre CRM",
-        "Transfert d'appels intelligent",
-        "Conférences audio HD"
-      ]
+        "Aucun investissement matériel lourd",
+        "Mise à jour automatique des fonctionnalités",
+        "Accessible partout via Internet",
+        "Nombre d'utilisateurs flexible",
+        "Maintenance simplifiée",
+        "Service haute disponibilité"
+      ],
+      color: "from-blue-600 to-blue-700"
     },
     {
-      title: "Visioconférence",
-      description: "Solutions de visioconférence HD pour des réunions virtuelles efficaces.",
-      icon: <Video className="h-8 w-8" />,
-      image: "/images/services/410753706_95273441-e87d-4ab3-a717-cc3daad2cc10.jpg",
+      title: "IPBX Physique",
+      description: "Solution locale avec un contrôle total de votre infrastructure de communication d'entreprise.",
+      icon: <Building className="h-8 w-8" />,
       features: [
-        "Vidéo haute définition",
-        "Partage d'écran en temps réel",
-        "Salles virtuelles sécurisées",
-        "Enregistrement des réunions",
-        "Tableau blanc collaboratif",
-        "Chat intégré"
-      ]
+        "Contrôle total de votre infrastructure",
+        "Personnalisation avancée",
+        "Intégration CRM et ERP",
+        "Communications sécurisées et chiffrées",
+        "Support multi-sites",
+        "Capacité évolutive"
+      ],
+      color: "from-green-600 to-green-700"
     },
     {
-      title: "Centres d'appels",
-      description: "Solutions de centres d'appels modernes pour améliorer l'expérience client.",
+      title: "Communications Unifiées",
+      description: "Plateforme intégrée combinant téléphonie, messagerie, visioconférence et partage de documents.",
       icon: <Headphones className="h-8 w-8" />,
-      image: "/images/services/portrait-girl-his-hone-headset-transparent-background.png",
       features: [
-        "Distribution intelligente des appels",
-        "Supervision en temps réel",
-        "Rapports détaillés",
-        "Intégration omnicanal",
-        "Analyse des sentiments",
-        "Enregistrement des appels"
-      ]
+        "Interface unique pour toutes les communications",
+        "Visioconférence HD intégrée",
+        "Collaboration en temps réel",
+        "Messagerie instantanée professionnelle",
+        "Présence et disponibilité",
+        "Accessibilité sur tous les appareils"
+      ],
+      color: "from-purple-600 to-purple-700"
     },
     {
-      title: "Communications unifiées",
-      description: "Plateforme intégrée regroupant tous vos outils de communication.",
-      icon: <Settings className="h-8 w-8" />,
-      image: "/images/services/office-telephone-system-with-multiple-handsets-isolated-transparent-background.png",
+      title: "Vidéoconférence",
+      description: "Solution de vidéoconférence professionnelle pour des réunions virtuelles et collaborations à distance efficaces.",
+      icon: <Video className="h-8 w-8" />,
       features: [
-        "Messagerie instantanée d'entreprise",
-        "Présence et statut",
-        "Intégration mobile",
-        "Solution tout-en-un",
-        "Synchronisation multi-appareils",
-        "Archivage sécurisé"
-      ]
+        "Qualité vidéo HD et audio cristallin",
+        "Partage d'écran et annotations",
+        "Enregistrement des réunions",
+        "Intégration avec calendriers",
+        "Salles virtuelles sécurisées",
+        "Support pour grands groupes"
+      ],
+      color: "from-orange-600 to-orange-700"
     }
   ];
 
-  // Données pour les avantages de la téléphonie IP
-  const ipTelephonyBenefits = [
+  // Avantages de la téléphonie IP
+  const telephonyBenefits = [
     {
       title: "Réduction des coûts",
-      description: "Économisez jusqu'à 60% sur vos factures de téléphone grâce à des tarifs compétitifs et l'élimination des lignes physiques.",
-      icon: <CircleDollarSign className="h-6 w-6 text-primary" />,
-      image: "/images/services/african-man-holding-come-money-doing-paperwork-also_216356-629.avif",
-      stats: "60% d'économies"
+      description: "Économisez jusqu'à 60% sur vos coûts de communication avec des appels illimités et une infrastructure rationalisée.",
+      icon: <BarChart className="h-6 w-6" />,
+      stats: "60%"
     },
     {
-      title: "Mobilité et flexibilité",
-      description: "Accédez à votre système téléphonique de n'importe où, permettant le télétravail et la continuité des activités.",
-      icon: <Users className="h-6 w-6 text-primary" />,
-      image: "/images/services/portrait-young-beautiful-woman-gesticulating_273609-40358.avif",
-      stats: "100% mobile"
+      title: "Mobilité accrue",
+      description: "Restez connecté partout avec des solutions accessibles depuis n'importe quel appareil connecté à internet.",
+      icon: <Smartphone className="h-6 w-6" />,
+      stats: "100%"
+    },
+    {
+      title: "Communication unifiée",
+      description: "Centralisez tous vos canaux de communication en une seule plateforme intuitive et efficace.",
+      icon: <Headphones className="h-6 w-6" />,
+      stats: "24/7"
     },
     {
       title: "Évolutivité",
-      description: "Ajoutez ou supprimez facilement des lignes selon vos besoins, sans investissement matériel majeur.",
-      icon: <Building className="h-6 w-6 text-primary" />,
-      image: "/images/services/man-looking-bills-while-using-mobile-phone-desk-bedroom-comfortable-home_13339-359256.avif",
-      stats: "Évolutif à l'infini"
-    },
-    {
-      title: "Fonctionnalités avancées",
-      description: "Accédez à des fonctionnalités professionnelles comme les standards automatiques, le routage intelligent et la messagerie unifiée.",
-      icon: <Save className="h-6 w-6 text-primary" />,
-      image: "/images/services/woman-protecting-safeguarding-her-identity-passwords-from-spyware_482257-83357.avif",
-      stats: "50+ fonctionnalités"
+      description: "Ajoutez ou supprimez des utilisateurs facilement sans matériel supplémentaire ni intervention technique lourde.",
+      icon: <Users className="h-6 w-6" />,
+      stats: "∞"
     }
   ];
 
-  // Données pour les cas d'utilisation
-  const useCases = [
+  // Fonctionnalités avancées
+  const advancedFeatures = [
     {
-      title: "PME",
-      description: "Solutions complètes et abordables pour les petites et moyennes entreprises.",
-      features: [
-        "Système téléphonique professionnel à moindre coût",
-        "Configuration simplifiée et maintenance légère",
-        "Évolutivité selon la croissance de l'entreprise",
-        "Interface de gestion intuitive",
-        "Support technique dédié",
-        "Formation des utilisateurs"
-      ],
-      image: '/images/services/407363448_3308dd59-d2e4-496d-9e4e-60c7430d7e26.jpg',
-      icon: <Building className="h-6 w-6 text-primary" />
+      title: "Messagerie vocale avancée",
+      description: "Réception des messages vocaux par email, transcription de messages et notification multi-canal.",
+      icon: <PhoneCall className="h-10 w-10 text-primary-600" />
     },
     {
-      title: "Grandes Entreprises",
-      description: "Solutions robustes et personnalisées pour les organisations complexes.",
-      features: [
-        "Infrastructure hautement disponible et redondante",
-        "Intégration avec les systèmes d'entreprise existants",
-        "Support multisite et international",
-        "Analyses avancées et rapports détaillés",
-        "Gestion centralisée",
-        "Sécurité renforcée"
-      ],
-      image: '/images/services/happy-business-people-group-with-teamwork-overlay-tablet-with-support-planning-cooperation-staff-manager-employee-with-banner-innovation-tech-with-collaboration-brainstorming.jpg',
-      icon: <Globe className="h-6 w-6 text-primary" />
+      title: "Conférence audio et vidéo",
+      description: "Organisation de conférences professionnelles avec partage d'écran, enregistrement et modération.",
+      icon: <Video className="h-10 w-10 text-primary-600" />
     },
     {
-      title: "Centres d'appels",
-      description: "Solutions optimisées pour la gestion des volumes importants d'appels.",
-      features: [
-        "Distribution intelligente des appels (ACD)",
-        "Surveillance et coaching en temps réel",
-        "Enregistrements et évaluation de qualité",
-        "Rapports de performance détaillés",
-        "Intégration CRM",
-        "Analyse prédictive"
-      ],
-      image: '/images/services/female-employee-call-center-video-link-tech-support-employee-uses-headset-webcam.jpg.jpg',
-      icon: <Headphones className="h-6 w-6 text-primary" />
+      title: "Intégration CRM",
+      description: "Synchronisation avec vos outils CRM pour une gestion client optimisée et un suivi des interactions complet.",
+      icon: <Users className="h-10 w-10 text-primary-600" />
+    },
+    {
+      title: "Routage intelligent d'appels",
+      description: "Distribution automatique des appels selon des règles personnalisées, files d'attente intelligentes et priorités.",
+      icon: <Wifi className="h-10 w-10 text-primary-600" />
+    },
+    {
+      title: "Applications mobiles dédiées",
+      description: "Utilisation de votre système téléphonique professionnel depuis n'importe où via des applications pour smartphone.",
+      icon: <Smartphone className="h-10 w-10 text-primary-600" />
+    },
+    {
+      title: "Analyse et rapports",
+      description: "Suivi détaillé des performances, statistiques d'appels et tableaux de bord personnalisables.",
+      icon: <BarChart className="h-10 w-10 text-primary-600" />
     }
   ];
 
   return (
     <PublicLayout
-      title="Téléphonie IP & Communications Unifiées | CGUITECH"
-      description="Solutions de téléphonie IP et communications unifiées pour votre entreprise. Services VoIP, visioconférence, centres d'appels et communications unifiées."
+      title="Solutions de Téléphonie IP | CGUITECH"
+      description="Solutions de téléphonie IP professionnelles pour entreprises : centrex IP, IPBX, communications unifiées et visioconférence."
     >
-    {/* Hero Section */}
-    <section className="relative bg-gradient-to-r from-primary/90 via-primary/80 to-primary/70 py-24 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-[url('/images/services/contact-cta.jpg')] bg-cover bg-center"></div>
-      <div className="absolute inset-0 bg-black opacity-30"></div>
-      <div className="container mx-auto px-4 relative">
-        <div className="max-w-3xl">
-          <Badge className="bg-white/20 hover:bg-white/30 text-white mb-6 py-2 px-4 text-sm">TÉLÉPHONIE IP</Badge>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">Communications d'entreprise <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-purple-300">intelligentes</span></h1>
-          <p className="text-xl opacity-90 mb-8 leading-relaxed">
-                Des solutions de téléphonie IP et de communications unifiées pour rendre vos échanges professionnels plus efficaces et économiques.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button className="bg-white text-primary-600 hover:bg-white/90">
-              Demander un devis
-            </Button>
-            <Button variant="outline" className="border-white text-white hover:bg-white/10">
-              Découvrir nos forfaits
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-      {/* Statistiques clés */}
-      {/* <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <motion.div 
-              className="text-center p-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="relative w-20 h-20 mx-auto mb-4">
-                <img 
-                  src="/images/services/ip-telephony/stats.jpg" 
-                  alt="Clients satisfaits" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">1000+</div>
-              <div className="text-gray-600">Clients satisfaits</div>
-            </motion.div>
-            <motion.div 
-              className="text-center p-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              <div className="relative w-20 h-20 mx-auto mb-4">
-                <img 
-                  src="/images/services/ip-telephony/stats.jpg" 
-                  alt="Disponibilité" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">99.9%</div>
-              <div className="text-gray-600">Disponibilité</div>
-            </motion.div>
-            <motion.div 
-              className="text-center p-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="relative w-20 h-20 mx-auto mb-4">
-                <img 
-                  src="/images/services/ip-telephony/stats.jpg" 
-                  alt="Support technique" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">24/7</div>
-              <div className="text-gray-600">Support technique</div>
-            </motion.div>
-            <motion.div 
-              className="text-center p-6"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <div className="relative w-20 h-20 mx-auto mb-4">
-                <img 
-                  src="/images/services/ip-telephony/stats.jpg" 
-                  alt="Économies réalisées" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="text-4xl font-bold text-primary mb-2">60%</div>
-              <div className="text-gray-600">Économies réalisées</div>
-            </motion.div>
-          </div>
-        </div>
-      </section> */}
-
-      {/* Solutions de téléphonie IP */}
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="bg-primary-100 text-primary mb-4 py-1 px-4">NOS SOLUTIONS</Badge>
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-600 text-transparent bg-clip-text">Solutions de communications complètes</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              Découvrez notre gamme complète de solutions de téléphonie IP et de communications unifiées pour transformer vos échanges professionnels.
+      {/* Hero Section - Design moderne avec overlay et éléments asymétriques */}
+      <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/services/contact-cta.jpg')] bg-cover bg-center"></div>
+        {/* <div className="absolute inset-0 bg-gradient-to-br from-primary-600/80 via-primary-700/80 to-primary-800/90"></div> */}
+        <div className="absolute inset-0 bg-black opacity-50"></div>
+        
+        {/* Formes géométriques flottantes */}
+        <div className="absolute top-10 right-10 w-64 h-64 rounded-full bg-white/10 blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-20 w-80 h-80 rounded-full bg-blue-300/10 blur-3xl animate-pulse animation-delay-2000"></div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl">
+            <Badge className="bg-white/30 hover:bg-white/40 text-white mb-6 py-2 px-4 text-sm uppercase tracking-wide backdrop-blur-sm">Téléphonie IP</Badge>
+            <h1 className="text-4xl md:text-7xl font-extrabold mb-8 leading-tight text-white">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-violet-100">
+                Communication d'entreprise nouvelle génération
+              </span>
+            </h1>
+            <p className="text-xl text-white mb-10 leading-relaxed max-w-2xl">
+              Des solutions de communication modernes, flexibles et économiques pour connecter votre entreprise au monde entier.
             </p>
-          </motion.div>
-
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {ipTelephonySolutions.map((solution, index) => (
-              <motion.div 
-                key={index} 
-                variants={fadeInUp}
-                className="group"
-              >
-                <Card className="border-0 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 h-full relative bg-gradient-to-br from-gray-50 to-white">
-                  <div className="absolute right-0 top-0 w-40 h-40 bg-primary-50 rounded-bl-full -z-10 group-hover:bg-primary-100 transition-colors duration-300"></div>
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={solution.image}
-                      alt={solution.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                  </div>
-                  <CardContent className="p-8">
-                    <div className="bg-gradient-to-br from-primary to-primary-600 text-white p-4 rounded-xl inline-flex mb-6 group-hover:scale-110 transition-transform duration-300">
-                      {solution.icon}
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 text-gray-900">{solution.title}</h3>
-                    <p className="text-gray-600 mb-6">{solution.description}</p>
-                    <ul className="space-y-3">
-                      {solution.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <div className="bg-primary-100 text-primary p-1 rounded-full mt-1 flex-shrink-0">
-                            <CheckCircle2 className="h-4 w-4" />
-                          </div>
-                          <span className="text-gray-700">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    {/* <div className="mt-8 pt-4 border-t border-gray-100">
-                      <Button variant="ghost" className="text-primary hover:text-primary-800 hover:bg-primary-50 p-0 flex items-center gap-1 group-hover:gap-2 transition-all duration-300">
-                        En savoir plus
-                        <ChevronRight className="h-4 w-4" />
-                      </Button>
-                    </div> */}
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Avantages de la téléphonie IP */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="bg-primary-100 text-primary mb-4 py-1 px-4">AVANTAGES</Badge>
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-600 text-transparent bg-clip-text">Pourquoi choisir la téléphonie IP ?</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              La téléphonie IP offre de nombreux avantages par rapport aux systèmes téléphoniques traditionnels, tant sur le plan financier que fonctionnel.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {ipTelephonyBenefits.map((benefit, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="flex items-start gap-6">
-                  <div className="bg-primary-100 p-3 rounded-full">
-                    {benefit.icon}
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-primary mb-2">{benefit.stats}</div>
-                    <h3 className="text-xl font-bold mb-2 text-gray-900">{benefit.title}</h3>
-                    <p className="text-gray-600">{benefit.description}</p>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <img 
-                    src={benefit.image}
-                    alt={benefit.title}
-                    className="w-full h-48 object-cover rounded-lg"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Cas d'utilisation */}
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="bg-primary-100 text-primary mb-4 py-1 px-4">CAS D'UTILISATION</Badge>
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-600 text-transparent bg-clip-text">Solutions adaptées à vos besoins</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              Nos solutions de téléphonie IP s'adaptent à différents types d'entreprises et d'organisations, quelle que soit leur taille ou leur secteur d'activité.
-            </p>
-          </motion.div>
-
-          <div className="max-w-5xl mx-auto">
-            <Tabs defaultValue="pme" className="w-full">
-              <TabsList className="grid grid-cols-3 mb-8">
-                <TabsTrigger value="pme" className="data-[state=active]:bg-primary data-[state=active]:text-white">
-                  PME
-                </TabsTrigger>
-                <TabsTrigger value="grands-comptes" className="data-[state=active]:bg-primary data-[state=active]:text-white">
-                  Grandes Entreprises
-                </TabsTrigger>
-                <TabsTrigger value="centres-appels" className="data-[state=active]:bg-primary data-[state=active]:text-white">
-                  Centres d'appels
-                </TabsTrigger>
-              </TabsList>
-              
-              {useCases.map((useCase, index) => (
-                <TabsContent 
-                  key={index} 
-                  value={index === 0 ? "pme" : index === 1 ? "grands-comptes" : "centres-appels"} 
-                  className="p-8 border rounded-xl bg-white shadow-lg"
-                >
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <div className="flex items-start gap-6 mb-6">
-                        <div className="bg-primary-100 p-3 rounded-full">
-                          {useCase.icon}
-                        </div>
-                        <div>
-                          <h3 className="text-2xl font-bold text-gray-900">{useCase.title}</h3>
-                          <p className="text-gray-600 mt-2">{useCase.description}</p>
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-1 gap-6">
-                        {useCase.features.map((feature, idx) => (
-                          <div key={idx} className="flex items-start gap-3">
-                            <div className="bg-primary-100 text-primary p-1 rounded-full mt-1 flex-shrink-0">
-                              <CheckCircle2 className="h-4 w-4" />
-                            </div>
-                            <span className="text-gray-700">{feature}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="relative rounded-xl overflow-hidden">
-                      <img 
-                        src={useCase.image}
-                        alt={useCase.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                </TabsContent>
-              ))}
-            </Tabs>
-          </div>
-        </div>
-      </section>
-
-      {/* Notre approche */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-4">
-          <motion.div 
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge className="bg-primary-100 text-primary mb-4 py-1 px-4">NOTRE MÉTHODOLOGIE</Badge>
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-600 text-transparent bg-clip-text">Une implémentation en 4 étapes</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              Notre approche méthodique garantit une transition en douceur vers votre nouvelle solution de téléphonie IP, avec un minimum de perturbations pour votre activité.
-            </p>
-          </motion.div>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              {/* Timeline vertical line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary to-primary-600 rounded-full"></div>
-              
-              {[
-                {
-                  title: "Analyse des besoins",
-                  description: "Évaluation complète de vos besoins en communication et de votre infrastructure existante.",
-                  icon: <MessageSquare className="h-6 w-6" />,
-                  image: "/images/services/unrecognizable-black-lady-sitting-desk-office-night-writing-journal.jpg"
-                },
-                {
-                  title: "Conception de solution",
-                  description: "Élaboration d'une solution personnalisée adaptée à vos exigences spécifiques.",
-                  icon: <Settings className="h-6 w-6" />,
-                  image: "/images/services/man-working-desk-flat-lay_32987897.jpg"
-                },
-                {
-                  title: "Déploiement",
-                  description: "Installation et configuration de votre nouveau système avec une transition progressive.",
-                  icon: <Zap className="h-6 w-6" />,
-                  image: "/images/services/side-view-woman-working-with-wires.jpg"
-                },
-                {
-                  title: "Formation et support",
-                  description: "Formation des utilisateurs et support continu pour garantir une utilisation optimale.",
-                  icon: <Shield className="h-6 w-6" />,
-                  image: "/images/services/closeup-wireless-headphones-african-american-woman-video-call-with-startup-owner-team-members-selective-focus-headset-job-seeker-online-interview-using-pc-home.jpg"
-                }
-              ].map((step, index) => (
-                <motion.div 
-                  key={index}
-                  className="relative mb-16 last:mb-0"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <div className={`flex items-center gap-8 ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}>
-                    {/* Timeline dot */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-white border-4 border-primary z-10"></div>
-                    
-                    {/* Content */}
-                    <div className="w-1/2">
-                      <div className="relative h-64 rounded-xl overflow-hidden shadow-lg">
-                        <img 
-                          src={step.image}
-                          alt={step.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    </div>
-                    <div className={`w-1/2 ${index % 2 === 0 ? 'text-right pr-12' : 'pl-12'}`}>
-                      <div className={`inline-flex items-center rounded-full px-6 py-2 mb-4 ${index % 2 === 0 ? 'bg-primary-100 text-primary' : 'bg-primary-100 text-primary'}`}>
-                        <span className="font-bold mr-2">ÉTAPE {index + 1}</span>
-                        {step.icon}
-                      </div>
-                      <h3 className="text-2xl font-bold mb-2 text-gray-900">{step.title}</h3>
-                      <p className="text-gray-600">{step.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+            <div className="flex flex-wrap gap-4">
+              <Button className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                Demander un devis gratuit
+              </Button>
+              <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
+                Découvrir nos solutions
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section CTA */}
-      <section className="py-20 bg-gradient-to-tl from-gray-900 via-primary/90 to-blue-900">
-          <div className="container mx-auto px-4">
-              <div className="bg-gradient-to-br from-primary-900 to-primary-700 rounded-3xl overflow-hidden shadow-2xl">
-                  <div className="grid grid-cols-1 md:grid-cols-2 items-center">
-                      <div className="p-12 md:p-16">
-                          <Badge className="bg-yellow-500 text-primary-900 mb-6 px-4 py-1 rounded-full font-medium">COMMENCEZ MAINTENANT</Badge>
-                          <h2 className="text-4xl font-bold mb-6 text-white">Prêt à transformer votre infrastructure IT?</h2>
-                          <p className="mb-8 text-white/90 text-lg">
-                              Contactez nos experts dès aujourd'hui pour une consultation gratuite et découvrez
-                              comment CGUITECH peut accompagner votre entreprise vers l'excellence technologique.
-                          </p>
-                          <div className="flex flex-col sm:flex-row gap-6">
-                              <Link href={route('contact.index')} className="bg-yellow-500 hover:bg-yellow-600 text-primary-900 px-8 py-6 text-lg font-medium rounded-full">
-                                  Prendre rendez-vous
-                              </Link>
-                              <a href="tel:+224627969855" className="flex items-center text-white font-medium text-lg group">
-                                  <div className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors">
-                                      <PhoneCall className="h-6 w-6" />
-                                  </div>
-                                  +224 627 96 98 55
-                              </a>
-                          </div>
-                      </div>
-                      <div className="hidden md:block relative h-full">
-                          <div className="absolute inset-0 bg-gradient-to-l from-transparent to-primary-900/50 z-10"></div>
-                          <img
-                              src="/images/services/woman-with-headset-laptop-working-from-home_23-2148708942.avif"
-                              alt="Contactez-nous"
-                              className="w-full h-full object-cover"
-                          />
-                      </div>
+      {/* Introduction - Design avec overlay et effet de perspective */}
+      <section className="py-24 bg-gradient-to-b from-white to-primary-50">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <Badge className="bg-primary-50 text-primary-600 mb-6 uppercase tracking-wide font-medium">Notre expertise</Badge>
+              <h2 className="text-4xl font-bold mb-8 leading-tight">Téléphonie IP <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-700">de nouvelle génération</span></h2>
+              <p className="text-primary-900 mb-6 leading-relaxed text-lg">
+                Chez CGUITECH, nous déployons des solutions de téléphonie IP qui transforment la façon dont votre entreprise communique, en alliant technologie avancée et simplicité d'utilisation.
+              </p>
+              <p className="text-primary-800 mb-10 leading-relaxed text-lg">
+                Nos solutions s'adaptent parfaitement aux besoins spécifiques de votre entreprise, qu'il s'agisse d'une petite structure ou d'une organisation multi-sites, avec un focus sur la qualité, la fiabilité et la sécurité.
+              </p>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <PhoneCall className="h-8 w-8 text-primary-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-primary-800">Qualité vocale HD</h3>
+                    <p className="text-primary-700 mt-1">Communications cristallines</p>
                   </div>
+                </div>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Shield className="h-8 w-8 text-primary-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-primary-800">Communications sécurisées</h3>
+                    <p className="text-primary-700 mt-1">Chiffrement de bout en bout</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Zap className="h-8 w-8 text-primary-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-primary-800">Installation rapide</h3>
+                    <p className="text-primary-700 mt-1">Déploiement en 48h</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4 p-6 rounded-xl bg-white shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                  <Clock className="h-8 w-8 text-primary-600 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold text-lg text-primary-800">Support 24/7</h3>
+                    <p className="text-primary-700 mt-1">Assistance permanente</p>
+                  </div>
+                </div>
               </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-blue-600/10 rounded-3xl transform -rotate-2"></div>
+              <div className="absolute -inset-4 bg-violet-600/10 rounded-3xl transform rotate-2"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-[1.02] transition-all duration-500">
+                <img
+                  src="/images/services/group-afro-americans-working-together.jpg"
+                  alt="Solutions de téléphonie IP professionnelles"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      {/* Solutions de téléphonie IP - Cards avec effet de survol */}
+      <section className="py-24 bg-gradient-to-b from-white to-primary-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Nos solutions</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Solutions de téléphonie IP complètes</h2>
+            <p className="text-primary-700 max-w-3xl mx-auto text-lg">
+              Nous proposons une gamme complète de solutions de téléphonie IP pour répondre à tous les besoins de communication de votre entreprise.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {telephonySolutions.map((solution, index) => (
+              <div key={index} className="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-primary-100">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-600/5 to-primary-700/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <div className="p-8 relative z-10">
+                  <div className="bg-primary-50 text-primary-600 p-4 rounded-2xl inline-flex mb-6 group-hover:bg-primary-600 group-hover:text-white transition-colors">
+                    {solution.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 text-primary-800 group-hover:text-primary-600 transition-colors">{solution.title}</h3>
+                  <p className="text-primary-700 mb-6">{solution.description}</p>
+                  <ul className="space-y-3">
+                    {solution.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <CheckCircle2 className="h-5 w-5 text-primary-600 mt-1 flex-shrink-0" />
+                        <span className="text-primary-800">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-8 pt-6 border-t border-primary-100">
+                    <Button variant="ghost" className="text-primary-600 hover:text-primary-700 hover:bg-primary-50 font-medium p-0 group flex items-center">
+                      En savoir plus 
+                      <ChevronRight className="ml-2 h-4 w-4 transform group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Avantages de la téléphonie IP */}
+      <section className="py-24 bg-gradient-to-b from-primary-100 to-white">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
+            <div className="lg:col-span-2 relative">
+              <div className="absolute -inset-4 bg-primary-600/10 rounded-3xl transform rotate-3"></div>
+              <div className="absolute -inset-4 bg-primary-700/10 rounded-3xl transform -rotate-2"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img
+                  src="/images/services/smiling-customer-service-agent.jpg"
+                  alt="Avantages de la téléphonie IP"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+            
+            <div className="lg:col-span-3">
+              <Badge className="bg-primary-50 text-primary-600 mb-6 uppercase tracking-wide font-medium">Avantages</Badge>
+              <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Pourquoi passer à la téléphonie IP ?</h2>
+              <p className="text-primary-800 mb-8 leading-relaxed text-lg">
+                La téléphonie IP offre de nombreux avantages par rapport aux systèmes téléphoniques traditionnels, en termes de coûts, de flexibilité et de fonctionnalités avancées.
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {telephonyBenefits.map((benefit, index) => (
+                  <div key={index} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-all hover:-translate-y-1 border border-primary-100">
+                    <div className="text-2xl font-bold text-primary-600 mb-2">{benefit.stats}</div>
+                    <h3 className="font-bold text-xl mb-3 text-primary-900">{benefit.title}</h3>
+                    <p className="text-primary-700">{benefit.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fonctionnalités avancées */}
+      <section className="py-24 bg-gradient-to-br from-primary-50 via-white to-primary-100">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge className="bg-primary-50 text-primary-600 mb-4 uppercase tracking-wide font-medium">Fonctionnalités</Badge>
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-primary-600 to-primary-700 text-transparent bg-clip-text">Fonctionnalités avancées</h2>
+            <p className="text-primary-700 max-w-3xl mx-auto text-lg">
+              Nos solutions de téléphonie IP intègrent de nombreuses fonctionnalités avancées pour optimiser vos communications d'entreprise.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {advancedFeatures.map((feature, index) => (
+              <div key={index} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 border border-primary-100 flex flex-col items-center text-center">
+                <div className="bg-primary-50 p-5 rounded-2xl mb-6">
+                  {feature.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-primary-800">{feature.title}</h3>
+                <p className="text-primary-700">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - Design moderne avec gradient */}
+      <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center relative">
+            <div className="absolute inset-0 -mt-10 -ml-10 w-40 h-40 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-0 right-0 -mb-10 -mr-10 w-60 h-60 bg-violet-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
+            
+            <div className="relative z-10">
+              <h2 className="text-4xl md:text-5xl font-bold mb-8">
+                Prêt à moderniser vos communications ?
+              </h2>
+              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
+                Contactez-nous dès aujourd'hui pour discuter de vos besoins en téléphonie IP et découvrir comment nos solutions peuvent transformer votre entreprise.
+              </p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link href={route('contact.index')} className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
+                  Demander un devis gratuit
+                </Link>
+                <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="flex items-center text-white font-medium text-lg group">
+                  <div className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors">
+                    <PhoneCall className="h-6 w-6" />
+                  </div>
+                  {CGUITECH.contactInfo.phone}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Ajout de style global pour les animations */}
       <style>{`
-        @keyframes blob {
-          0% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -30px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-          100% { transform: translate(0px, 0px) scale(1); }
+        @keyframes pulse {
+          0% { opacity: 0.4; }
+          50% { opacity: 0.6; }
+          100% { opacity: 0.4; }
         }
-        
-        .animate-blob {
-          animation: blob 7s infinite;
+
+        .animate-pulse {
+          animation: pulse 3s ease-in-out infinite;
         }
-        
+
         .animation-delay-2000 {
           animation-delay: 2s;
-        }
-        
-        .animation-delay-4000 {
-          animation-delay: 4s;
         }
       `}</style>
     </PublicLayout>
   );
-} 
+}

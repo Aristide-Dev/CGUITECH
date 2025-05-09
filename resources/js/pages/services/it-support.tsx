@@ -3,7 +3,9 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CheckCircle2, Clock, UserRound, PieChart, Shield, Cpu, HelpCircle, BarChart } from 'lucide-react';
+import { CheckCircle2, Clock, UserRound, PieChart, Shield, Cpu, HelpCircle, BarChart, ArrowRight, PhoneCall } from 'lucide-react';
+import { Link } from '@inertiajs/react';
+import { CGUITECH } from '@/utils';
 
 export default function ITSupportService() {
   // Données pour les services de support
@@ -363,26 +365,39 @@ export default function ITSupportService() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center relative">
-            <div className="absolute inset-0 -mt-10 -ml-10 w-40 h-40 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 -mb-10 -mr-10 w-60 h-60 bg-primary-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
-            
-            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                Besoin d'assistance technique ?
-              </h2>
-              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-                Contactez-nous dès aujourd'hui pour discuter de vos besoins en support informatique et découvrir comment nous pouvons vous aider à maintenir vos systèmes en parfait état de fonctionnement.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Button className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
-                  Demander un devis
-                </Button>
-                <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
-                  En savoir plus
-                </Button>
+      <section className="relative py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white overflow-hidden">
+        {/* Éléments décoratifs de fond */}
+        <div className="absolute top-0 left-0 w-80 h-80 bg-white/80 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-70 h-70 bg-white/50 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
+        
+        <div className="container mx-auto px-2 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-2 items-center">
+              <div>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">Besoin d'assistance IT immédiate ?</h2>
+                <p className="text-lg text-white/90 mb-8">
+                  Notre équipe de support technique est disponible pour résoudre vos problèmes rapidement et efficacement.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href={route('contact.index')} className="bg-white hover:bg-white/90 text-primary-600 font-medium px-6 py-3 rounded-lg flex items-center justify-center transition-all hover:shadow-lg">
+                    <span>Demander un devis gratuit</span>
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                  <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="flex items-center text-white font-medium text-lg group">
+                    <div className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors">
+                      <PhoneCall className="h-6 w-6" />
+                    </div>
+                    {CGUITECH.contactInfo.phone}
+                  </a>
+                </div>
+              </div>
+              <div className="relative hidden md:block">
+                <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/80 to-transparent rounded-2xl"></div>
+                <img 
+                  src="/images/services/server-hub-supervisor-scolding-worker-unable-properly-optimize-code.jpg" 
+                  alt="Support IT professionnel" 
+                  className="w-full h-auto rounded-2xl shadow-xl object-cover" 
+                />
               </div>
             </div>
           </div>

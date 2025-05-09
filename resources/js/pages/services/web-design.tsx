@@ -13,8 +13,15 @@ import {
   Server as ServerIcon,
   ChevronRight,
   Zap,
-  Shield
+  Shield,
+  Paintbrush,
+  SmartphoneNfc,
+  BarChart,
+  ArrowRight,
+  PhoneCall
 } from 'lucide-react';
+import { Link } from '@inertiajs/react';
+import { CGUITECH } from '@/utils';
 
 export default function WebDesignService() {
   // Données pour les types de sites web
@@ -22,7 +29,7 @@ export default function WebDesignService() {
     {
       title: "Site vitrine",
       description: "Présentez votre entreprise avec un design immersif et captivant.",
-      icon: <Globe className="h-8 w-8 text-primary" />,
+      icon: <Globe className="h-8 w-8" />,
       features: [
         "Design personnalisé et responsive",
         "Optimisation pour les moteurs de recherche",
@@ -33,7 +40,7 @@ export default function WebDesignService() {
     {
       title: "Site e-commerce",
       description: "Vendez en ligne avec une boutique complète et sécurisée.",
-      icon: <Rocket className="h-8 w-8 text-primary" />,
+      icon: <Rocket className="h-8 w-8" />,
       features: [
         "Catalogue de produits complet",
         "Système de paiement sécurisé",
@@ -44,7 +51,7 @@ export default function WebDesignService() {
     {
       title: "Applications web",
       description: "Solutions sur mesure pour les besoins spécifiques de votre entreprise.",
-      icon: <Code className="h-8 w-8 text-primary" />,
+      icon: <Code className="h-8 w-8" />,
       features: [
         "Développement sur mesure",
         "Intégration avec vos systèmes existants",
@@ -55,7 +62,7 @@ export default function WebDesignService() {
     {
       title: "Sites mobiles",
       description: "Expérience optimisée pour les utilisateurs mobiles.",
-      icon: <Smartphone className="h-8 w-8 text-primary" />,
+      icon: <Smartphone className="h-8 w-8" />,
       features: [
         "Compatibilité multi-appareils",
         "Navigation intuitive sur écran tactile",
@@ -378,27 +385,82 @@ export default function WebDesignService() {
         </div>
       </section>
 
-      {/* CTA Section - Design moderne avec gradient */}
-      <section className="py-20 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center relative">
-            <div className="absolute inset-0 -mt-10 -ml-10 w-40 h-40 bg-white/20 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-0 right-0 -mb-10 -mr-10 w-60 h-60 bg-violet-400/20 rounded-full blur-3xl animate-pulse animation-delay-2000"></div>
-            
-            <div className="relative z-10">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">
-                Prêt à créer votre présence en ligne ?
-              </h2>
-              <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-                Contactez-nous dès aujourd'hui pour discuter de votre projet web et découvrir comment nous pouvons vous aider à établir une présence en ligne efficace.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Button className="bg-white hover:bg-white/90 text-primary-600 font-medium text-lg px-8 py-6 rounded-xl transition-all hover:shadow-lg hover:-translate-y-1">
-                  Demander un devis gratuit
-                </Button>
-                <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white/10 font-medium text-lg px-8 py-6 rounded-xl backdrop-blur-sm">
-                  Nous contacter
-                </Button>
+      {/* CTA Section */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Background avec overlay */}
+        <div className="absolute inset-0 bg-[url('/images/services/web-design-workspace.jpg')] bg-cover bg-fixed bg-center"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary-900/90 to-primary-700/90 backdrop-blur-sm"></div>
+        
+        {/* Formes décoratives flottantes */}
+        <div className="absolute top-10 right-10 w-60 h-60 bg-gradient-to-tr from-pink-500/20 to-purple-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-bl from-blue-500/20 to-teal-500/20 rounded-full blur-3xl"></div>
+        
+        <div className="container mx-auto px-4 relative z-10 text-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div>
+                <Badge className="bg-gradient-to-r from-pink-500 to-violet-500 text-white hover:from-pink-600 hover:to-violet-600 mb-4">
+                  Design Web
+                </Badge>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+                  Prêt à transformer votre présence en ligne ?
+                </h2>
+                <p className="text-lg text-white/90 mb-8 max-w-xl">
+                  Nos designers et développeurs web sont prêts à créer une expérience digitale unique pour votre entreprise avec un site moderne, réactif et optimisé.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-5">
+                  <Link 
+                    href={route('contact.index')} 
+                    className="bg-gradient-to-r from-pink-500 to-violet-500 hover:from-pink-600 hover:to-violet-600 text-white font-medium px-6 py-3 rounded-lg flex items-center justify-center transition-all hover:shadow-lg"
+                  >
+                    <span>Demander un devis gratuit</span>
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                  <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="flex items-center text-white font-medium text-lg group mt-2">
+                    <div className="p-3 bg-white/20 rounded-full mr-3 group-hover:bg-white/30 transition-colors">
+                      <PhoneCall className="h-6 w-6" />
+                    </div>
+                    {CGUITECH.contactInfo.phone}
+                  </a>
+                </div>
+              </div>
+              <div className="hidden md:block">
+                <div className="relative">
+                  {/* Image de présentation avec effet de perspective */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary-700/30 backdrop-blur-[2px] rounded-2xl transform rotate-3 scale-105"></div>
+                  <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/20 shadow-2xl transform -rotate-2">
+                    <h3 className="text-2xl font-semibold mb-6">Ce que nous proposons</h3>
+                    <ul className="space-y-4">
+                      <li className="flex items-start">
+                        <div className="p-2 bg-gradient-to-r from-pink-500/20 to-violet-500/20 rounded-lg mr-3">
+                          <Paintbrush className="h-5 w-5 text-pink-400" />
+                        </div>
+                        <div>
+                          <span className="font-medium block">Design sur mesure</span>
+                          <span className="text-white/80 text-sm">Adapté à votre image de marque</span>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="p-2 bg-gradient-to-r from-blue-500/20 to-teal-500/20 rounded-lg mr-3">
+                          <SmartphoneNfc className="h-5 w-5 text-blue-400" />
+                        </div>
+                        <div>
+                          <span className="font-medium block">100% Responsive</span>
+                          <span className="text-white/80 text-sm">Adapté à tous les appareils</span>
+                        </div>
+                      </li>
+                      <li className="flex items-start">
+                        <div className="p-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-lg mr-3">
+                          <BarChart className="h-5 w-5 text-green-400" />
+                        </div>
+                        <div>
+                          <span className="font-medium block">SEO optimisé</span>
+                          <span className="text-white/80 text-sm">Pour une meilleure visibilité</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
