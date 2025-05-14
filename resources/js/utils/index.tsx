@@ -226,7 +226,7 @@ export const CGUITECH = {
             icon: <ShoppingCart className="h-8 w-8" />,
             description: "Solutions digitales pour optimiser la gestion des stocks, la logistique et l'expérience client",
             color: "bg-blue-500",
-            link: "industries/#commerce-et-distribution",
+            link: "industries#commerce-et-distribution",
             challenges: [
                 "Gestion des stocks",
                 "Expérience client",
@@ -252,7 +252,7 @@ export const CGUITECH = {
             icon: <Truck className="h-8 w-8" />,
             description: "Systèmes de suivi en temps réel et optimisation des chaînes d'approvisionnement",
             color: "bg-green-500",
-            link: "industries/logistique",
+            link: "industries#logistique",
             challenges: [
                 "Traçabilité des marchandises",
                 "Optimisation des routes",
@@ -278,7 +278,7 @@ export const CGUITECH = {
             icon: <Factory className="h-8 w-8" />,
             description: "Automatisation industrielle et solutions IoT pour la production intelligente",
             color: "bg-orange-500",
-            link: "industries/manufacturing",
+            link: "industries#manufacturing",
             challenges: [
                 "Efficacité opérationnelle",
                 "Maintenance prédictive",
@@ -304,7 +304,7 @@ export const CGUITECH = {
             icon: <Building2 className="h-8 w-8" />,
             description: "Solutions sécurisées pour la modernisation des services publics",
             color: "bg-purple-500",
-            link: "industries/gov",
+            link: "industries#gov",
             challenges: [
                 "Modernisation des services",
                 "Sécurité des données",
@@ -330,7 +330,7 @@ export const CGUITECH = {
             icon: <Stethoscope className="h-8 w-8" />,
             description: "Systèmes de gestion des données patients et solutions de télémédecine",
             color: "bg-red-500",
-            link: "industries/sante",
+            link: "industries#sante",
             challenges: [
                 "Gestion des données patients",
                 "Interopérabilité",
@@ -356,7 +356,7 @@ export const CGUITECH = {
             icon: <Banknote className="h-8 w-8" />,
             description: "Solutions bancaires sécurisées et systèmes de gestion financière",
             color: "bg-emerald-500",
-            link: "industries/finance",
+            link: "industries#finance",
             challenges: [
                 "Sécurité des transactions",
                 "Conformité réglementaire",
@@ -382,7 +382,7 @@ export const CGUITECH = {
             icon: <Video className="h-8 w-8" />,
             description: "Plateformes de streaming et solutions de gestion de contenu",
             color: "bg-pink-500",
-            link: "industries/medias",
+            link: "industries#medias",
             challenges: [
                 "Distribution de contenu",
                 "Monétisation",
@@ -408,7 +408,7 @@ export const CGUITECH = {
             icon: <GraduationCap className="h-8 w-8" />,
             description: "Systèmes d'apprentissage en ligne et gestion des établissements",
             color: "bg-indigo-500",
-            link: "industries/education",
+            link: "industries#education",
             challenges: [
                 "Apprentissage à distance",
                 "Gestion des établissements",
@@ -434,7 +434,7 @@ export const CGUITECH = {
             icon: <Wheat className="h-8 w-8" />,
             description: "Solutions IoT pour l'agriculture de précision et la traçabilité",
             color: "bg-yellow-500",
-            link: "industries/agriculture",
+            link: "industries#agriculture",
             challenges: [
                 "Optimisation des cultures",
                 "Gestion des ressources",
@@ -460,7 +460,7 @@ export const CGUITECH = {
             icon: <Car className="h-8 w-8" />,
             description: "Systèmes de gestion de flotte et solutions connectées",
             color: "bg-gray-500",
-            link: "industries/automobile",
+            link: "industries#automobile",
             challenges: [
                 "Gestion de flotte",
                 "Maintenance prédictive",
