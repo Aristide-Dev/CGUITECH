@@ -171,7 +171,7 @@ export default function AboutIndex() {
             </section>
 
             {/* Notre équipe de direction - Enhanced with hover effects */}
-            <section className="py-20 bg-white">
+            {/* <section className="py-20 bg-white">
                 <div className="container mx-auto px-4">
                     <div className="text-center mb-16">
                         <Badge className="bg-primary-100 text-primary mb-4 py-1.5">NOTRE ÉQUIPE</Badge>
@@ -198,7 +198,7 @@ export default function AboutIndex() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Nos engagements - New section */}
             <section className="py-20 bg-gray-50">

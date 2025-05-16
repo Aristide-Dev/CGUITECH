@@ -104,7 +104,7 @@ const TopContactBar = () => (
           <span>8:00 – 17:00</span>
         </div>
       </div>
-      <AuthLinks />
+      {/* <AuthLinks /> */}
     </div>
   </motion.div>
 );
@@ -653,8 +653,8 @@ const getMenuItems = (): MenuItem[] => [
     href: "/about",
     children: [
       { label: "Profil de l'entreprise", href: "/about" },
-      { label: "Notre équipe", href: "/about/team" },
-      { label: "Approche de gestion", href: "/about/management" },
+      // { label: "Notre équipe", href: "/about/team" },
+      // { label: "Approche de gestion", href: "/about/management" },
       { label: "Pourquoi nous choisir", href: "/about/why-choose-us" },
       { label: "Partenaires", href: "/#partenaires" }
     ]
