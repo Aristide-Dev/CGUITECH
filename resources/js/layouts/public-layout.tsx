@@ -1,8 +1,9 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import { PropsWithChildren, useState, useRef, useEffect } from 'react';
+import { PropsWithChildren, useState, useRef, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Sheet, SheetContent } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetFooter } from '@/components/ui/sheet';
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { 
   PhoneCall, 
   Mail, 
@@ -16,17 +17,39 @@ import {
   Instagram,
   Menu as MenuIcon,
   X,
-  ArrowUp
+  ArrowUp,
+  Sun,
+  Moon
 } from 'lucide-react';
-import { type SharedData } from '@/types';
-import { CGUITECH } from '@/utils/index';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CGUITECH } from '@/utils/index';
+import { cn } from '@/lib/utils';
+import { useAppearance } from '@/hooks/use-appearance';
 
-// Types de base
-type PublicLayoutProps = PropsWithChildren<{
-  title?: string;
-  description?: string;
-}>;
+// Types améliorés
+interface SharedData {
+  auth: {
+    user: any;
+  };
+}
+
+interface PublicLayoutProps extends PropsWithChildren {
+  seo?: {
+    title?: string;
+    description?: string;
+    keywords?: string;
+    ogImage?: string;
+    canonicalUrl?: string;
+    ogType?: string;
+    twitterCreator?: string;
+    datePublished?: string;
+    dateModified?: string;
+    articleSection?: string;
+    alternateLocales?: {locale: string, url: string}[];
+    itemProps?: Record<string, string>;
+  };
+  show_cta?: boolean;
+}
 
 interface MenuItem {
   label: string;
@@ -72,6 +95,154 @@ interface FooterLinksProps {
   }>;
 }
 
+// Composant pour le menu mobile amélioré
+const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps) => {
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const { appearance, updateAppearance } = useAppearance();
+
+  // Animation variants
+  const menuItemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { 
+        staggerChildren: 0.08,
+        delayChildren: 0.1
+      }
+    }
+  };
+
+  return (
+    <Sheet open={isOpen} onOpenChange={onClose}>
+      <SheetContent side="left" className="w-full max-w-md p-0">
+        <div className="flex flex-col h-full bg-gradient-to-b from-background to-background/95">
+          <SheetHeader className="px-4 py-4 border-b border-border/50">
+            <div className="flex items-center justify-between">
+              <Link href="/" className="flex items-center" onClick={onClose}>
+                <Logo className="h-8" onClick={onClose} />
+              </Link>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={() => updateAppearance(appearance === 'dark' ? 'light' : 'dark')}
+                className="rounded-full"
+              >
+                {appearance === 'dark' ? (
+                  <Sun className="h-5 w-5" />
+                ) : (
+                  <Moon className="h-5 w-5" />
+                )}
+              </Button>
+            </div>
+          </SheetHeader>
+
+          <ScrollArea className="flex-1 px-4 py-2">
+            <motion.div 
+              className="space-y-2"
+              initial="hidden"
+              animate="visible"
+              variants={containerVariants}
+            >
+              <motion.nav>
+                {menuItems.map((item, index) => (
+                  <motion.div 
+                    key={item.label}
+                    variants={menuItemVariants}
+                  >
+                    {item.children ? (
+                      <div>
+                        <button
+                          onClick={() => setActiveSection(activeSection === item.label ? null : item.label)}
+                          className={cn(
+                            "w-full flex items-center justify-between py-2 px-3 rounded-lg transition-colors",
+                            activeSection === item.label 
+                              ? "bg-primary/10 text-primary hover:bg-primary/15" 
+                              : "hover:bg-accent/50"
+                          )}
+                        >
+                          <span className="font-medium text-sm">{item.label}</span>
+                          <ChevronDown 
+                            className={cn(
+                              "w-4 h-4 transition-transform duration-200",
+                              activeSection === item.label ? "rotate-180" : ""
+                            )} 
+                          />
+                        </button>
+                        <AnimatePresence>
+                          {activeSection === item.label && (
+                            <motion.div
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              className="pl-3 mt-1 space-y-1"
+                            >
+                              {item.children.map((child) => (
+                                <Link
+                                  key={child.label}
+                                  href={child.href}
+                                  onClick={onClose}
+                                  className="block py-1.5 px-3 rounded-lg hover:bg-accent/50 transition-colors text-sm"
+                                >
+                                  {child.label}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={onClose}
+                        className="block py-2 px-3 rounded-lg hover:bg-accent/50 transition-colors text-sm"
+                      >
+                        {item.label}
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+              </motion.nav>
+            </motion.div>
+          </ScrollArea>
+
+          <SheetFooter className="px-4 py-4 border-t border-border/50">
+            <div className="w-full space-y-3">
+              <Link 
+                href="/contact"
+                onClick={onClose}
+                className="w-full bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center font-medium transition-colors h-9 rounded-md px-4 text-sm"
+              >
+                Nous contacter
+              </Link>
+              
+              <div className="flex justify-center items-center space-x-4">
+                {CGUITECH.contactInfo.social.map((platform, index) => (
+                  platform && (
+                    <motion.a
+                      key={index}
+                      href={platform.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      {platform.icon && <platform.icon className="h-4 w-4" />}
+                    </motion.a>
+                  )
+                ))}
+              </div>
+            </div>
+          </SheetFooter>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+};
 
 // Extraction des composants pour une meilleure organisation
 const TopContactBar = () => (
@@ -108,38 +279,6 @@ const TopContactBar = () => (
     </div>
   </motion.div>
 );
-
-const AuthLinks = () => {
-  const { auth } = usePage<SharedData>().props;
-  
-  return (
-    <div className="flex space-x-4">
-      {auth.user ? (
-        <Link
-          href={route('dashboard')}
-          className="hover:text-yellow-400 transition-colors duration-300"
-        >
-          Tableau de bord
-        </Link>
-      ) : (
-        <>
-          <Link
-            href={route('login')}
-            className="hover:text-yellow-400 transition-colors duration-300"
-          >
-            Connexion
-          </Link>
-          <Link
-            href={route('register')}
-            className="hover:text-yellow-400 transition-colors duration-300"
-          >
-            Inscription
-          </Link>
-        </>
-      )}
-    </div>
-  );
-};
 
 const Logo = ({ className = "h-16", onClick }: LogoProps) => (
   <Link href="/" onClick={onClick} className="transition-transform duration-300 hover:scale-105">
@@ -230,119 +369,6 @@ const isMenuItemActive = (href: string, currentPath: string): boolean => {
     return currentPath === '/';
   }
   return currentPath.startsWith(href);
-};
-
-// Composant pour le menu mobile amélioré
-const MobileMenu = ({ menuItems, isOpen, onClose, currentPath }: MobileMenuProps) => {
-  return (
-    <>
-      <motion.button 
-        className="lg:hidden focus:outline-none p-2 text-gray-700 hover:text-primary transition-colors duration-300"
-        onClick={() => onClose()}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        aria-label="Toggle menu"
-      >
-        <MenuIcon className="h-6 w-6" aria-hidden="true" />
-      </motion.button>
-      
-      <Sheet open={isOpen} onOpenChange={onClose}>
-        <SheetContent side="right" className="w-full sm:w-[400px] p-0 overflow-hidden bg-white">
-          <div className="flex flex-col h-full">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
-              className="flex justify-between items-center border-b p-4 bg-primary-50"
-            >
-              <Logo className="h-10" onClick={onClose} />
-              <motion.button 
-                onClick={onClose}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                aria-label="Fermer le menu"
-                className="text-gray-500 hover:text-primary transition-colors duration-300"
-              >
-                <X className="h-6 w-6" aria-hidden="true" />
-              </motion.button>
-            </motion.div>
-            
-            <motion.div 
-              className="flex-grow overflow-y-auto py-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-            >
-              <div className="space-y-1">
-                {menuItems.map((item, index) => {
-                  const isActive = isMenuItemActive(item.href, currentPath);
-                  
-                  return (
-                    <motion.div 
-                      key={item.label} 
-                      className="relative"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.3, delay: 0.05 * index }}
-                    >
-                      {item.children ? (
-                        <SubMenu 
-                          key={item.label} 
-                          item={item} 
-                          onItemClick={onClose}
-                          isActive={isActive}
-                        />
-                      ) : (
-                        <Link 
-                          href={item.href}
-                          className={`block px-4 py-3 ${
-                            isActive 
-                              ? 'text-primary font-semibold bg-primary-50' 
-                              : 'text-gray-700 hover:text-primary hover:bg-gray-50'
-                          } transition-colors duration-300`}
-                          onClick={onClose}
-                        >
-                          {item.label}
-                        </Link>
-                      )}
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              className="border-t p-4 bg-gray-50"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-            >
-              <Button 
-                variant="default" 
-                className="w-full bg-primary hover:bg-primary-600 text-white transition-all duration-300 hover:shadow-lg transform hover:-translate-y-1"
-                onClick={() => {
-                  window.location.href = '/contact';
-                  onClose();
-                }}
-              >
-                Obtenir un Devis
-              </Button>
-              <div className="flex justify-between mt-4">
-                <a href={`tel:${CGUITECH.contactInfo.unespace_phone}`} className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors duration-300">
-                  <PhoneCall className="h-4 w-4 mr-1" aria-hidden="true" />
-                  {CGUITECH.contactInfo.phone}
-                </a>
-                <a href={`mailto:${CGUITECH.contactInfo.email}`} className="flex items-center text-sm text-gray-600 hover:text-primary transition-colors duration-300">
-                  <Mail className="h-4 w-4 mr-1" aria-hidden="true" />
-                  {CGUITECH.contactInfo.email}
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </SheetContent>
-      </Sheet>
-    </>
-  );
 };
 
 // Composant pour le menu de navigation desktop amélioré
@@ -763,65 +789,181 @@ const BackToTop = () => {
 // Composant principal du layout
 export default function PublicLayout({ 
   children, 
-  title = "CGUITECH - Solutions Technologiques Innovantes en Guinée", 
-  description = "CGUITECH propose des services technologiques sur mesure pour les entreprises en Guinée et en Afrique de l'Ouest: développement logiciel, cybersécurité, cloud et services IT." 
+  seo = {
+    title: "CGUITECH - Solutions Technologiques Innovantes en Guinée",
+    description: "CGUITECH propose des services technologiques sur mesure pour les entreprises en Guinée et en Afrique de l'Ouest: développement logiciel, cybersécurité, cloud et services IT.",
+    keywords: "technologie Guinée, développement logiciel Conakry, cybersécurité Afrique, services IT Guinée, CGUITECH, solutions digitales, transformation numérique, cloud computing Guinée",
+    ogImage: "/images/cguitech.jpeg",
+    canonicalUrl: "https://cguitech.com",
+    ogType: "website",
+    twitterCreator: "@cguitech"
+  },
+  show_cta = true 
 }: PublicLayoutProps) {
   const menuItems = getMenuItems();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { url } = usePage();
   const [scrolled, setScrolled] = useState(false);
-  
-  // Empêche le scroll quand le menu mobile est ouvert
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [mobileMenuOpen]);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const { appearance, updateAppearance } = useAppearance();
+  const baseUrl = window.location.origin;
 
-  // Animation de l'en-tête au défilement
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled);
-      }
-    };
+  // Gestion optimisée du scroll
+  const handleScroll = useCallback(() => {
+    const scrollTop = window.scrollY;
+    setScrolled(scrollTop > 50);
+    setShowBackToTop(scrollTop > 300);
+  }, []);
 
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [scrolled]);
+  }, [handleScroll]);
+
+  // Fonction pour remonter en haut de la page
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Extraction des variables SEO
+  const {
+    title,
+    description,
+    keywords,
+    ogImage = "/images/cguitech.jpeg",
+    canonicalUrl,
+    ogType,
+    twitterCreator,
+    datePublished,
+    dateModified,
+    articleSection,
+    alternateLocales = [],
+    itemProps = {}
+  } = seo;
+
+  const currentUrl = `${baseUrl}${url}`;
+  const absoluteImageUrl = ogImage?.startsWith('http') ? ogImage : `${baseUrl}${ogImage}`;
+  const publishDate = datePublished ?? new Date().toISOString();
+  const modifyDate = dateModified ?? new Date().toISOString();
 
   return (
     <>
-      <Head title={title}>
-        <link rel="preconnect" href="https://fonts.bunny.net" />
-        <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700" rel="stylesheet" />
+      <Head>
+        {/* Balises meta de base */}
+        <title>{title}</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content="technologie Guinée, développement logiciel Conakry, cybersécurité Afrique, services IT Guinée" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#1a365d" />
+        <meta name="keywords" content={keywords} />
+        <meta name="author" content="CGUITECH" />
+        <meta charSet="UTF-8" />
+        
+        {/* Directives pour les robots et les navigateurs */}
+        <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+        
+        {/* Métadonnées géographiques et linguistiques */}
+        <meta name="language" content="fr" />
+        <meta name="geo.region" content="GN" />
+        <meta name="geo.placename" content="Conakry" />
+        
+        {/* Métadonnées pour applications mobiles */}
+        <meta name="application-name" content="CGUITECH" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="CGUITECH" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="theme-color" content="#1a365d" media="(prefers-color-scheme: light)" />
+        <meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)" />
+        
+        {/* Open Graph */}
+        <meta property="og:type" content={ogType} />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={absoluteImageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="Logo CGUITECH" />
+        <meta property="og:site_name" content="CGUITECH" />
+        <meta property="og:locale" content="fr_GN" />
+        
+        {/* Article metadata */}
+        {ogType === 'article' && (
+          <>
+            <meta property="article:published_time" content={publishDate} />
+            <meta property="article:modified_time" content={modifyDate} />
+            {articleSection && <meta property="article:section" content={articleSection} />}
+          </>
+        )}
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={currentUrl} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={absoluteImageUrl} />
+        <meta name="twitter:creator" content={twitterCreator} />
+        <meta name="twitter:site" content="@cguitech" />
+        
+        {/* Canonical et langues alternatives */}
+        <link rel="canonical" href={canonicalUrl || currentUrl} />
+        {alternateLocales.map(({locale, url}) => (
+          <link key={locale} rel="alternate" hrefLang={locale} href={url} />
+        ))}
+        <link rel="alternate" hrefLang="x-default" href={baseUrl} />
+        
+        {/* Préconnexion aux origines externes */}
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//fonts.bunny.net" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+        
+        {/* Schema.org JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "CGUITECH",
+            "url": baseUrl,
+            "logo": `${baseUrl}/images/logo-cguitech-wb.svg`,
+            "description": description,
+            "image": absoluteImageUrl,
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": CGUITECH.contactInfo.address,
+              "addressLocality": "Conakry",
+              "addressCountry": "GN"
+            },
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": CGUITECH.contactInfo.phone,
+              "contactType": "customer service",
+              "email": CGUITECH.contactInfo.email,
+              "availableLanguage": ["French"]
+            },
+            "sameAs": CGUITECH.contactInfo.social
+              .filter((s): s is NonNullable<typeof s> => s !== null && s !== undefined)
+              .map(s => s.url)
+          })}
+        </script>
       </Head>
 
-      <div className="flex min-h-screen flex-col bg-white">
-        {/* Barre de contact */}
+      <div className="min-h-screen flex flex-col">
+        {/* Barre de contact avec schema.org */}
         <TopContactBar />
 
-        {/* En-tête avec navigation */}
+        {/* En-tête avec navigation accessible */}
         <motion.header 
+          role="banner"
+          aria-label="En-tête principal"
           className={`sticky top-0 z-50 bg-white backdrop-blur-md transition-all duration-300 ${
             scrolled 
               ? 'border-b border-primary-100 py-2 shadow-md' 
               : 'border-b border-primary-50 py-4 shadow-sm'
           }`}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
         >
           <div className="container mx-auto flex items-center justify-between px-4">
             <div className="flex items-center">
@@ -848,21 +990,34 @@ export default function PublicLayout({
                 </Button>
               </motion.div>
               
+              {/* Bouton menu mobile */}
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden"
+                onClick={() => setMobileMenuOpen(true)}
+                aria-label="Menu mobile"
+              >
+                <MenuIcon className="h-6 w-6" />
+              </Button>
+
               {/* Menu mobile */}
               <MobileMenu 
                 menuItems={menuItems} 
                 isOpen={mobileMenuOpen} 
-                onClose={() => setMobileMenuOpen(!mobileMenuOpen)} 
+                onClose={() => setMobileMenuOpen(false)} 
                 currentPath={url}
               />
             </div>
           </div>
         </motion.header>
 
-        {/* Contenu principal */}
+        {/* Contenu principal avec landmarks ARIA */}
         <motion.main 
           id="main-content" 
+          role="main"
           tabIndex={-1}
+          aria-label="Contenu principal"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
@@ -870,9 +1025,26 @@ export default function PublicLayout({
           {children}
         </motion.main>
 
+        {/* Bouton retour en haut */}
+        <AnimatePresence>
+          {showBackToTop && (
+            <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              onClick={scrollToTop}
+              className="fixed right-4 bottom-4 md:right-8 md:bottom-8 bg-primary hover:bg-primary-600 text-white rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center shadow-lg z-50 transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label="Retour en haut de la page"
+            >
+              <ArrowUp className="h-5 w-5 md:h-6 md:w-6" />
+            </motion.button>
+          )}
+        </AnimatePresence>
+
         {/* Footer */}
         <Footer />
-        <BackToTop />
       </div>
     </>
   );

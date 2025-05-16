@@ -1,2 +1,25 @@
 User-agent: *
-Disallow:
+Allow: /
+Allow: /about
+Allow: /services
+Allow: /industries
+Allow: /contact
+
+# Interdire l'accès aux routes d'administration et aux fichiers sensibles
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /.env
+Disallow: /.git
+
+# Sitemap
+Sitemap: https://cguitech.com/sitemap.xml
+
+# Temps d'attente entre les requêtes
+Crawl-delay: 10

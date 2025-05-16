@@ -1,11 +1,12 @@
 import '../css/app.css';
 
+import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import { createRoot } from 'react-dom/client';
+import ErrorBoundary from './components/ErrorBoundary';
 import { initializeTheme } from './hooks/use-appearance';
 
-const appName = import.meta.env.VITE_APP_NAME || 'CGUITECH';
+const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'CGUITECH';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -13,10 +14,14 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(
+            <ErrorBoundary>
+                <App {...props} />
+            </ErrorBoundary>
+        );
     },
     progress: {
-        color: '#8AC2FF',
+        color: '#1a365d',
     },
 });
 
