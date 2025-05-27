@@ -793,7 +793,7 @@ export default function PublicLayout({
     title: "CGUITECH - Solutions Technologiques Innovantes en Guinée",
     description: "CGUITECH propose des services technologiques sur mesure pour les entreprises en Guinée et en Afrique de l'Ouest: développement logiciel, cybersécurité, cloud et services IT.",
     keywords: "technologie Guinée, développement logiciel Conakry, cybersécurité Afrique, services IT Guinée, CGUITECH, solutions digitales, transformation numérique, cloud computing Guinée",
-    ogImage: "/images/cguitech.jpeg",
+    ogImage: "/images/cropped-cguitech.png",
     canonicalUrl: "https://cguitech.com",
     ogType: "website",
     twitterCreator: "@cguitech"
@@ -833,7 +833,7 @@ export default function PublicLayout({
     title,
     description,
     keywords,
-    ogImage = "/images/cguitech.jpeg",
+    ogImage = "/images/cropped-cguitech.png",
     canonicalUrl,
     ogType,
     twitterCreator,

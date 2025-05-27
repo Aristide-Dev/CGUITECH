@@ -17,6 +17,11 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="default">
         <meta name="apple-mobile-web-app-title" content="{{ config('app.name', 'CGUITECH') }}">
 
+        {{-- Métadonnées géographiques et linguistiques --}}
+        <meta name="language" content="fr">
+        <meta name="geo.region" content="GN">
+        <meta name="geo.placename" content="Conakry">
+
         {{-- Sécurité --}}
         <meta http-equiv="X-Content-Type-Options" content="nosniff">
         <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
@@ -74,7 +79,7 @@
         <meta property="og:title" content="{{ config('app.name', 'CGUITECH') }}">
         <meta property="og:description" content="{{ config('app.description', 'CGUITECH propose des services technologiques sur mesure pour les entreprises en Guinée et en Afrique de l\'Ouest: développement logiciel, cybersécurité, cloud et services IT.') }}">
         <meta property="og:url" content="{{ url()->current() }}">
-        <meta property="og:image" content="{{ url('/images/logo-cguitech-wb.svg') }}">
+        <meta property="og:image" content="{{ url('/images/cropped-cguitech.png') }}">
         <meta property="og:image:width" content="1200">
         <meta property="og:image:height" content="630">
         <meta property="og:image:alt" content="Logo CGUITECH">
@@ -85,12 +90,14 @@
         <meta name="twitter:creator" content="@cguitech">
         <meta name="twitter:title" content="{{ config('app.name', 'CGUITECH') }}">
         <meta name="twitter:description" content="{{ config('app.description', 'CGUITECH propose des services technologiques sur mesure pour les entreprises en Guinée et en Afrique de l\'Ouest: développement logiciel, cybersécurité, cloud et services IT.') }}">
-        <meta name="twitter:image" content="{{ url('/images/logo-cguitech-wb.svg') }}">
+        <meta name="twitter:image" content="{{ url('/images/cropped-cguitech.png') }}">
 
         {{-- DNS Prefetch et Preconnect --}}
         <link rel="dns-prefetch" href="//fonts.bunny.net">
         <link rel="dns-prefetch" href="//fonts.googleapis.com">
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
 
         @routes
         @viteReactRefresh
